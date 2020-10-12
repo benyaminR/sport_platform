@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "750659275787",
+    "firebase_url": "https://sport-platform-test.firebaseio.com",
+    "project_id": "sport-platform-test",
+    "storage_bucket": "sport-platform-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750659275787:android:4e7fbc65d5dc2b1b7e4b0e",
+        "android_client_info": {
+          "package_name": "com.christophundbenyamin.sport_platform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750659275787-322r16nbhsavknadv9dfgs1118ghg71f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.christophundbenyamin.sport_platform",
+            "certificate_hash": "2fe5100ab75a172dac9d5f848b9a6d3eb9f90497"
+          }
+        },
+        {
+          "client_id": "750659275787-396tn0r646iasohhb1j2s7rhah5596hl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcHaFmzRESaj2_khpZqpPpEX_UmeuC5Iw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750659275787-396tn0r646iasohhb1j2s7rhah5596hl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
