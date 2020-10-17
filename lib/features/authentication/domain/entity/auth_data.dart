@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthData extends Equatable{
-  final String msg;
+  final UserCredential creds;
 
-  AuthData({@required this.msg});
+  AuthData({@required this.creds});
   @override
-  List<Object> get props => [msg];
+  List<Object> get props => [creds];
 
 }

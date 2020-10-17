@@ -8,12 +8,13 @@ import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/usecase.dart';
 
 @singleton
-class SignInAnonymouslyUseCase extends UseCase<AuthData,NoParams>{
+class SignInWithFacebookUseCase extends UseCase<AuthData,NoParams>{
 
   final AuthRepo repo;
 
-  SignInAnonymouslyUseCase({@required this.repo});
+  SignInWithFacebookUseCase({@required this.repo});
 
   @override
-  Future<Either<Failure, AuthData>> call(NoParams params) => repo.signInAnonymously();
+  Future<Either<Failure, AuthData>> call(params) => repo.signInWithFacebook();
+
 }

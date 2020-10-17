@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sport_platform/container.dart';
 
 void main() {
+  configureDependencies();
   runApp(MyApp());
 }
 
