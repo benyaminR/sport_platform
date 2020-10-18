@@ -38,15 +38,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
 
   @override
   Future<AuthDatamodel> signInWithFacebook() async {
-    await firebaseAuth.signInWithRedirect(FacebookAuthProvider());
-    var credentials = await firebaseAuth.getRedirectResult();
+    var credentials = await firebaseAuth.signInWithPopup(FacebookAuthProvider());
     return Future.value(AuthDatamodel(userCredential: credentials));
   }
 
   @override
   Future<AuthDatamodel> signInWithGoogle() async{
-    await firebaseAuth.signInWithRedirect(GoogleAuthProvider());
-    var credentials = await firebaseAuth.getRedirectResult();
+    var credentials = await firebaseAuth.signInWithPopup(GoogleAuthProvider());
     return Future.value(AuthDatamodel(userCredential: credentials));
   }
 

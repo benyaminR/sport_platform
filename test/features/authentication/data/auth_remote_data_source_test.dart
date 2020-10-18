@@ -25,8 +25,7 @@ main() {
       var res = await ds.signInWithGoogle();
       //assert
       expect(res,isNotNull);
-      verify(fa.signInWithRedirect(any));
-      verify(fa.getRedirectResult());
+      verify(fa.signInWithPopup(any));
       verifyNoMoreInteractions(fa);
     });
 
@@ -37,8 +36,7 @@ main() {
       var res = await ds.signInWithFacebook();
       //assert
       expect(res,isNotNull);
-      verify(fa.signInWithRedirect(any));
-      verify(fa.getRedirectResult());
+      verify(fa.signInWithPopup(any));
       verifyNoMoreInteractions(fa);
     });
 
