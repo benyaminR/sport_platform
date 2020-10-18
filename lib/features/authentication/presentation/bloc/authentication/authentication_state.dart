@@ -3,11 +3,11 @@ part of 'authentication_bloc.dart';
 @immutable
 abstract class AuthenticationState extends Equatable{}
 
+@singleton
 class InitialAuthenticationState extends AuthenticationState {
   @override
   List<Object> get props => [];
 }
-
 
 class SigningInState extends AuthenticationState{
   @override

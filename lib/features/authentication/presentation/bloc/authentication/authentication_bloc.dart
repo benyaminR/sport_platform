@@ -22,7 +22,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final SignInWithFacebookUseCase withFacebook;
   final SignInWithEmailUseCase withEmail;
 
-  AuthenticationBloc(AuthenticationState initialState,
+  AuthenticationBloc(InitialAuthenticationState initialState,
       {@required this.withFacebook,
         @required this.withEmail,
         @required this.withGoogle,

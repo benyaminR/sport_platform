@@ -1,7 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
 
-void main() {
+import 'features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
+
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   configureDependencies();
   runApp(MyApp());
 }
@@ -46,19 +52,18 @@ class MyAppState extends State<MyApp> {
             ),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => OhneAnmeldungRoute()), //routes[x]
-            );
+
           },
         ),
       ));
     }
+
+    return list;
+
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(

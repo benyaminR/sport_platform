@@ -6,5 +6,5 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class FirebaseAuthDependency{
-  Future<FirebaseAuth> get prefs => Future.value(FirebaseAuth.instance);
+  FirebaseAuth get prefs => FirebaseAuth.instance;
 }

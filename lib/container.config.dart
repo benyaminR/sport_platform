@@ -28,8 +28,10 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final firebaseAuthDependency = _$FirebaseAuthDependency();
-  gh.factoryAsync<FirebaseAuth>(() => firebaseAuthDependency.prefs);
+  gh.factory<FirebaseAuth>(() => firebaseAuthDependency.prefs);
+
   // Eager singletons must be registered in the right order
+  gh.singleton<InitialAuthenticationState>(InitialAuthenticationState());
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<AuthRepo>(AuthRepoImp(dataSource: get<AuthRemoteDataSource>()));
@@ -42,7 +44,7 @@ GetIt $initGetIt(
   gh.singleton<SignInWithGoogleUseCase>(
       SignInWithGoogleUseCase(repo: get<AuthRepo>()));
   gh.singleton<AuthenticationBloc>(AuthenticationBloc(
-    get<AuthenticationState>(),
+    get<InitialAuthenticationState>(),
     withFacebook: get<SignInWithFacebookUseCase>(),
     withEmail: get<SignInWithEmailUseCase>(),
     withGoogle: get<SignInWithGoogleUseCase>(),
