@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/authentication/data/datamodel/auth_data_model.dart';
 
@@ -44,8 +45,28 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
 
   @override
   Future<AuthDatamodel> signInWithGoogle() async{
-    var credentials = await firebaseAuth.signInWithPopup(GoogleAuthProvider());
-    return Future.value(AuthDatamodel(userCredential: credentials));
+    // hold the instance of the authenticated user
+    UserCredential user;
+    // flag to check whether we're signed in already
+    bool isSignedIn = await GoogleSignIn().isSignedIn();
+
+    if(isSignedIn) {
+      final GoogleSignInAccount googleUser =
+      await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+      var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
+      user = await firebaseAuth.signInWithCredential(credentials);
+      return Future.value(AuthDatamodel(userCredential: user));
+    } else {
+      final GoogleSignInAuthentication googleAuth =
+      await GoogleSignIn().currentUser.authentication;
+      var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
+      user = await firebaseAuth.signInWithCredential(credentials);
+      return Future.value(AuthDatamodel(userCredential: user));
+    }
+
+
   }
 
 
