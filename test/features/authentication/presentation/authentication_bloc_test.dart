@@ -3,11 +3,13 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_facebook_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
+import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
 class SignInWithGoogleUsecaseMock extends Mock implements SignInWithGoogleUseCase{}
@@ -17,6 +19,9 @@ class SignInWithEmailUseCaseMock extends Mock implements SignInWithEmailUseCase{
 
 class SignInWithFacebookUseCaseMock extends Mock implements SignInWithFacebookUseCase{}
 
+class CheckAuthenticationUseCaseMock extends Mock implements CheckAuthenticationUseCase{}
+
+
 main() {
 
   //handles anonymous sign in
@@ -24,12 +29,14 @@ main() {
   final anonymous = SignInAnonymouslyUsecaseMock();
   final withFacebook = SignInWithFacebookUseCaseMock();
   final withEmail = SignInWithEmailUseCaseMock();
+  final checkAuth = CheckAuthenticationUseCaseMock();
 
   generateNewBloc()=> AuthenticationBloc(InitialAuthenticationState(),
       withGoogle:withGoogle,
       anonymous:anonymous,
       withEmail: withEmail,
-      withFacebook: withFacebook
+      withFacebook: withFacebook,
+      checkAuth: checkAuth
   );
 
   group('AuthenticationBloc ',(){
@@ -110,6 +117,25 @@ main() {
         },
         act: (cubit) => cubit.add(SignInWithEmailEvent(email: 'email',password: 'password')),
         expect: [SigningInState(),ErrorState(msg: 'error')],
+      );
+    });
+
+    group('Check Authentication', (){
+      blocTest('should handle logged in users',
+          build: (){
+            when(checkAuth(any)).thenAnswer((_) async => Right(AuthData(creds: null)));
+            return generateNewBloc();
+          },
+          act: (cubit)=> cubit.add(CheckAuthenticationEvent()),
+          expect: [SignedInState()]
+          );
+      blocTest('should handle new users',
+          build: (){
+            when(checkAuth(any)).thenAnswer((realInvocation) async => Left(ServerFailure()));
+            return generateNewBloc();
+          },
+          act: (cubit)=> cubit.add(CheckAuthenticationEvent()),
+          expect: [InitialAuthenticationState()]
       );
     });
 

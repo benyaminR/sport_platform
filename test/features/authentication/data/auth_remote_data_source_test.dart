@@ -11,12 +11,15 @@ main() {
     final fa = MockFirebaseAuth();
     final ds = AuthRemoteDataSourceImpl(firebaseAuth:fa);
 
-    test('signInAnonymously should signIn and return @UserCredential', () async{
-      //act
-      var res = await ds.signInAnonymously();
-      //assert
-      expect(res.creds, isNotNull);
+    group('SignInAnonymously',(){
+      test('should handle firebase auth sign in error', () async{
+
+      });
+
     });
+
+
+
 
     test('signInWithGoogle should call appropriate functions ', () async{
 

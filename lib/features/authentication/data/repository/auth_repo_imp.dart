@@ -45,12 +45,23 @@ class AuthRepoImp implements AuthRepo{
       return Right(res);
     } on ServerException{
       return Left(ServerFailure());
-    }  }
+    }
+  }
 
   @override
   Future<Either<Failure, AuthData>> signInWithGoogle() async{
     try{
       var res = await dataSource.signInWithGoogle();
+      return Right(res);
+    } on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, AuthData>> checkAuthentication() async {
+    try{
+      var res = await dataSource.checkAuthentication();
       return Right(res);
     } on ServerException{
       return Left(ServerFailure());

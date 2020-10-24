@@ -12,6 +12,7 @@ import 'features/authentication/data/datasource/auth_remote_data_source.dart';
 import 'features/authentication/domain/repository/auth_repo.dart';
 import 'features/authentication/data/repository/auth_repo_imp.dart';
 import 'features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
+import 'features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'utils/third_party_dependencies/firebase_auth.dart';
 import 'features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
@@ -35,6 +36,8 @@ GetIt $initGetIt(
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<AuthRepo>(AuthRepoImp(dataSource: get<AuthRemoteDataSource>()));
+  gh.singleton<CheckAuthenticationUseCase>(
+      CheckAuthenticationUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInAnonymouslyUseCase>(
       SignInAnonymouslyUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInWithEmailUseCase>(
@@ -49,6 +52,7 @@ GetIt $initGetIt(
     withEmail: get<SignInWithEmailUseCase>(),
     withGoogle: get<SignInWithGoogleUseCase>(),
     anonymous: get<SignInAnonymouslyUseCase>(),
+    checkAuth: get<CheckAuthenticationUseCase>(),
   ));
   return get;
 }

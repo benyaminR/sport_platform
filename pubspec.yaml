@@ -36,6 +36,8 @@ dependencies:
   google_sign_in_mocks: ^0.1.0+2
   google_sign_in: ^4.5.5
 
+  flutter_facebook_auth: ^0.3.3
+
   get_it: ^5.0.1
   injectable:
   shared_preferences: ^0.5.12+2

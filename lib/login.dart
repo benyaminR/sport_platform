@@ -9,7 +9,7 @@ class Login extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<AuthenticationBloc>(
-        create: (context)=> getIt<AuthenticationBloc>() ,
+        create: (context)=> getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
         child: BlocConsumer<AuthenticationBloc,AuthenticationState>(
           builder: (context,state){
             if(state is InitialAuthenticationState || state is ErrorState){
