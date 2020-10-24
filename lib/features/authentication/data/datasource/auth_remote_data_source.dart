@@ -5,22 +5,19 @@ import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/authentication/data/datamodel/auth_data_model.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 
-abstract class AuthRemoteDataSource {
+abstract class AuthRemoteDataSource{
   Future<AuthDatamodel> signInAnonymously();
-
   Future<AuthDatamodel> signInWithGoogle();
-
   Future<AuthDatamodel> signInWithApple();
-
   Future<AuthDatamodel> signInWithEmail(String email, String password);
-
   Future<AuthDatamodel> signInWithFacebook();
-
   Future<AuthDatamodel> checkAuthentication();
+
 }
 
 @Singleton(as: AuthRemoteDataSource)
-class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
+
   final FirebaseAuth firebaseAuth;
 
   AuthRemoteDataSourceImpl({@required this.firebaseAuth});
@@ -28,7 +25,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   ///throws [ServerException] in case the firebase auth fails to sign in
   ///it support login for both logged in users and new users
   @override
-  Future<AuthDatamodel> signInAnonymously() async {
+  Future<AuthDatamodel> signInAnonymously() async{
     final credentials = await firebaseAuth.signInAnonymously();
     return Future.value(AuthDatamodel(userCredential: credentials));
   }
@@ -43,10 +40,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<AuthDatamodel> signInWithEmail(String email, String password) async {
     try {
-      var credentials = await firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      var credentials = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return Future.value(AuthDatamodel(userCredential: credentials));
-    } on Exception {
+    }on Exception{
       throw ServerException();
     }
   }
@@ -85,40 +81,44 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   ///throws [ServerException] in case user closes the pop up before fully signing in
   ///it support login for both logged in users and new users
   @override
-  Future<AuthDatamodel> signInWithGoogle() async {
+  Future<AuthDatamodel> signInWithGoogle() async{
     // hold the instance of the authenticated user
     UserCredential user;
     // flag to check whether we're signed in already
     bool isSignedIn = await GoogleSignIn().isSignedIn();
 
-    if (!isSignedIn) {
+    if(!isSignedIn) {
+
       final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
       //if user closes the sign in window
-      if (googleUser == null) throw ServerException();
+      if(googleUser == null) throw ServerException();
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-      var credentials = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
       user = await firebaseAuth.signInWithCredential(credentials);
 
       return Future.value(AuthDatamodel(userCredential: user));
-    } else {
-      final GoogleSignInAuthentication googleAuth =
-          await GoogleSignIn().currentUser.authentication;
 
-      var credentials = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    } else {
+
+      final GoogleSignInAuthentication googleAuth = await GoogleSignIn().currentUser.authentication;
+
+      var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
       user = await firebaseAuth.signInWithCredential(credentials);
 
       return Future.value(AuthDatamodel(userCredential: user));
     }
+
   }
 
   @override
   Future<AuthDatamodel> checkAuthentication() {
-    if (firebaseAuth.currentUser == null) throw ServerException();
+    if(firebaseAuth.currentUser == null)
+      throw ServerException();
     return Future.value(AuthDatamodel(userCredential: null));
   }
+
+
+
 }

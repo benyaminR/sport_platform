@@ -18,9 +18,7 @@ class Login extends StatelessWidget{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(child: Text('Google'),onPressed: ()=> getIt<AuthenticationBloc>().add(SignInWithGoogleEvent()),),
-                    ElevatedButton(child: Text('E-Mail'),onPressed: ()=> getIt<AuthenticationBloc>().add(SignInWithEmailEvent(password: 'password',email: 'benyaminradmard84@gmail.com')),),
-                    // ElevatedButton(child: Text('Facebook'),onPressed: ()=> getIt<AuthenticationBloc>().add(SignInWithFacebookEvent()),),
-                    //ElevatedButton(child: Text('Apple'),onPressed: ()=> getIt<AuthenticationBloc>().add(SignInWithAp()),),
+                    ElevatedButton(child: Text('Email'),onPressed: ()=> getIt<AuthenticationBloc>().add(SignInWithEmailEvent(password: 'password',email: 'benyaminradmard84@gmail.com')),),
                     ElevatedButton(child: Text('Anonymous'),onPressed: ()=> getIt<AuthenticationBloc>().add(SignInAnonymouslyEvent()),),
                   ],
                 ),
@@ -35,10 +33,12 @@ class Login extends StatelessWidget{
           listener: (context,state){
             if(state is SignedInState)
               Navigator.pushNamed(context, '/home');
+            if(state is ErrorState)
+              Scaffold.of(context).showSnackBar(SnackBar(content: Text('Wrong password or email'),));
           },
         ),
       ),
     );
   }
-}
 
+}

@@ -21,10 +21,6 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  mvc_pattern: ^6.0.0
-
-  rflutter_alert: ^1.0.3
-
   flutter:
     sdk: flutter
 
@@ -39,6 +35,7 @@ dependencies:
   firebase_auth_mocks: ^0.3.2
   google_sign_in_mocks: ^0.1.0+2
   google_sign_in: ^4.5.5
+
 
   get_it: ^5.0.1
   injectable:
