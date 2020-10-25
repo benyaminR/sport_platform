@@ -26,5 +26,5 @@ class ErrorState extends AuthenticationState{
 
   @override
   List<Object> get props => [msg];
-
 }
+

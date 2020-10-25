@@ -109,6 +109,26 @@ main() {
 
     });
 
+    group('checkAuthentication ',(){
+      test('should handle right',() async{
+        //arrange
+        when(datasource.checkAuthentication()).thenAnswer((_) async => right);
+        //act
+        var res = await repo.checkAuthentication();
+        //assert
+        expect(res,Right(right));
+      });
+
+      test('should handle left',() async{
+        //arrange
+        when(datasource.checkAuthentication()).thenThrow(ServerException());
+        //act
+        var res = await repo.checkAuthentication();
+        //assert
+        expect(res,Left(left));
+      });
+    });
+
   });
 
 }

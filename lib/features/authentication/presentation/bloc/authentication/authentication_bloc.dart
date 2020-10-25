@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_facebook_use_case.dart';
@@ -21,20 +22,19 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final SignInAnonymouslyUseCase anonymous;
   final SignInWithFacebookUseCase withFacebook;
   final SignInWithEmailUseCase withEmail;
-
+  final CheckAuthenticationUseCase checkAuth;
   AuthenticationBloc(InitialAuthenticationState initialState,
       {@required this.withFacebook,
         @required this.withEmail,
         @required this.withGoogle,
-        @required this.anonymous}
+        @required this.anonymous,
+        @required this.checkAuth
+      }
         ) : super(initialState);
 
-  @override
-  AuthenticationState get initialState => InitialAuthenticationState();
 
   @override
   Stream<AuthenticationState> mapEventToState(AuthenticationEvent event) async* {
-
     if(event is SignInAnonymouslyEvent){
       yield SigningInState();
       var result = await anonymous(NoParams());
@@ -67,6 +67,14 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       var result = await withEmail(WithParams(param: [event.email,event.password]));
       yield result.fold(
               (l) => ErrorState(msg: 'error'),
+              (r) => SignedInState()
+      );
+    }
+
+    if(event is CheckAuthenticationEvent){
+      var result = await checkAuth(NoParams());
+      yield result.fold(
+              (l) => InitialAuthenticationState(),
               (r) => SignedInState()
       );
     }

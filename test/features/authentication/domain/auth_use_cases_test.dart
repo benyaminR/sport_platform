@@ -3,11 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
 import 'package:sport_platform/features/authentication/domain/repository/auth_repo.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_apple_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_facebook_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
+import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 
@@ -67,6 +69,17 @@ main() {
     test('SignInWithFacebookUseCase redirects to authrepo.SignInWithEmail', () async{
       //arrange
       final usecase = SignInWithFacebookUseCase(repo:repo);
+      when(repo.signInWithFacebook()).thenAnswer((_) async => Right(authdata));
+      //act
+      var res = await usecase(NoParams());
+      //assert
+      expect(res, Right(authdata));
+      verify(repo.signInWithFacebook());
+    });
+
+    test('CheckAuthenticationUseCase redirects to authrepo.CheckAuthentication()', () async{
+      //arrange
+      final usecase = CheckAuthenticationUseCase(repo:repo);
       when(repo.signInWithFacebook()).thenAnswer((_) async => Right(authdata));
       //act
       var res = await usecase(NoParams());

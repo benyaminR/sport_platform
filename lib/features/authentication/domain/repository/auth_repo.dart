@@ -8,4 +8,5 @@ abstract class AuthRepo{
   Future<Either<Failure,AuthData>> signInWithApple();
   Future<Either<Failure,AuthData>> signInWithEmail(String email,String password);
   Future<Either<Failure,AuthData>> signInWithFacebook();
+  Future<Either<Failure,AuthData>> checkAuthentication();
 }
