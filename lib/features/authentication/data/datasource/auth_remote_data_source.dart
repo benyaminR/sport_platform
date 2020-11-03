@@ -11,7 +11,7 @@ abstract class AuthRemoteDataSource{
   Future<AuthDatamodel> signInWithApple();
   Future<AuthDatamodel> signInWithEmail(String email, String password);
   Future<AuthDatamodel> signInWithFacebook();
-  Future<AuthDatamodel> checkAuthentication();
+  Future<void> checkAuthentication();
 
 }
 
@@ -113,10 +113,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
   }
 
   @override
-  Future<AuthDatamodel> checkAuthentication() {
+  Future<void> checkAuthentication() async {
     if(firebaseAuth.currentUser == null)
       throw ServerException();
-    return Future.value(AuthDatamodel(userCredential: null));
+    return Future.value();
   }
 
 

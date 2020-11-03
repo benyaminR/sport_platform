@@ -13,13 +13,13 @@ import 'package:sport_platform/utils/error/failure.dart';
 
 class AuthRemoteDataSourceMock extends Mock implements AuthRemoteDataSource{}
 
-
 main() {
 
   final datasource = AuthRemoteDataSourceMock();
   final repo = AuthRepoImp(dataSource:datasource);
   final left = ServerFailure();
   final right = AuthDatamodel(userCredential: null);
+
   group('AuthRepoImp ', () {
 
     group('SignInAnonymously ',(){
@@ -112,7 +112,7 @@ main() {
     group('checkAuthentication ',(){
       test('should handle right',() async{
         //arrange
-        when(datasource.checkAuthentication()).thenAnswer((_) async => right);
+        when(datasource.checkAuthentication()).thenAnswer((_) async => Right(right));
         //act
         var res = await repo.checkAuthentication();
         //assert

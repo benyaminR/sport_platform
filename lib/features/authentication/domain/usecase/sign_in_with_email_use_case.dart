@@ -15,5 +15,5 @@ class SignInWithEmailUseCase extends UseCase<AuthData,WithParams>{
   SignInWithEmailUseCase({@required this.repo});
 
   @override
-  Future<Either<Failure, AuthData>> call(WithParams params) => repo.signInWithEmail((params.param as List<Object>)[0],(params.param as List<Object>)[1]);
+  Future<Either<Failure, AuthData>> call(WithParams params) => repo.signInWithEmail((params.param as List<String>)[0],(params.param as List<String>)[1]);
 }

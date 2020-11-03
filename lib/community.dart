@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Community extends StatefulWidget {
-  final Widget child;
 
-  Community({Key key, this.child}) : super(key: key);
+  Community();
 
   _CommunityState createState() => _CommunityState();
 }

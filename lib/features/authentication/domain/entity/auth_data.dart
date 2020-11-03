@@ -8,5 +8,4 @@ class AuthData extends Equatable{
   AuthData({@required this.creds});
   @override
   List<Object> get props => [creds];
-
 }

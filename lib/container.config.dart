@@ -5,6 +5,7 @@
 // **************************************************************************
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,8 +25,8 @@ import 'features/authentication/domain/usecase/sign_in_with_google_use_case.dart
 
 GetIt $initGetIt(
   GetIt get, {
-  String environment,
-  EnvironmentFilter environmentFilter,
+      @required String environment,
+      @required EnvironmentFilter environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final firebaseAuthDependency = _$FirebaseAuthDependency();

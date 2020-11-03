@@ -10,4 +10,4 @@ final getIt = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: false, // default
 )
-void configureDependencies() => $initGetIt(getIt);
+void configureDependencies() => $initGetIt(getIt, environmentFilter: SimpleEnvironmentFilter(),environment: 'test');

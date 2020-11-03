@@ -8,11 +8,11 @@ import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/usecase.dart';
 
 @singleton
-class CheckAuthenticationUseCase extends UseCase<AuthData,NoParams>{
+class CheckAuthenticationUseCase extends UseCase<void,NoParams>{
 
   final AuthRepo repo;
 
   CheckAuthenticationUseCase({@required this.repo});
 
-  Future<Either<Failure, AuthData>> call(NoParams params) => repo.checkAuthentication();
+  Future<Either<Failure, void>> call(NoParams params) => repo.checkAuthentication();
 }

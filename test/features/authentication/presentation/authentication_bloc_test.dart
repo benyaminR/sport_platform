@@ -11,6 +11,8 @@ import 'package:sport_platform/features/authentication/domain/usecase/sign_in_wi
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
+import 'package:sport_platform/utils/usecases/no_params.dart';
+import 'package:sport_platform/utils/usecases/params.dart';
 
 class SignInWithGoogleUsecaseMock extends Mock implements SignInWithGoogleUseCase{}
 class SignInAnonymouslyUsecaseMock extends Mock implements SignInAnonymouslyUseCase{}
@@ -30,7 +32,9 @@ main() {
   final withFacebook = SignInWithFacebookUseCaseMock();
   final withEmail = SignInWithEmailUseCaseMock();
   final checkAuth = CheckAuthenticationUseCaseMock();
-
+  final noParams = NoParams();
+  final withParams = WithParams(param: '');
+  final authData = AuthData(creds: null);
   generateNewBloc()=> AuthenticationBloc(InitialAuthenticationState(),
       withGoogle:withGoogle,
       anonymous:anonymous,
@@ -39,11 +43,12 @@ main() {
       checkAuth: checkAuth
   );
 
+
   group('AuthenticationBloc ',(){
     group('SignIn Anonymously ', (){
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, SignedInState]',
         build: () {
-          when(anonymous(any)).thenAnswer((realInvocation) async => Right(AuthData(creds: null)));
+          when(anonymous(noParams)).thenAnswer((realInvocation) async => Right(authData));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInAnonymouslyEvent()),
@@ -52,7 +57,7 @@ main() {
 
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, ErrorState]',
         build: () {
-          when(anonymous(any)).thenAnswer((realInvocation) async => Left(ServerFailure()));
+          when(anonymous(noParams)).thenAnswer((realInvocation) async => Left(ServerFailure()));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInAnonymouslyEvent()),
@@ -63,7 +68,7 @@ main() {
     group('SignIn With Google', (){
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, SignedInState]',
         build: () {
-          when(withGoogle(any)).thenAnswer((realInvocation) async => Right(AuthData(creds: null)));
+          when(withGoogle(noParams)).thenAnswer((realInvocation) async => Right(authData));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithGoogleEvent()),
@@ -72,7 +77,7 @@ main() {
 
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, ErrorState]',
         build: () {
-          when(withGoogle(any)).thenAnswer((realInvocation) async => Left(ServerFailure()));
+          when(withGoogle(noParams)).thenAnswer((realInvocation) async => Left(ServerFailure()));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithGoogleEvent()),
@@ -83,7 +88,7 @@ main() {
     group('SignIn With Facebook', (){
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, SignedInState]',
         build: () {
-          when(withFacebook(any)).thenAnswer((realInvocation) async => Right(AuthData(creds: null)));
+          when(withFacebook(noParams)).thenAnswer((realInvocation) async => Right(authData));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithFacebookEvent()),
@@ -92,7 +97,7 @@ main() {
 
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, ErrorState]',
         build: () {
-          when(withFacebook(any)).thenAnswer((realInvocation) async => Left(ServerFailure()));
+          when(withFacebook(noParams)).thenAnswer((realInvocation) async => Left(ServerFailure()));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithFacebookEvent()),
@@ -101,9 +106,10 @@ main() {
     });
 
     group('SignIn With Email', (){
+
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, SignedInState]',
         build: () {
-          when(withEmail(any)).thenAnswer((realInvocation) async => Right(AuthData(creds: null)));
+          when(withEmail(WithParams(param: ['email','password']))).thenAnswer((realInvocation) async => Right(authData));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithEmailEvent(email: 'email',password: 'password')),
@@ -112,7 +118,7 @@ main() {
 
       blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, ErrorState]',
         build: () {
-          when(withEmail(any)).thenAnswer((realInvocation) async => Left(ServerFailure()));
+          when(withEmail(WithParams(param: ['email','password']))).thenAnswer((realInvocation) async => Left(ServerFailure()));
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithEmailEvent(email: 'email',password: 'password')),
@@ -121,17 +127,17 @@ main() {
     });
 
     group('Check Authentication', (){
-      blocTest('should handle logged in users',
+      blocTest<AuthenticationBloc,AuthenticationState>('should handle logged in users',
           build: (){
-            when(checkAuth(any)).thenAnswer((_) async => Right(AuthData(creds: null)));
+            when(checkAuth(noParams)).thenAnswer((_) async => Right(authData));
             return generateNewBloc();
           },
           act: (cubit)=> cubit.add(CheckAuthenticationEvent()),
           expect: [SignedInState()]
           );
-      blocTest('should handle new users',
+      blocTest<AuthenticationBloc,AuthenticationState>('should handle new users',
           build: (){
-            when(checkAuth(any)).thenAnswer((realInvocation) async => Left(ServerFailure()));
+            when(checkAuth(noParams)).thenAnswer((realInvocation) async => Left(ServerFailure()));
             return generateNewBloc();
           },
           act: (cubit)=> cubit.add(CheckAuthenticationEvent()),

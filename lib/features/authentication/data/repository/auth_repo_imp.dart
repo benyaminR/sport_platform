@@ -2,6 +2,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sport_platform/features/authentication/data/datamodel/auth_data_model.dart';
 import 'package:sport_platform/features/authentication/data/datasource/auth_remote_data_source.dart';
 import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
 import 'package:sport_platform/features/authentication/domain/repository/auth_repo.dart';
@@ -62,7 +63,7 @@ class AuthRepoImp implements AuthRepo{
   Future<Either<Failure, AuthData>> checkAuthentication() async {
     try{
       var res = await dataSource.checkAuthentication();
-      return Right(res);
+      return Right(AuthDatamodel(userCredential: null));
     } on ServerException{
       return Left(ServerFailure());
     }

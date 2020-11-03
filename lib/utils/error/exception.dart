@@ -1,2 +1,10 @@
-class ServerException implements Exception{}
-class OfflineException implements Exception{}
+import 'package:equatable/equatable.dart';
+
+class ServerException extends Equatable implements Exception{
+  @override
+  List<Object> get props => [];
+}
+class OfflineException extends Equatable  implements Exception{
+  @override
+  List<Object> get props => [];
+}

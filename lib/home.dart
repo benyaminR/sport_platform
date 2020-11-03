@@ -7,9 +7,8 @@ import 'package:sport_platform/utils/colors.dart';
 import 'community.dart';
 
 class Home extends StatefulWidget {
-  final Widget child;
 
-  Home({Key key, this.child}) : super(key: key);
+  Home();
 
   _HomeState createState() => _HomeState();
 }

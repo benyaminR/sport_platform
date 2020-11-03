@@ -24,7 +24,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final SignInWithEmailUseCase withEmail;
   final CheckAuthenticationUseCase checkAuth;
   AuthenticationBloc(InitialAuthenticationState initialState,
-      {@required this.withFacebook,
+      {
+        @required this.withFacebook,
         @required this.withEmail,
         @required this.withGoogle,
         @required this.anonymous,

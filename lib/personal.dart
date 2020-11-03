@@ -1,18 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'community.dart';
 
 class Personal extends StatefulWidget {
-  final Widget child;
 
-  Personal({Key key, this.child}) : super(key: key);
+  Personal();
 
   _PersonalState createState() => _PersonalState();
 }
 
 class _PersonalState extends State<Personal> {
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
