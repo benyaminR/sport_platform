@@ -61,15 +61,11 @@ class CourseDataModel extends Course{
   static Map<String,dynamic> toMap(CourseDataModel courseDataModel) => {
       'date': DateTime.now().toString(),
       'title': courseDataModel.title,
-      'comments': courseDataModel.comments,
-      'trainer': {
-        'name': courseDataModel.trainer.name,
-        'thumbnail': courseDataModel.trainer.thumbnail,
-        'path': courseDataModel.trainer.path
-      },
+      'comments': courseDataModel.comments.map((e) => CourseCommentDataModel.toMap(e)).toList(),
+      'trainer': CourseTrainerDataModel.toMap(courseDataModel),
       'description': courseDataModel.description,
-      'content': courseDataModel.content,
-      'students': courseDataModel.students,
+      'content': courseDataModel.content.map((e) => CourseContentSectionDataModel.toMap(e)).toList(),
+      'students': courseDataModel.students.map((e) => CourseUserDataModel.toMap(e)).toList(),
       'category': courseDataModel.category,
       'path': courseDataModel.path
   };

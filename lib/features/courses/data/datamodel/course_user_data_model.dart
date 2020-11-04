@@ -19,5 +19,10 @@ class CourseUserDataModel extends CourseUser{
       path: data['path']
   );
 
+  static Map<String,dynamic> toMap(CourseUser data) => {
+    'thumbnail':data.thumbnail,
+    'path':data.path,
+    'name':data.name,
+    };
 
 }

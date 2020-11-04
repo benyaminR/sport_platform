@@ -21,4 +21,11 @@ class CourseVideoDataModel extends VideoData{
       source: snapshot['source'],
       viewCount: snapshot['viewCount']
   );
+
+  static Map<String,dynamic> toMap(VideoData data)=> {
+    'thumbnail':data.thumbnail,
+    'source':data.source,
+    'creationDate':data.creationDate,
+    'viewCount':data.viewCount,
+  };
 }

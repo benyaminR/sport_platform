@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/courses/data/datamodel/course_data_model.dart';
 import 'package:sport_platform/features/courses/data/datasource/courses_data_source.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course.dart';
@@ -8,6 +9,7 @@ import 'package:sport_platform/features/courses/domain/repository/courses_repo.d
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
+@Singleton(as: CoursesRepo)
 class CoursesRepoImpl implements CoursesRepo{
 
   final CoursesDataSource dataSource;

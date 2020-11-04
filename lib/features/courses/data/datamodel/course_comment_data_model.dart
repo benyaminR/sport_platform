@@ -26,4 +26,11 @@ class CourseCommentDataModel extends Comment{
           date: data['date']
       );
 
+  static Map<String,dynamic> toMap(Comment commentDataModel)=> {
+    'text':commentDataModel.text,
+    'date':commentDataModel.date,
+    'thumbnail':commentDataModel.thumbnail,
+    'stars':commentDataModel.stars,
+    'username':commentDataModel.username
+  };
 }

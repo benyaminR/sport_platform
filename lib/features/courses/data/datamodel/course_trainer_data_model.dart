@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sport_platform/features/courses/data/datamodel/course_data_model.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course_trainer.dart';
 
 class CourseTrainerDataModel extends CourseTrainer{
@@ -18,5 +19,13 @@ class CourseTrainerDataModel extends CourseTrainer{
           thumbnail: snapshot.data()['trainer']['thumbnail'],
           path: snapshot.data()['trainer']['path']
       );
+
+  static Map<String,dynamic> toMap(CourseDataModel courseDataModel) =>
+      {
+        'name': courseDataModel.trainer.name,
+        'thumbnail': courseDataModel.trainer.thumbnail,
+        'path': courseDataModel.trainer.path
+      };
+
 
 }
