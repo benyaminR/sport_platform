@@ -53,8 +53,8 @@ GetIt $initGetIt(
       CourseDataSourceImpl(firestore: get<FirebaseFirestore>()));
   gh.singleton<CoursesRepo>(
       CoursesRepoImpl(dataSource: get<CoursesDataSource>()));
-  gh.singleton<DeleteCoursesUseCase>(
-      DeleteCoursesUseCase(repo: get<CoursesRepo>()));
+  gh.singleton<DeleteCourseUseCase>(
+      DeleteCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<SignInAnonymouslyUseCase>(
       SignInAnonymouslyUseCase(repo: get<AuthRepo>()));

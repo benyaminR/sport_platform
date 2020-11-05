@@ -20,6 +20,7 @@ main() {
   final repo = AuthRepoMock();
   final authdata = AuthDataMock();
   group('Auth UseCase',(){
+
     test('SignInAnonymouslyUseCase redirects to authrepo.SignInAnonymously', () async{
       //arrange
       final usecase = SignInAnonymouslyUseCase(repo:repo);
@@ -29,6 +30,7 @@ main() {
       //assert
       expect(res, Right(authdata));
       verify(repo.signInAnonymously());
+
     });
 
     test('SignInWithAppleUseCase redirects to authrepo.SignInWithApple', () async{

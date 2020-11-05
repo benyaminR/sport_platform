@@ -8,11 +8,11 @@ import 'package:sport_platform/utils/usecases/params.dart';
 import 'package:sport_platform/utils/usecases/usecase.dart';
 
 @singleton
-class DeleteCoursesUseCase extends UseCase<Course,WithParams>{
+class DeleteCourseUseCase extends UseCase<Course,WithParams>{
 
   final CoursesRepo repo;
 
-  DeleteCoursesUseCase({@required this.repo});
+  DeleteCourseUseCase({@required this.repo});
 
   @override
   Future<Either<Failure, Course>> call(WithParams params) => repo.deleteCourse(params.param as String);
