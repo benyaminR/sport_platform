@@ -28,13 +28,13 @@ Future<void> generate() async{
       CourseUser(name: 'Melanie', thumbnail: 'Users/face_03.jpg', path: ''),
     ],
     content: [
-      ContentSectionData(description: 'First Section', videos: [
-        VideoData(thumbnail: 'Courses/FitnessClass/1600x826-iStock-621570608-min-1600x570.jpg', viewCount: 300, source: 'Courses/FitnessClass/Canon C200 - Cinematic Fitness Short.mp4', creationDate: DateTime.now().toString()),
-        VideoData(thumbnail: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', viewCount: 500, source: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', creationDate: DateTime.now().toString()),
+      ContentSection(description: 'First Section', videos: [
+        Video(thumbnail: 'Courses/FitnessClass/1600x826-iStock-621570608-min-1600x570.jpg', viewCount: 300, source: 'Courses/FitnessClass/Canon C200 - Cinematic Fitness Short.mp4', creationDate: DateTime.now().toString()),
+        Video(thumbnail: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', viewCount: 500, source: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', creationDate: DateTime.now().toString()),
       ]),
-      ContentSectionData(description: 'First Section', videos: [
-        VideoData(thumbnail: 'Courses/FitnessClass/1600x826-iStock-621570608-min-1600x570.jpg', viewCount: 300, source: 'Courses/FitnessClass/Canon C200 - Cinematic Fitness Short.mp4', creationDate: DateTime.now().toString()),
-        VideoData(thumbnail: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', viewCount: 500, source: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', creationDate: DateTime.now().toString()),
+      ContentSection(description: 'First Section', videos: [
+        Video(thumbnail: 'Courses/FitnessClass/1600x826-iStock-621570608-min-1600x570.jpg', viewCount: 300, source: 'Courses/FitnessClass/Canon C200 - Cinematic Fitness Short.mp4', creationDate: DateTime.now().toString()),
+        Video(thumbnail: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', viewCount: 500, source: 'Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg', creationDate: DateTime.now().toString()),
       ]),
     ],
     trainer: CourseTrainer(

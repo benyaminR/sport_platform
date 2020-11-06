@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
@@ -34,7 +34,7 @@ main() {
   final checkAuth = CheckAuthenticationUseCaseMock();
   final noParams = NoParams();
   final withParams = WithParams(param: '');
-  final authData = AuthData(creds: null);
+  final authData = Auth(creds: null);
   generateNewBloc()=> AuthenticationBloc(InitialAuthenticationState(),
       withGoogle:withGoogle,
       anonymous:anonymous,

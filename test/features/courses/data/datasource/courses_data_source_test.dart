@@ -60,7 +60,7 @@ main() {
       test('should get Specific item', () async{
         //arrange
         var searchData = 'Gym';
-        var criteriaData = CriteriaData(data: searchData,field: 'title');
+        var criteriaData = Criteria(data: searchData,field: 'title');
         await dataSource.addCourse(courseDataModel);
         //act
         var res = await dataSource.getCourses(criteriaData);

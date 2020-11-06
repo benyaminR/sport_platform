@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sport_platform/features/courses/data/datamodel/course_video_data_model.dart';
 import 'package:sport_platform/features/courses/domain/enitity/content_section.dart';
 
-class CourseContentSectionDataModel extends ContentSectionData {
+class CourseContentSectionDataModel extends ContentSection {
   CourseContentSectionDataModel({
     @required description,
     @required videos
@@ -19,7 +19,7 @@ class CourseContentSectionDataModel extends ContentSectionData {
               CourseVideoDataModel.fromSnapshot(e)).toList()
       );
 
-  static Map<String, dynamic> toMap(ContentSectionData data) => {
+  static Map<String, dynamic> toMap(ContentSection data) => {
     'description':data.description,
     'videos': data.videos.map((e) => CourseVideoDataModel.toMap(e)).toList()
   };

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sport_platform/features/courses/domain/enitity/video.dart';
 
-class CourseVideoDataModel extends VideoData{
+class CourseVideoDataModel extends Video{
 
   CourseVideoDataModel({
     @required thumbnail,
@@ -22,7 +22,7 @@ class CourseVideoDataModel extends VideoData{
       viewCount: snapshot['viewCount']
   );
 
-  static Map<String,dynamic> toMap(VideoData data)=> {
+  static Map<String,dynamic> toMap(Video data)=> {
     'thumbnail':data.thumbnail,
     'source':data.source,
     'creationDate':data.creationDate,

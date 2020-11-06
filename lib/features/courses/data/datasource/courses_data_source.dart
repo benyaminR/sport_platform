@@ -12,7 +12,7 @@ abstract class CoursesDataSource{
 
   Future<CourseDataModel> updateCourse(CourseDataModel courseDataModel);
 
-  Future<List<CourseDataModel>> getCourses(CriteriaData criteriaData);
+  Future<List<CourseDataModel>> getCourses(Criteria criteriaData);
 }
 
 @Singleton(as:CoursesDataSource)
@@ -39,7 +39,7 @@ class CourseDataSourceImpl implements CoursesDataSource{
   }
 
   @override
-  Future<List<CourseDataModel>> getCourses(CriteriaData criteriaData) async{
+  Future<List<CourseDataModel>> getCourses(Criteria criteriaData) async{
       var querySnapshot = await firestore.
       collection('Courses').
       where(criteriaData.field,isEqualTo: criteriaData.data).

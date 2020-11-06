@@ -11,7 +11,7 @@ class Course extends Equatable{
   final List<Comment> comments;
   final CourseTrainer trainer;
   final String description;
-  final List<ContentSectionData> content;
+  final List<ContentSection> content;
   final List<CourseUser> students;
   final String category;
   final String path;

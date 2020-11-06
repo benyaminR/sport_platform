@@ -4,7 +4,7 @@ part of 'courses_bloc.dart';
 abstract class CoursesEvent extends Equatable{}
 
 class GetCoursesEvent extends CoursesEvent{
-  final CriteriaData criteriaData;
+  final Criteria criteriaData;
   GetCoursesEvent({@required this.criteriaData});
   @override
   List<Object> get props => [criteriaData];
