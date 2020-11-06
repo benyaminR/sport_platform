@@ -18,7 +18,7 @@ main() {
   final CoursesRepoImpl repo = CoursesRepoImpl(dataSource:dataSource);
   final CourseDataModel courseDataModel = CourseDataModel(date: null, title: null, comments: null, trainer: null, description: null, content: null, students: null, category: null, path: null);
   final String fakePath = 'Fake Path';
-  final CriteriaData criteriaData = CriteriaData(field: '', data: '');
+  final Criteria criteriaData = Criteria(field: '', data: '');
   final List<CourseDataModel> courses = [courseDataModel];
 
   group('CoursesRepoImpl ', (){

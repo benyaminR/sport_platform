@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:sport_platform/features/authentication/data/datamodel/auth_data_model.dart';
 import 'package:sport_platform/features/authentication/data/datasource/auth_remote_data_source.dart';
 import 'package:sport_platform/features/authentication/data/repository/auth_repo_imp.dart';
-import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 

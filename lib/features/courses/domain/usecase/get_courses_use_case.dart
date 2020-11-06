@@ -16,5 +16,5 @@ class GetCourseUseCase extends UseCase<List<Course>,WithParams>{
   GetCourseUseCase({@required this.repo});
 
   @override
-  Future<Either<Failure, List<Course>>> call(WithParams params) => repo.getCourses(params.param as CriteriaData);
+  Future<Either<Failure, List<Course>>> call(WithParams params) => repo.getCourses(params.param as Criteria);
 }

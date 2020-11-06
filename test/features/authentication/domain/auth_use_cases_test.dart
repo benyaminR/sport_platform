@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/features/authentication/domain/repository/auth_repo.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
@@ -13,7 +13,7 @@ import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 
 class AuthRepoMock extends Mock implements AuthRepo{}
-class AuthDataMock extends Mock implements AuthData{}
+class AuthDataMock extends Mock implements Auth{}
 
 
 main() {

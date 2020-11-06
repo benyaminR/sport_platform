@@ -37,7 +37,7 @@ class CoursesRepoImpl implements CoursesRepo{
   }
 
   @override
-  Future<Either<Failure, List<Course>>> getCourses(CriteriaData criteria)async {
+  Future<Either<Failure, List<Course>>> getCourses(Criteria criteria)async {
     try{
       var result = await dataSource.getCourses(criteria);
       return Right(result);
