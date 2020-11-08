@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/container.dart';
-import 'package:sport_platform/features/community/domain/entity/community_criteria.dart';
-import 'package:sport_platform/features/courses/presentation/courses/courses_bloc.dart';
 import 'package:sport_platform/utils/colors.dart';
+
+import 'features/courses/presentation/bloc/courses/courses_bloc.dart';
 
 //Startseite
 class Discovery extends StatelessWidget {
