@@ -3,7 +3,7 @@ part of 'courses_bloc.dart';
 @immutable
 abstract class CoursesState extends Equatable{}
 
-
+@singleton
 class IdleCoursesState extends CoursesState{
   @override
   List<Object> get props => [];

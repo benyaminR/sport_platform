@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:sport_platform/features/community/domain/entity/media.dart';
+import 'package:sport_platform/features/community/domain/entity/community_media.dart';
 
 class Message extends Equatable{
   final String receiver;
   final String sender;
-  final Media mediaData;
+  final CommunityMedia mediaData;
   final String text;
   final String sentDate;
   final String receivedDate;

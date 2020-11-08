@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course.dart';
 import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
@@ -13,7 +14,7 @@ import 'package:sport_platform/utils/usecases/params.dart';
 part 'courses_event.dart';
 part 'courses_state.dart';
 
-
+@singleton
 class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
 
   final GetCourseUseCase getCourseUseCase;
@@ -21,7 +22,9 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   final AddCourseUseCase addCourseUseCase;
   final DeleteCourseUseCase deleteCourseUseCase;
 
-  CoursesBloc(CoursesState initialState, this.getCourseUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase) : super(initialState);
+  final IdleCoursesState initialState;
+
+  CoursesBloc({this.initialState, this.getCourseUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase}) : super(initialState);
 
   @override
   Stream<CoursesState> mapEventToState(CoursesEvent event) async* {

@@ -15,8 +15,9 @@ class Course extends Equatable{
   final List<CourseUser> students;
   final String category;
   final String path;
-
+  final String thumbnail;
   Course({
+    @required this.thumbnail,
     @required this.date,
     @required this.title,
     @required this.comments,

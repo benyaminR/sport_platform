@@ -40,12 +40,21 @@ class CourseDataSourceImpl implements CoursesDataSource{
 
   @override
   Future<List<CourseDataModel>> getCourses(Criteria criteriaData) async{
+    if(criteriaData != null) {
       var querySnapshot = await firestore.
       collection('Courses').
-      where(criteriaData.field,isEqualTo: criteriaData.data).
+      where(criteriaData.field, isEqualTo: criteriaData.data).
       get();
+      return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e))
+          .toList();
+    }
+    else
+    {   var querySnapshot = await firestore.
+    collection('Courses').
+    get();
+    return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e)).toList();
+    }
 
-      return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e)).toList();
   }
 
   @override

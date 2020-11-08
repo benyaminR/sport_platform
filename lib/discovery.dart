@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/container.dart';
+import 'package:sport_platform/features/community/domain/entity/community_criteria.dart';
+import 'package:sport_platform/features/courses/presentation/courses/courses_bloc.dart';
 import 'package:sport_platform/utils/colors.dart';
 
 //Startseite
@@ -52,42 +56,32 @@ class Discovery extends StatelessWidget {
     );
   }
 
+
   Widget trendingCoursesFill() {
-    return Container(
-      height: 160.0,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          SizedBox(
-            width: 15.0,
-          ),
-          imageSection(
-              'https://www.wochenblatt.de/media/2020/06/07/42199020-l_202006070945_full.jpg',
-              'Fußball',
-              '4.5 ★'),
-          SizedBox(
-            width: 20.0,
-          ),
-          imageSection('https://s.hs-data.com/picmon/a4/3hfw_9c391B_lo.jpg',
-              'Eishockey', '3.9 ★'),
-          SizedBox(
-            width: 20.0,
-          ),
-          imageSection(
-              'https://www.dtb-tennis.de/var/ezdemo_site/storage/images/media/images/01-tennisprofis/herren/alexander-zverev/zverev-finals-2020/243029-1-ger-DE/Zverev-Finals-2020_i480_3_2.jpg',
-              'Tennis',
-              '2.7 ★'),
-          SizedBox(
-            width: 20.0,
-          ),
-          imageSection(
-              'https://www.hamburg-magazin.net/wp-content/uploads/2018/11/golf-clubs-in-hamburg-300x226-300x226.jpg',
-              'Golf',
-              '3.9 ★'),
-          SizedBox(
-            width: 20.0,
-          ),
-        ],
+    return BlocProvider(
+      create:(context)=> getIt<CoursesBloc>()..add(GetCoursesEvent(criteriaData: null)),
+      child: BlocBuilder<CoursesBloc,CoursesState>(
+        builder: (context, state){
+          if(state is LoadingCoursesState){
+            Center(child: CircularProgressIndicator(),);
+          }
+          if(state is LoadedCoursesState){
+            return Container(
+              height: 160.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: List.generate(state.courses.length, (index) => imageSection(
+                  'https://www.wochenblatt.de/media/2020/06/07/42199020-l_202006070945_full.jpg',
+                  state.courses[index].title,
+                  state.courses[index].comments[0].stars.toString()+'★'
+                ),
+                )
+              ),
+            );
+          }
+
+          return Container();
+        },
       ),
     );
   }
@@ -299,15 +293,18 @@ class Discovery extends StatelessWidget {
   Widget imageSection(String imageVal, String appVal, String rateVal) {
     return Column(
       children: <Widget>[
-        Container(
-          height: 100.0,
-          width: 160.0,
-          decoration: new BoxDecoration(
-            image: DecorationImage(
-              image: new NetworkImage(imageVal),
-              fit: BoxFit.cover,
+        Padding(
+          padding: const EdgeInsets.only(left: 16,right: 16),
+          child: Container(
+            height: 100.0,
+            width: 160.0,
+            decoration: new BoxDecoration(
+              image: DecorationImage(
+                image: new NetworkImage(imageVal),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            borderRadius: BorderRadius.circular(20.0),
           ),
         ),
         SizedBox(

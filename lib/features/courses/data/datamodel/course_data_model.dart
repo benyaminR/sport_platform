@@ -16,9 +16,11 @@ class CourseDataModel extends Course{
     @required content,
     @required students,
     @required category,
-    @required path
+    @required path,
+    @required thumbnail
   })
       : super(
+    thumbnail: thumbnail,
     date:date,
     title:title,
     comments:comments,
@@ -42,7 +44,8 @@ class CourseDataModel extends Course{
       content: (data['content'] as List<dynamic>).map((e) => CourseContentSectionDataModel.fromMap(e)).toList(),
       students: (data['students'] as List<dynamic>).map((e) => CourseUserDataModel.fromSnapshot(e)).toList(),
       category: data['category'],
-      path: snapshot.reference.path
+      path: snapshot.reference.path,
+      thumbnail: data['thumbnail']
   );
   }
 
@@ -55,7 +58,8 @@ class CourseDataModel extends Course{
       content: course.content,
       students: course.students,
       category: course.category,
-      path: course.path
+      path: course.path,
+      thumbnail: course.thumbnail
   );
 
   static Map<String,dynamic> toMap(CourseDataModel courseDataModel) => {
@@ -67,6 +71,7 @@ class CourseDataModel extends Course{
       'content': courseDataModel.content.map((e) => CourseContentSectionDataModel.toMap(e)).toList(),
       'students': courseDataModel.students.map((e) => CourseUserDataModel.toMap(e)).toList(),
       'category': courseDataModel.category,
-      'path': courseDataModel.path
+      'path': courseDataModel.path,
+      'thumbnail':courseDataModel.thumbnail
   };
 }

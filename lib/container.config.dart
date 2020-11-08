@@ -15,6 +15,7 @@ import 'features/authentication/domain/repository/auth_repo.dart';
 import 'features/authentication/data/repository/auth_repo_imp.dart';
 import 'features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'features/authentication/domain/usecase/check_authentication_use_case.dart';
+import 'features/courses/presentation/courses/courses_bloc.dart';
 import 'features/courses/data/datasource/courses_data_source.dart';
 import 'features/courses/domain/repository/courses_repo.dart';
 import 'features/courses/data/repository/courses_repo_impl.dart';
@@ -43,6 +44,7 @@ GetIt $initGetIt(
   gh.factory<FirebaseFirestore>(() => firebaseFirestoreDependency.prefs);
 
   // Eager singletons must be registered in the right order
+  gh.singleton<IdleCoursesState>(IdleCoursesState());
   gh.singleton<InitialAuthenticationState>(InitialAuthenticationState());
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
@@ -74,6 +76,13 @@ GetIt $initGetIt(
     withGoogle: get<SignInWithGoogleUseCase>(),
     anonymous: get<SignInAnonymouslyUseCase>(),
     checkAuth: get<CheckAuthenticationUseCase>(),
+  ));
+  gh.singleton<CoursesBloc>(CoursesBloc(
+    initialState: get<IdleCoursesState>(),
+    getCourseUseCase: get<GetCourseUseCase>(),
+    updateCourseUseCase: get<UpdateCourseUseCase>(),
+    addCourseUseCase: get<AddCourseUseCase>(),
+    deleteCourseUseCase: get<DeleteCourseUseCase>(),
   ));
   return get;
 }
