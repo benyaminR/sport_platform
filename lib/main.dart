@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
+import 'package:sport_platform/register.dart';
+import 'package:sport_platform/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
 import 'package:sport_platform/utils/db_demo_data.dart';
+
 import 'home.dart';
 import 'login.dart';
 
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget{
       routes: {
         '/login':(context)=> Login(),
         '/home':(context) => Home(),
+        '/login/register':(context) => Register(),
+        '/login/resetPassword':(context) => ResetPassword(),
       },
     );
   }

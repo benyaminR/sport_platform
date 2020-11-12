@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
+import 'package:sport_platform/features/community/domain/entity/criteria.dart';
 import 'package:sport_platform/features/trainers/domain/entity/trainer.dart';
 import 'package:sport_platform/features/trainers/domain/usecase/add_trainer_use_case.dart';
 import 'package:sport_platform/features/trainers/domain/usecase/get_trainers_use_case.dart';
