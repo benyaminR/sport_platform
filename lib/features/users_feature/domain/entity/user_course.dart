@@ -6,8 +6,6 @@ class UserCourse extends Equatable{
   final String coursePath;
   final String title;
 
-
-
   UserCourse({@required this.coursePath, @required this.title});
 
   @override
