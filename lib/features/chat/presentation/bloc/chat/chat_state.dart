@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sport_platform/features/chat/domain/entity/conversation.dart';
-import 'package:sport_platform/features/chat/domain/entity/message.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_conversation.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 
 @immutable
 abstract class ChatState extends Equatable{}
@@ -17,7 +17,7 @@ class LoadingChatsState extends ChatState{
 }
 
 class LoadedChatsState extends ChatState{
-  final List<Conversation> conversations;
+  final List<ChatMessage> conversations;
 
   LoadedChatsState({@required this.conversations});
 
@@ -26,7 +26,7 @@ class LoadedChatsState extends ChatState{
 }
 
 class LoadedMessageState extends ChatState{
-  final Message message;
+  final ChatMessage message;
 
   LoadedMessageState({@required this.message});
 

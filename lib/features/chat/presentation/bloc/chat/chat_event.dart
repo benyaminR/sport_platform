@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sport_platform/features/chat/domain/entity/message.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
 
 @immutable
@@ -17,7 +17,7 @@ class GetChatsEvent extends ChatEvent{
 }
 
 class SendMessageEvent extends ChatEvent{
-  final Message messageData;
+  final ChatMessage messageData;
 
   SendMessageEvent({@required this.messageData});
 
@@ -26,7 +26,7 @@ class SendMessageEvent extends ChatEvent{
 }
 
 class UpdateMessageEvent extends ChatEvent{
-  final Message messageData;
+  final ChatMessage messageData;
 
   UpdateMessageEvent({@required this.messageData});
 
