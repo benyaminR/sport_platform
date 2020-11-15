@@ -12,13 +12,6 @@ main() {
     final fa = MockFirebaseAuth();
     final ds = AuthRemoteDataSourceImpl(firebaseAuth:fa);
 
-    group('SignInAnonymously',(){
-      test('should handle firebase auth sign in error', () async{
-
-      });
-
-    });
-
 
     test('signInWithGoogle should call appropriate functions ', () async{
       //act
@@ -28,21 +21,17 @@ main() {
       verifyNoMoreInteractions(fa);
     });
 
-//
-//    test('signInWithFacebook should call appropriate functions', () async{
-//
-//      //act
-//      var res = await ds.signInWithFacebook();
-//      //assert
-//      expect(res,isNotNull);
-//      verifyNoMoreInteractions(fa);
-//    });
-
 
     test('signInWithEmail should call appropriate functions', () async{
-
       //act
       var res = await ds.signInWithEmail('email', 'password');
+      //assert
+      expect(res,isNotNull);
+    });
+
+    test('registerWithEmail should call appropriate functions', () async{
+      //act
+      var res = await ds.registerWithEmail('email', 'password');
       //assert
       expect(res,isNotNull);
     });

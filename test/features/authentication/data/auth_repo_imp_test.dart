@@ -22,28 +22,6 @@ main() {
 
   group('AuthRepoImp ', () {
 
-    group('SignInAnonymously ',(){
-
-      test('should handle right',() async{
-        //arrange
-        when(datasource.signInAnonymously()).thenAnswer((_) async => right);
-        //act
-        var res = await repo.signInAnonymously();
-        //assert
-        expect(res,Right(right));
-      });
-
-      test('should handle left',() async{
-        //arrange
-        when(datasource.signInAnonymously()).thenThrow(ServerException());
-        //act
-        var res = await repo.signInAnonymously();
-        //assert
-        expect(res,Left(left));
-      });
-
-    });
-
     group('SignInWithGoogle ',(){
 
       test('should handle right',() async{
@@ -85,29 +63,26 @@ main() {
       });
     });
 
-    group('SignInWithFacebook ',(){
+    group('RegisterWithEmail ',(){
       test('should handle right',() async{
         //arrange
-        when(datasource.signInWithFacebook()).thenAnswer((_) async => right);
+        when(datasource.registerWithEmail('email', 'password')).thenAnswer((_) async => right);
         //act
-        var res = await repo.signInWithFacebook();
+        var res = await repo.registerWithEmail('email', 'password');
         //assert
         expect(res,Right(right));
       });
 
       test('should handle left',() async{
         //arrange
-        when(datasource.signInWithFacebook()).thenThrow(ServerException());
+        when(datasource.registerWithEmail('email', 'password')).thenThrow(ServerException());
         //act
-        var res = await repo.signInWithFacebook();
+        var res = await repo.registerWithEmail('email', 'password');
         //assert
         expect(res,Left(left));
       });
     });
 
-    group('SignInWithApple ',(){
-
-    });
 
     group('checkAuthentication ',(){
       test('should handle right',() async{

@@ -15,20 +15,6 @@ class AuthRepoImp implements AuthRepo{
 
   AuthRepoImp({@required this.dataSource});
 
-  @override
-  Future<Either<Failure, Auth>> signInAnonymously() async{
-    try{
-      var res = await dataSource.signInAnonymously();
-      return Right(res);
-    } on ServerException{
-      return Left(ServerFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, Auth>> signInWithApple() {
-    throw UnimplementedError();
-  }
 
   @override
   Future<Either<Failure, Auth>> signInWithEmail(String email,String password) async{
@@ -39,15 +25,6 @@ class AuthRepoImp implements AuthRepo{
       return Left(ServerFailure());
     }  }
 
-  @override
-  Future<Either<Failure, Auth>> signInWithFacebook() async{
-    try{
-      var res = await dataSource.signInWithFacebook();
-      return Right(res);
-    } on ServerException{
-      return Left(ServerFailure());
-    }
-  }
 
   @override
   Future<Either<Failure, Auth>> signInWithGoogle() async{
@@ -64,6 +41,16 @@ class AuthRepoImp implements AuthRepo{
     try{
       var res = await dataSource.checkAuthentication();
       return Right(AuthDatamodel(userCredential: null));
+    } on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Auth>> registerWithEmail(String email, String password) async {
+    try{
+      var res = await dataSource.registerWithEmail(email,password);
+      return Right(res);
     } on ServerException{
       return Left(ServerFailure());
     }

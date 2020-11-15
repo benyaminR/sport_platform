@@ -4,9 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
-import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/register_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
-import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_facebook_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
@@ -19,31 +18,21 @@ part 'authentication_state.dart';
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
   final SignInWithGoogleUseCase withGoogle;
-  final SignInAnonymouslyUseCase anonymous;
-  final SignInWithFacebookUseCase withFacebook;
   final SignInWithEmailUseCase withEmail;
   final CheckAuthenticationUseCase checkAuth;
+  final RegisterWithEmailUseCase registerWithEmail;
   AuthenticationBloc(InitialAuthenticationState initialState,
       {
-        @required this.withFacebook,
         @required this.withEmail,
         @required this.withGoogle,
-        @required this.anonymous,
-        @required this.checkAuth
+        @required this.checkAuth,
+        @required this.registerWithEmail
       }
         ) : super(initialState);
 
 
   @override
   Stream<AuthenticationState> mapEventToState(AuthenticationEvent event) async* {
-    if(event is SignInAnonymouslyEvent){
-      yield SigningInState();
-      var result = await anonymous(NoParams());
-      yield result.fold(
-              (l) => ErrorState(msg: 'error'),
-              (r) => SignedInState()
-      );
-    }
 
     if(event is SignInWithGoogleEvent){
       yield SigningInState();
@@ -54,9 +43,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       );
     }
 
-    if(event is SignInWithFacebookEvent){
+    if(event is RegisterWithEmailEvent){
       yield SigningInState();
-      var result = await withFacebook(NoParams());
+      var result = await registerWithEmail(WithParams(param: [event.email, event.password]));
       yield result.fold(
               (l) => ErrorState(msg: 'error'),
               (r) => SignedInState()

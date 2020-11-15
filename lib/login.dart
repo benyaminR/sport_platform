@@ -5,6 +5,10 @@ import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 
 class Login extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +37,7 @@ class Login extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
+                        controller: usernameController,
                         decoration: InputDecoration(
                           hintText: 'username',
                           hintStyle: new TextStyle(
@@ -57,6 +62,7 @@ class Login extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
+                        controller: passwordController,
                         decoration: InputDecoration(
                           hintText: 'password',
                           hintStyle: new TextStyle(
@@ -83,10 +89,14 @@ class Login extends StatelessWidget {
                     ),
                     ElevatedButton(
                       child: Text('Login'),
-                      onPressed: () => getIt<AuthenticationBloc>().add(
-                          SignInWithEmailEvent(
-                              password: 'password',
-                              email: 'benyaminradmard84@gmail.com')),
+                      onPressed: () {
+                        print(usernameController.value.text);
+                        print(passwordController.value.text);
+                        getIt<AuthenticationBloc>().add(SignInWithEmailEvent(
+                              password: passwordController.value.text,
+                              email: usernameController.value.text)
+                      );
+                      },
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Color(0xffe4572e)),
@@ -125,8 +135,7 @@ class Login extends StatelessWidget {
                                 textScaleFactor: 0.8,
                               ),
                               onTap: () => {
-                                Navigator.pushNamed(
-                                    context, '/login/resetPassword')
+                                Navigator.pushNamed(context, '/login/resetPassword')
                               },
                             ),
                             Text(
@@ -138,7 +147,7 @@ class Login extends StatelessWidget {
                             ),
                             GestureDetector(
                               child: Text(
-                                "Hast Du schon ein Konto?",
+                                "Hast Du schon kein Konto?",
                                 style: new TextStyle(
                                   color: Color(0xFFFFFFFF),
                                 ),

@@ -6,11 +6,9 @@ import 'package:sport_platform/features/authentication/data/datamodel/auth_data_
 import 'package:sport_platform/utils/error/exception.dart';
 
 abstract class AuthRemoteDataSource{
-  Future<AuthDatamodel> signInAnonymously();
   Future<AuthDatamodel> signInWithGoogle();
-  Future<AuthDatamodel> signInWithApple();
   Future<AuthDatamodel> signInWithEmail(String email, String password);
-  Future<AuthDatamodel> signInWithFacebook();
+  Future<AuthDatamodel> registerWithEmail(String email, String password);
   Future<void> checkAuthentication();
 
 }
@@ -22,64 +20,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
 
   AuthRemoteDataSourceImpl({@required this.firebaseAuth});
 
-  ///throws [ServerException] in case the firebase auth fails to sign in
-  ///it support login for both logged in users and new users
-  @override
-  Future<AuthDatamodel> signInAnonymously() async{
-    final credentials = await firebaseAuth.signInAnonymously();
-    return Future.value(AuthDatamodel(userCredential: credentials));
-  }
 
-  @override
-  Future<AuthDatamodel> signInWithApple() {
-    throw UnimplementedError();
-  }
-
-  ///throws [ServerException] in case the password or email are incorrect
-  ///it support login for both logged in users and new users???
   @override
   Future<AuthDatamodel> signInWithEmail(String email, String password) async {
-    try {
-      var credentials = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-      return Future.value(AuthDatamodel(userCredential: credentials));
-    }on Exception{
-      throw ServerException();
-    }
+    print(email);
+    var credentials = await firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
+    return Future.value(AuthDatamodel(userCredential: credentials));
+
   }
 
-  ///throws [ServerException] in case user closes the pop up before fully signing in
-  ///it support login for both logged in users and new users
-  @override
-  Future<AuthDatamodel> signInWithFacebook() async {
-    throw UnimplementedError();
 
-//    final facebookAuth = FacebookAuth.instance;
-//
-//    final isSignedIn = await facebookAuth.isLogged != null;
-//
-//    if(!isSignedIn) {
-//      final LoginResult result = await facebookAuth.login();
-//
-//      if(result == null) throw ServerException();
-//
-//      final FacebookAuthCredential facebookAuthCredential = FacebookAuthProvider
-//          .credential(result.accessToken.token);
-//      var credentials = await firebaseAuth.signInWithCredential(
-//          facebookAuthCredential);
-//      return Future.value(AuthDatamodel(userCredential: credentials));
-//
-//    }else{
-//      var accessToken = await facebookAuth.isLogged;
-//      final FacebookAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(accessToken.token);
-//
-//      var credentials = await firebaseAuth.signInWithCredential(facebookAuthCredential);
-//
-//      return Future.value(AuthDatamodel(userCredential: credentials));
-//    }
-  }
-
-  ///throws [ServerException] in case user closes the pop up before fully signing in
-  ///it support login for both logged in users and new users
   @override
   Future<AuthDatamodel> signInWithGoogle() async{
     // hold the instance of the authenticated user
@@ -117,6 +68,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
     if(firebaseAuth.currentUser == null)
       throw ServerException();
     return Future.value();
+  }
+
+  @override
+  Future<AuthDatamodel> registerWithEmail(String email, String password) async{
+    var credentials = await firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    return Future.value(AuthDatamodel(userCredential: credentials));
   }
 
 
