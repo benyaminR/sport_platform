@@ -10,71 +10,68 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white10,
-      body: Stack(
-        children: [
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: Container(
-              width: size.width,
-              height: 80,
-              child: Stack(
-                children: [
-                  CustomPaint(
-                    size: Size(size.width, 80),
-                    painter: BNBCustomPainter(),
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 0,
+          left: 0,
+          child: Container(
+            width: size.width,
+            height: 80,
+            child: Stack(
+              children: [
+                CustomPaint(
+                  size: Size(size.width, 80),
+                  painter: BNBCustomPainter(),
+                ),
+                Center(
+                  heightFactor: 0.6,
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.orange,
+                    child: Icon(Icons.shopping_basket),
+                    elevation: 0.1,
                   ),
-                  Center(
-                    heightFactor: 0.6,
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      backgroundColor: Colors.orange,
-                      child: Icon(Icons.shopping_basket),
-                      elevation: 0.1,
-                    ),
+                ),
+                Container(
+                  width: size.width,
+                  height: 80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          icon: Icon(Icons.home),
+                          onPressed: () {
+                            setState(() {
+                              //Navigation.push
+                            });
+                          }),
+                      IconButton(
+                          icon: Icon(Icons.search),
+                          onPressed: () {
+                            setState(() {});
+                          }),
+                      Container(
+                        width: size.width * 0.20,
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.person),
+                          onPressed: () {
+                            setState(() {});
+                          }),
+                      IconButton(
+                          icon: Icon(Icons.message),
+                          onPressed: () {
+                            setState(() {});
+                          }),
+                    ],
                   ),
-                  Container(
-                    width: size.width,
-                    height: 80,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                            icon: Icon(Icons.home),
-                            onPressed: () {
-                              setState(() {
-                                //Navigation.push
-                              });
-                            }),
-                        IconButton(
-                            icon: Icon(Icons.search),
-                            onPressed: () {
-                              setState(() {});
-                            }),
-                        Container(
-                          width: size.width * 0.20,
-                        ),
-                        IconButton(
-                            icon: Icon(Icons.person),
-                            onPressed: () {
-                              setState(() {});
-                            }),
-                        IconButton(
-                            icon: Icon(Icons.message),
-                            onPressed: () {
-                              setState(() {});
-                            }),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
