@@ -14,7 +14,7 @@ class AddTrainerEvent extends TrainersEvent{
 }
 
 class GetTrainersEvent extends TrainersEvent{
-  final TrainerCriteria criteriaData;
+  final Criteria criteriaData;
 
   GetTrainersEvent({@required this.criteriaData});
 
