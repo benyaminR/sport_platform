@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: PRIMARYCOLOR_ORANGE,
+        canvasColor: Colors.transparent,
       ),
       initialRoute: '/home',
       routes: {

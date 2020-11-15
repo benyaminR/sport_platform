@@ -103,8 +103,7 @@ class Login extends StatelessWidget {
                         height: 50.0,
                         width: 50.0,
                       ),
-                      onTap: () => getIt<AuthenticationBloc>()
-                          .add(SignInWithGoogleEvent()),
+                      onTap: () => getIt<AuthenticationBloc>().add(SignInWithGoogleEvent()),
                     ),
                     SizedBox(
                       height: 25.0,
