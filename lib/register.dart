@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 
-class Login extends StatelessWidget {
+class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: BlocProvider<AuthenticationBloc>(
         create: (context) =>
-            getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
+        getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state is InitialAuthenticationState || state is ErrorState) {
@@ -20,21 +20,19 @@ class Login extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Login",
+                      "Registrieren",
                       style: new TextStyle(
                         color: Color(0xFFFFFFFF),
                       ),
-                      textScaleFactor: 1.5,
                     ),
                     SizedBox(
                       height: 150.0,
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: 'username',
+                          hintText: 'name',
                           hintStyle: new TextStyle(
                             color: Color(0xFFFFFFFF),
                           ),
@@ -54,15 +52,36 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'e-mail adresse',
+                          hintStyle: new TextStyle(
+                            color: Color(0xFFFFFFFF),
+                          ),
+                          labelStyle: new TextStyle(
+                            color: Color(0xFFFFFFFF),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFFFFFFFF)),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFFFFFFFF)),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFFFFFFFF)),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: 'password',
                           hintStyle: new TextStyle(
                             color: Color(0xFFFFFFFF),
                           ),
-                          fillColor: Color(0xFFFFFFFF),
                           labelStyle: new TextStyle(
                             color: Color(0xFFFFFFFF),
                           ),
@@ -82,78 +101,20 @@ class Login extends StatelessWidget {
                       height: 50.0,
                     ),
                     ElevatedButton(
-                      child: Text('Login'),
+                      child: Text('Registrieren'),
                       onPressed: () => getIt<AuthenticationBloc>().add(
                           SignInWithEmailEvent(
                               password: 'password',
                               email: 'benyaminradmard84@gmail.com')),
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(Color(0xffe4572e)),
+                        MaterialStateProperty.all<Color>(Color(0xffe4572e)),
                         minimumSize:
-                            MaterialStateProperty.all<Size>(Size(300, 50)),
+                        MaterialStateProperty.all<Size>(Size(300, 50)),
                       ),
-                    ),
-                    SizedBox(
-                      height: 50.0,
-                    ),
-                    GestureDetector(
-                      child: Image(
-                        image: AssetImage('assets/images/googlezeichen1.png'),
-                        height: 50.0,
-                        width: 50.0,
-                      ),
-                      onTap: () => getIt<AuthenticationBloc>()
-                          .add(SignInWithGoogleEvent()),
                     ),
                     SizedBox(
                       height: 25.0,
-                    ),
-                    ListTile(
-                      title: Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 25.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              child: Text(
-                                "Passwort vergessen?",
-                                style: new TextStyle(
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                textScaleFactor: 0.8,
-                              ),
-                              onTap: () => {
-                                Navigator.pushNamed(
-                                    context, '/login/resetPassword')
-                              },
-                            ),
-                            Text(
-                              "   |   ",
-                              style: new TextStyle(
-                                color: Color(0xFFFFFFFF),
-                              ),
-                              textScaleFactor: 0.8,
-                            ),
-                            GestureDetector(
-                              child: Text(
-                                "Hast Du schon ein Konto?",
-                                style: new TextStyle(
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                textScaleFactor: 0.8,
-                              ),
-                              onTap: () => {
-                                Navigator.pushNamed(context, '/login/register')
-                              },
-                            ),
-                            // First, I'd try setting the Column's crossAxisAlignment value to stretch or wrapping the Container in an Expanded widget.
-                            // This will try and force it to be the correct size. If that doesn't work, you'd need to look at the children of the container
-                            // and determine which one is preventing it from being the correct size. You can also try a FittedBox, which can scale/clip contents in order to make them fit
-                          ],
-                        ),
-                      ),
                     ),
                   ],
                 ),
