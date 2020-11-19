@@ -56,6 +56,16 @@ class AuthRepoImp implements AuthRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, Auth>> sendPasswordRecoveryEmail(String email) async{
+    try{
+      var res = await dataSource.sendPasswordRecoveryEmail(email);
+      return Right(res);
+    } on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
 
 
 }

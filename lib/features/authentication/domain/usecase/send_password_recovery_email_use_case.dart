@@ -5,14 +5,15 @@ import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/features/authentication/domain/repository/auth_repo.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
+import 'package:sport_platform/utils/usecases/params.dart';
 import 'package:sport_platform/utils/usecases/usecase.dart';
 
 @singleton
-class CheckAuthenticationUseCase extends UseCase<void,NoParams>{
+class SendPasswordRecoveryEmailUseCase extends UseCase<Auth,WithParams>{
 
   final AuthRepo repo;
 
-  CheckAuthenticationUseCase({@required this.repo});
+  SendPasswordRecoveryEmailUseCase({@required this.repo});
 
-  Future<Either<Failure, void>> call(NoParams params) => repo.checkAuthentication();
+  Future<Either<Failure, Auth>> call(WithParams params) => repo.sendPasswordRecoveryEmail((params.param as List<String>)[0]);
 }

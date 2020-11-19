@@ -134,9 +134,7 @@ class Login extends StatelessWidget {
                                 ),
                                 textScaleFactor: 0.8,
                               ),
-                              onTap: () => {
-                                Navigator.pushNamed(context, '/login/resetPassword')
-                              },
+                              onTap: () => Navigator.of(context).pushNamed('/resetPassword'),
                             ),
                             Text(
                               "   |   ",
@@ -154,7 +152,7 @@ class Login extends StatelessWidget {
                                 textScaleFactor: 0.8,
                               ),
                               onTap: () => {
-                                Navigator.pushNamed(context, '/login/register')
+                                Navigator.pushNamed(context, '/register')
                               },
                             ),
                             // First, I'd try setting the Column's crossAxisAlignment value to stretch or wrapping the Container in an Expanded widget.

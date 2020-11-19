@@ -34,4 +34,11 @@ class RegisterWithEmailEvent extends AuthenticationEvent{
   List<Object> get props => [email,password];
 }
 
+class ResetPasswordEvent extends AuthenticationEvent{
+  final String email;
 
+  ResetPasswordEvent({@required this.email});
+
+  @override
+  List<Object> get props => [email];
+}

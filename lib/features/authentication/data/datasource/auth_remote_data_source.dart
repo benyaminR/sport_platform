@@ -10,7 +10,7 @@ abstract class AuthRemoteDataSource{
   Future<AuthDatamodel> signInWithEmail(String email, String password);
   Future<AuthDatamodel> registerWithEmail(String email, String password);
   Future<void> checkAuthentication();
-
+  Future<AuthDatamodel> sendPasswordRecoveryEmail(String email);
 }
 
 @Singleton(as: AuthRemoteDataSource)
@@ -27,7 +27,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
     var credentials = await firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
     return Future.value(AuthDatamodel(userCredential: credentials));
-
   }
 
 
@@ -75,6 +74,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
     var credentials = await firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
     return Future.value(AuthDatamodel(userCredential: credentials));
+  }
+
+  @override
+  Future<AuthDatamodel> sendPasswordRecoveryEmail(String email) async{
+    await firebaseAuth.sendPasswordResetEmail(email: email);
+    return Future.value(AuthDatamodel(userCredential: null));
   }
 
 

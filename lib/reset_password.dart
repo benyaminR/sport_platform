@@ -5,13 +5,15 @@ import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 
 class ResetPassword extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: BlocProvider<AuthenticationBloc>(
-        create: (context) =>
-        getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
+      body: BlocProvider.value(
+        value: getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()) ,
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state is InitialAuthenticationState || state is ErrorState) {
@@ -31,6 +33,7 @@ class ResetPassword extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: 'e-mail adresse',
                           hintStyle: new TextStyle(
@@ -56,10 +59,7 @@ class ResetPassword extends StatelessWidget {
                     ),
                     ElevatedButton(
                       child: Text('Wiederherstellen'),
-                      onPressed: () => getIt<AuthenticationBloc>().add(
-                          SignInWithEmailEvent(
-                              password: 'password',
-                              email: 'benyaminradmard84@gmail.com')),
+                      onPressed: () => getIt<AuthenticationBloc>().add(ResetPasswordEvent(email: emailController.value.text)),
                       style: ButtonStyle(
                         backgroundColor:
                         MaterialStateProperty.all<Color>(Color(0xffe4572e)),
@@ -83,7 +83,7 @@ class ResetPassword extends StatelessWidget {
             return Container();
           },
           listener: (context, state) {
-            if (state is SignedInState) Navigator.pushNamed(context, '/home');
+            if (state is SignedInState) Navigator.pushReplacementNamed(context, '/');
             if (state is ErrorState)
               Scaffold.of(context).showSnackBar(SnackBar(
                 content: Text('Wrong password or email'),

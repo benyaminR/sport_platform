@@ -7,4 +7,5 @@ abstract class AuthRepo{
   Future<Either<Failure,Auth>> signInWithEmail(String email,String password);
   Future<Either<Failure,Auth>> checkAuthentication();
   Future<Either<Failure,Auth>> registerWithEmail(String email,String password);
+  Future<Either<Failure,Auth>> sendPasswordRecoveryEmail(String email);
 }

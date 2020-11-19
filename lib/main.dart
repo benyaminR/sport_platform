@@ -27,12 +27,12 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         primaryColor: PRIMARYCOLOR_ORANGE,
       ),
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
-        '/login':(context)=> Login(),
+        '/':(context)=> Login(),
         '/home':(context) => Home(),
-        '/login/register':(context) => Register(),
-        '/login/resetPassword':(context) => ResetPassword(),
+        '/register':(context) => Register(),
+        '/resetPassword':(context) => ResetPassword(),
       },
     );
   }

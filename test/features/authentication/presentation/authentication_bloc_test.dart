@@ -5,9 +5,11 @@ import 'package:mockito/mockito.dart';
 import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/register_with_email_use_case.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
+import 'package:sport_platform/reset_password.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
@@ -20,6 +22,7 @@ class SignInWithEmailUseCaseMock extends Mock implements SignInWithEmailUseCase{
 class CheckAuthenticationUseCaseMock extends Mock implements CheckAuthenticationUseCase{}
 class RegisterWithEmailUseCaseMock extends Mock implements RegisterWithEmailUseCase{}
 
+class SendPasswordRecoveryMock extends Mock implements SendPasswordRecoveryEmailUseCase{}
 
 main() {
 
@@ -28,6 +31,7 @@ main() {
   final withEmail = SignInWithEmailUseCaseMock();
   final checkAuth = CheckAuthenticationUseCaseMock();
   final registerWithEmail = RegisterWithEmailUseCaseMock();
+  final passwordRecovery = SendPasswordRecoveryMock();
 
   final noParams = NoParams();
   final withParams = WithParams(param: '');
@@ -36,7 +40,8 @@ main() {
       withGoogle:withGoogle,
       withEmail: withEmail,
       checkAuth: checkAuth,
-    registerWithEmail: registerWithEmail
+    registerWithEmail: registerWithEmail,
+    resetPassword: passwordRecovery
   );
 
 
@@ -122,6 +127,26 @@ main() {
           },
           act: (cubit)=> cubit.add(CheckAuthenticationEvent()),
           expect: [InitialAuthenticationState()]
+      );
+    });
+
+    group('PasswordRecovery ', (){
+      blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, SignedInState]',
+        build: () {
+          when(passwordRecovery(WithParams(param: ['email']))).thenAnswer((realInvocation) async => Right(authData));
+          return generateNewBloc();
+        },
+        act: (cubit) => cubit.add(ResetPasswordEvent(email: 'email')),
+        expect: [SigningInState(),SignedInState()],
+      );
+
+      blocTest<AuthenticationBloc,AuthenticationState>('should emit in order [SigningInState, ErrorState]',
+        build: () {
+          when(passwordRecovery(WithParams(param: ['email']))).thenAnswer((realInvocation) async => Left(ServerFailure()));
+          return generateNewBloc();
+        },
+        act: (cubit) => cubit.add(ResetPasswordEvent(email: 'email')),
+        expect: [SigningInState(),ErrorState(msg: 'error')],
       );
     });
 

@@ -5,6 +5,7 @@ import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/features/authentication/domain/repository/auth_repo.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/register_with_email_use_case.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
@@ -71,6 +72,16 @@ main() {
       verify(repo.checkAuthentication());
     });
 
+    test('sendPasswordRecoveryEmailUsecase redirects to authrepo.sendPasswordRecoveryEmail(String)', () async{
+      //arrange
+      final usecase = SendPasswordRecoveryEmailUseCase(repo:repo);
+      when(repo.sendPasswordRecoveryEmail('email')).thenAnswer((_) async => Right(authdata));
+      //act
+      var res = await usecase(WithParams(param: ['email']));
+      //assert
+      expect(res, Right(authdata));
+      verify(repo.sendPasswordRecoveryEmail('email'));
+    });
   });
 
 }

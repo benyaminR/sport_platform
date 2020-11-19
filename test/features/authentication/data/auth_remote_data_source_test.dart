@@ -36,6 +36,11 @@ main() {
       expect(res,isNotNull);
     });
 
-
+    test('sendPasswordRecoveryEmail should call appropriate functions', () async{
+      //act
+      var res = await ds.sendPasswordRecoveryEmail('email');
+      //assert
+      expect(res,isNotNull);
+    });
   });
 }

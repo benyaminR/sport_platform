@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/register_with_email_use_case.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
@@ -14,19 +15,22 @@ part 'authentication_event.dart';
 
 part 'authentication_state.dart';
 
-@singleton
+@injectable
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
   final SignInWithGoogleUseCase withGoogle;
   final SignInWithEmailUseCase withEmail;
   final CheckAuthenticationUseCase checkAuth;
   final RegisterWithEmailUseCase registerWithEmail;
+  final SendPasswordRecoveryEmailUseCase resetPassword;
+
   AuthenticationBloc(InitialAuthenticationState initialState,
       {
         @required this.withEmail,
         @required this.withGoogle,
         @required this.checkAuth,
-        @required this.registerWithEmail
+        @required this.registerWithEmail,
+        @required this.resetPassword,
       }
         ) : super(initialState);
 
@@ -69,6 +73,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       );
     }
 
-
+    if(event is ResetPasswordEvent){
+      yield SigningInState();
+      var result = await resetPassword(WithParams(param: [event.email]));
+      yield result.fold(
+              (l) => ErrorState(msg:'error'),
+              (r) => SignedInState()
+      );
+    }
   }
 }

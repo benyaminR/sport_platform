@@ -6,6 +6,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,8 +25,12 @@ import 'utils/third_party_dependencies/firebase_auth.dart';
 import 'utils/third_party_dependencies/firebase_firestore.dart';
 import 'features/courses/domain/usecase/get_courses_use_case.dart';
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart';
+import 'features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
+import 'features/storage/data/datasource/storage_repo_data_source.dart';
+import 'features/storage/domain/repository/storage_repo.dart';
+import 'features/storage/data/repository/storage_repo_imp.dart';
 import 'features/courses/domain/usecase/update_course_use_case.dart';
 
 /// adds generated dependencies
@@ -41,10 +46,22 @@ GetIt $initGetIt(
   final firebaseFirestoreDependency = _$FirebaseFirestoreDependency();
   gh.factory<FirebaseAuth>(() => firebaseAuthDependency.prefs);
   gh.factory<FirebaseFirestore>(() => firebaseFirestoreDependency.prefs);
+  gh.factory<AuthenticationBloc>(() => AuthenticationBloc(
+        get<InitialAuthenticationState>(),
+        withEmail: get<SignInWithEmailUseCase>(),
+        withGoogle: get<SignInWithGoogleUseCase>(),
+        checkAuth: get<CheckAuthenticationUseCase>(),
+        registerWithEmail: get<RegisterWithEmailUseCase>(),
+        resetPassword: get<SendPasswordRecoveryEmailUseCase>(),
+      ));
 
   // Eager singletons must be registered in the right order
   gh.singleton<IdleCoursesState>(IdleCoursesState());
   gh.singleton<InitialAuthenticationState>(InitialAuthenticationState());
+  gh.singleton<StorageDataSource>(
+      StorageDataSourceImpl(firebaseStorage: get<FirebaseStorage>()));
+  gh.singleton<StorageRepo>(
+      StorageRepoImpl(dataSource: get<StorageDataSource>()));
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<AuthRepo>(AuthRepoImp(dataSource: get<AuthRemoteDataSource>()));
@@ -59,6 +76,8 @@ GetIt $initGetIt(
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<RegisterWithEmailUseCase>(
       RegisterWithEmailUseCase(repo: get<AuthRepo>()));
+  gh.singleton<SendPasswordRecoveryEmailUseCase>(
+      SendPasswordRecoveryEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInWithEmailUseCase>(
       SignInWithEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInWithGoogleUseCase>(
@@ -66,13 +85,6 @@ GetIt $initGetIt(
   gh.singleton<UpdateCourseUseCase>(
       UpdateCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<AddCourseUseCase>(AddCourseUseCase(repo: get<CoursesRepo>()));
-  gh.singleton<AuthenticationBloc>(AuthenticationBloc(
-    get<InitialAuthenticationState>(),
-    withEmail: get<SignInWithEmailUseCase>(),
-    withGoogle: get<SignInWithGoogleUseCase>(),
-    checkAuth: get<CheckAuthenticationUseCase>(),
-    registerWithEmail: get<RegisterWithEmailUseCase>(),
-  ));
   gh.singleton<CoursesBloc>(CoursesBloc(
     initialState: get<IdleCoursesState>(),
     getCourseUseCase: get<GetCourseUseCase>(),
