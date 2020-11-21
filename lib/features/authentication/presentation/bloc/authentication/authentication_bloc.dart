@@ -15,7 +15,7 @@ part 'authentication_event.dart';
 
 part 'authentication_state.dart';
 
-@injectable
+@singleton
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
 
   final SignInWithGoogleUseCase withGoogle;

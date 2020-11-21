@@ -13,9 +13,8 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: BlocProvider<AuthenticationBloc>(
-        create: (context) =>
-            getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
+      body: BlocProvider.value(
+        value: getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state is InitialAuthenticationState || state is ErrorState) {
@@ -152,7 +151,7 @@ class Login extends StatelessWidget {
                                 textScaleFactor: 0.8,
                               ),
                               onTap: () => {
-                                Navigator.pushNamed(context, '/register')
+                                Navigator.of(context).pushNamed('/register')
                               },
                             ),
                             // First, I'd try setting the Column's crossAxisAlignment value to stretch or wrapping the Container in an Expanded widget.
@@ -175,7 +174,8 @@ class Login extends StatelessWidget {
             return Container();
           },
           listener: (context, state) {
-            if (state is SignedInState) Navigator.pushNamed(context, '/home');
+            if (state is SignedInState)
+              Navigator.pushNamed(context, '/home');
             if (state is ErrorState)
               Scaffold.of(context).showSnackBar(SnackBar(
                 content: Text('Wrong password or email'),

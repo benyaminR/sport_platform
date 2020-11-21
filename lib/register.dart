@@ -13,9 +13,8 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: BlocProvider<AuthenticationBloc>(
-        create: (context) =>
-        getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
+      body: BlocProvider.value(
+        value: getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state is InitialAuthenticationState || state is ErrorState) {
