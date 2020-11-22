@@ -5,7 +5,6 @@ import 'package:sport_platform/register.dart';
 import 'package:sport_platform/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
 import 'package:sport_platform/utils/db_demo_data.dart';
-
 import 'home.dart';
 import 'login.dart';
 

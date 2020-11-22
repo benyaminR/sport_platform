@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sport_platform/features/storage/data/datamodel/storage_data_data_model.dart';
 import 'package:sport_platform/features/storage/data/datasource/storage_repo_data_source.dart';
 import 'package:sport_platform/features/storage/domain/entity/storage_data.dart';
 import 'package:sport_platform/features/storage/domain/repository/storage_repo.dart';
@@ -35,7 +36,7 @@ class StorageRepoImpl implements StorageRepo{
   @override
   Future<Either<Failure, StorageData>> replaceStorageData(StorageData data) async{
     try{
-      return Right(await dataSource.replaceStorageData(data));
+      return Right(await dataSource.replaceStorageData(StorageDataDataModel.fromStorageData(data)));
     }on ServerException{
       return Left(ServerFailure());
     }
@@ -44,7 +45,7 @@ class StorageRepoImpl implements StorageRepo{
   @override
   Future<Either<Failure, StorageData>> uploadStorageData(StorageData data) async{
     try{
-      return Right(await dataSource.uploadStorageData(data));
+      return Right(await dataSource.uploadStorageData(StorageDataDataModel.fromStorageData(data)));
     }on ServerException{
       return Left(ServerFailure());
     }

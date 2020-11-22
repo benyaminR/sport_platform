@@ -15,5 +15,7 @@ class StorageDataDataModel extends StorageData{
           data: data
       );
 
+  factory StorageDataDataModel.fromStorageData(StorageData data)=> StorageDataDataModel(data: data.data, path: data.path);
+
 }
 

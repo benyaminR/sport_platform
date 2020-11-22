@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/storage/domain/entity/storage_data.dart';
 import 'package:sport_platform/features/storage/domain/usecase/DeleteStorageDataUseCase.dart';
@@ -14,7 +15,7 @@ import 'package:sport_platform/utils/usecases/params.dart';
 part 'storage_event.dart';
 
 part 'storage_state.dart';
-
+@singleton
 class StorageBloc extends Bloc<StorageEvent, StorageState> {
   final DeleteStorageDataUseCase delete;
   final UploadStorageDataUseCase upload;
@@ -26,13 +27,13 @@ class StorageBloc extends Bloc<StorageEvent, StorageState> {
   static const REPLACE_UNSUCCESSFUL = 'Replace was unsuccessful!';
   static const GET_UNSUCCESSFUL = 'Get was unsuccessful!';
 
-  StorageBloc(StorageState initialState,
+  StorageBloc(
       {
         @required this.delete,
         @required this.upload,
         @required this.get,
         @required this.replace
-      } ) : super(initialState);
+      } ) : super(IdleStorageState());
 
   @override
   Stream<StorageState> mapEventToState(StorageEvent event) async* {

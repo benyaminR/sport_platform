@@ -26,7 +26,6 @@ main() {
   final getUC = GetDownloadUrlUseCaseMock();
   final data = StorageData(data: null, path: null);
   _bloc () => StorageBloc(
-    IdleStorageState(),
     delete : deleteUC,
     upload : uploadUC,
     replace : replaceUC,
