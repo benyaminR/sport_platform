@@ -23,41 +23,47 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
 
   @override
   Future<AuthDatamodel> signInWithEmail(String email, String password) async {
-    print(email);
-    var credentials = await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    return Future.value(AuthDatamodel(userCredential: credentials));
+    try {
+      var credentials = await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return Future.value(AuthDatamodel(userCredential: credentials));
+    } on Exception{
+      throw ServerException();
+    }
   }
-
 
   @override
   Future<AuthDatamodel> signInWithGoogle() async{
-    // hold the instance of the authenticated user
-    UserCredential user;
-    // flag to check whether we're signed in already
-    bool isSignedIn = await GoogleSignIn().isSignedIn();
+    try{
+      // hold the instance of the authenticated user
+      UserCredential user;
+      // flag to check whether we're signed in already
+      bool isSignedIn = await GoogleSignIn().isSignedIn();
 
-    if(!isSignedIn) {
+      if(!isSignedIn) {
 
-      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-      //if user closes the sign in window
-      if(googleUser == null) throw ServerException();
+        final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+        //if user closes the sign in window
+        if(googleUser == null) throw ServerException();
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-      var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
-      user = await firebaseAuth.signInWithCredential(credentials);
+        var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
+        user = await firebaseAuth.signInWithCredential(credentials);
 
-      return Future.value(AuthDatamodel(userCredential: user));
+        return Future.value(AuthDatamodel(userCredential: user));
 
-    } else {
+      } else {
 
-      final GoogleSignInAuthentication googleAuth = await GoogleSignIn().currentUser.authentication;
+        final GoogleSignInAuthentication googleAuth = await GoogleSignIn().currentUser.authentication;
 
-      var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
-      user = await firebaseAuth.signInWithCredential(credentials);
+        var credentials = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken,idToken: googleAuth.idToken);
+        user = await firebaseAuth.signInWithCredential(credentials);
 
-      return Future.value(AuthDatamodel(userCredential: user));
+        return Future.value(AuthDatamodel(userCredential: user));
+      }
+    }on Exception{
+      throw ServerException();
     }
 
   }
@@ -71,15 +77,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource{
 
   @override
   Future<AuthDatamodel> registerWithEmail(String email, String password) async{
-    var credentials = await firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    return Future.value(AuthDatamodel(userCredential: credentials));
+    try{
+      var credentials = await firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return Future.value(AuthDatamodel(userCredential: credentials));
+    }on Exception{
+      throw ServerException();
+    }
   }
 
   @override
   Future<AuthDatamodel> sendPasswordRecoveryEmail(String email) async{
-    await firebaseAuth.sendPasswordResetEmail(email: email);
-    return Future.value(AuthDatamodel(userCredential: null));
+    try{
+      await firebaseAuth.sendPasswordResetEmail(email: email);
+      return Future.value(AuthDatamodel(userCredential: null));
+    }on Exception{
+      throw ServerException();
+    }
   }
 
 

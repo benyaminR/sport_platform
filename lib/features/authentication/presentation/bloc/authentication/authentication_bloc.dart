@@ -24,6 +24,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   final RegisterWithEmailUseCase registerWithEmail;
   final SendPasswordRecoveryEmailUseCase resetPassword;
 
+  static const RESET_PASSWORD_ERROR = 'Invalid Email Address Or No Account Found!';
+  static const WITH_GOOGLE_ERROR = 'Failed To Sign In With Google!';
+  static const WITH_EMAIL_AND_PASSWORD_ERROR = 'Incorrect Email Or Password!';
+  static const REGISTER_ERROR = 'Incorrect Email Or Password!';
+
   AuthenticationBloc(InitialAuthenticationState initialState,
       {
         @required this.withEmail,
@@ -42,7 +47,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       yield SigningInState();
       var result = await withGoogle(NoParams());
       yield result.fold(
-              (l) => ErrorState(msg: 'error'),
+              (l) => ErrorState(msg: WITH_GOOGLE_ERROR),
               (r) => SignedInState()
       );
     }
@@ -51,7 +56,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       yield SigningInState();
       var result = await registerWithEmail(WithParams(param: [event.email, event.password]));
       yield result.fold(
-              (l) => ErrorState(msg: 'error'),
+              (l) => ErrorState(msg: REGISTER_ERROR),
               (r) => SignedInState()
       );
     }
@@ -60,7 +65,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       yield SigningInState();
       var result = await withEmail(WithParams(param: [event.email,event.password]));
       yield result.fold(
-              (l) => ErrorState(msg: 'error'),
+              (l) => ErrorState(msg: WITH_EMAIL_AND_PASSWORD_ERROR),
               (r) => SignedInState()
       );
     }
@@ -77,7 +82,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       yield SigningInState();
       var result = await resetPassword(WithParams(param: [event.email]));
       yield result.fold(
-              (l) => ErrorState(msg:'error'),
+              (l) => ErrorState(msg:RESET_PASSWORD_ERROR),
               (r) => SignedInState()
       );
     }

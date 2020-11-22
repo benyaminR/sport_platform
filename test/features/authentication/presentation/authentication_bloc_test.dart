@@ -9,7 +9,6 @@ import 'package:sport_platform/features/authentication/domain/usecase/send_passw
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
-import 'package:sport_platform/reset_password.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
@@ -63,7 +62,7 @@ main() {
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithGoogleEvent()),
-        expect: [SigningInState(),ErrorState(msg: 'error')],
+        expect: [SigningInState(),ErrorState(msg: AuthenticationBloc.WITH_GOOGLE_ERROR)],
       );
     });
 
@@ -86,7 +85,7 @@ main() {
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(SignInWithEmailEvent(email: 'email',password: 'password')),
-        expect: [SigningInState(),ErrorState(msg: 'error')],
+        expect: [SigningInState(),ErrorState(msg: AuthenticationBloc.WITH_EMAIL_AND_PASSWORD_ERROR)],
       );
     });
 
@@ -107,7 +106,7 @@ main() {
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(RegisterWithEmailEvent(email: 'email',password: 'password')),
-        expect: [SigningInState(),ErrorState(msg: 'error')],
+        expect: [SigningInState(),ErrorState(msg: AuthenticationBloc.REGISTER_ERROR)],
       );
     });
 
@@ -146,7 +145,7 @@ main() {
           return generateNewBloc();
         },
         act: (cubit) => cubit.add(ResetPasswordEvent(email: 'email')),
-        expect: [SigningInState(),ErrorState(msg: 'error')],
+        expect: [SigningInState(),ErrorState(msg: AuthenticationBloc.RESET_PASSWORD_ERROR)],
       );
     });
 

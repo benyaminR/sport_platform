@@ -10,11 +10,10 @@ import 'package:sport_platform/features/storage/domain/usecase/ReplaceStorageDat
 import 'package:sport_platform/features/storage/domain/usecase/UploadStorageDataUseCase.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 
-
-
 part 'storage_event.dart';
-
 part 'storage_state.dart';
+
+
 @singleton
 class StorageBloc extends Bloc<StorageEvent, StorageState> {
   final DeleteStorageDataUseCase delete;
