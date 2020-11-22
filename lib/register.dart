@@ -150,7 +150,7 @@ class Register extends StatelessWidget {
             }
             if (state is ErrorState)
               Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text('Wrong password or email'),
+                content: Text(state.msg),
               ));
           },
         ),
