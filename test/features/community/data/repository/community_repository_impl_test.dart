@@ -16,7 +16,7 @@ void main() {
   final CommunityDataSourceMock communityDataSourceMock = CommunityDataSourceMock();
   final CommunityRepoImpl communityRepoIml = CommunityRepoImpl(datasource:communityDataSourceMock);
 
-  final post = CommunityPostDataModel(description: null, date: null, media: null, UID: null, username: null, thumbnail: null, comments: null, likes: null, shares: null);
+  final post = CommunityPostDataModel(description: null, date: null, media: null, username: null, thumbnail: null, comments: null, likes: null, shares: null);
   final criteria = CommunityCriteriaDataModel(filter: null, data: null);
 
   group('CommunityRepoImpl ',(){

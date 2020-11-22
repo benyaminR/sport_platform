@@ -11,15 +11,14 @@ class CommunityPost extends Equatable{
   final String description;
   final String date;
   final List<CommunityMedia> media;
-  final String UID;
   final String username;
   final String thumbnail;
   final List<CommunityComment> comments;
   final List<CommunityLike> likes;
   final List<CommunityShare> shares;
+  final String docID;
 
-
-  CommunityPost({@required this.description, @required this.date, @required this.media, @required this.UID, @required this.username, @required this.thumbnail, @required this.comments, @required this.likes, @required this.shares});
+  CommunityPost({@required this.description, @required this.date, @required this.media,@required this.username, @required this.thumbnail, @required this.comments, @required this.likes, @required this.shares,@required this.docID});
   @override
-  List<Object> get props => [description, date, media, UID, username, thumbnail, comments, likes, shares];
+  List<Object> get props => [description, date, media,username, thumbnail, comments, likes, shares,docID];
 }

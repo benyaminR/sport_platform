@@ -8,6 +8,7 @@ import 'package:sport_platform/utils/error/failure.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 import 'package:sport_platform/utils/usecases/usecase.dart';
 
+@singleton
 class GetPostsUseCase extends UseCase<List<CommunityPost>,WithParams>{
 
   final CommunityRepo repo;

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/community/data/datasource/community_data_source.dart';
 import 'package:sport_platform/features/community/domain/entity/community_criteria.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
@@ -7,6 +8,8 @@ import 'package:sport_platform/features/community/domain/repository/community_re
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
+
+@Singleton(as:CommunityRepo)
 class CommunityRepoImpl extends CommunityRepo{
   final CommunityDataSource datasource;
 

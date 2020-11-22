@@ -12,7 +12,6 @@ void main() {
       description: 'des',
       date: 'date',
       media: [CommunityMediaDataModel(thumbnail: 'thumbnail', viewCount: 100, source: 'source', creationDate: 'date', mediaType: 'type')],
-      UID: 'uid',
       username: 'username',
       thumbnail: 'thumbnail',
       comments: [CommunityCommentDatamodel(username: 'username', thumbnail: 'thumbnail', stars: 4.3, text: 'sda', date: 'date')],

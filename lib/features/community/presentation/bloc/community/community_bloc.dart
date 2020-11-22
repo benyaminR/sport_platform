@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/community/domain/usecase/add_post_use_case.dart';
 import 'package:sport_platform/features/community/domain/usecase/get_posts_use_case.dart';
 import 'package:sport_platform/features/community/domain/usecase/remove_post_use_case.dart';
@@ -10,7 +11,7 @@ import 'package:sport_platform/utils/usecases/params.dart';
 import 'community_event.dart';
 import 'community_state.dart';
 
-
+@singleton
 class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
 
   final AddPostUseCase addPostUseCase;
@@ -18,7 +19,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
   final RemovePostUseCase removePostUseCase;
   final UpdatePostUseCase updatePostUseCase;
 
-  CommunityBloc(CommunityState initialState, this.addPostUseCase, this.getPostsUseCase, this.removePostUseCase, this.updatePostUseCase) : super(initialState);
+  CommunityBloc(this.addPostUseCase, this.getPostsUseCase, this.removePostUseCase, this.updatePostUseCase) : super(IdleCommunitiesState());
 
   @override
   Stream<CommunityState> mapEventToState(CommunityEvent event) async* {

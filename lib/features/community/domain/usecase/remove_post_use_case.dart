@@ -7,6 +7,8 @@ import 'package:sport_platform/utils/error/failure.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 import 'package:sport_platform/utils/usecases/usecase.dart';
 
+
+@singleton
 class RemovePostUseCase extends UseCase<CommunityPost,WithParams>{
 
   final CommunityRepo repo;
