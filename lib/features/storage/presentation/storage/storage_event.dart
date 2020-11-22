@@ -30,11 +30,3 @@ class UploadStorageDataEvent extends StorageEvent{
   List<Object> get props => [data];
 }
 
-class ReplaceStorageDataEvent extends StorageEvent{
-  final StorageData data;
-
-  ReplaceStorageDataEvent({this.data});
-
-  @override
-  List<Object> get props => [data];
-}

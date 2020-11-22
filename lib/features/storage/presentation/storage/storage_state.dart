@@ -45,10 +45,3 @@ class UploadStorageDataCompleted extends StorageState {
   List<Object> get props => [];
 }
 
-class ReplaceStorageDataCompleted extends StorageState {
-  final StorageData data;
-
-  ReplaceStorageDataCompleted({@required this.data});
-  @override
-  List<Object> get props => [data];
-}

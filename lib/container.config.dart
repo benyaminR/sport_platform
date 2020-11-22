@@ -28,7 +28,6 @@ import 'utils/third_party_dependencies/firebase_storage.dart';
 import 'features/courses/domain/usecase/get_courses_use_case.dart';
 import 'features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart';
-import 'features/storage/domain/usecase/ReplaceStorageDataUseCase.dart';
 import 'features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
@@ -82,8 +81,6 @@ GetIt $initGetIt(
       GetDownloadUrlUseCase(repo: get<StorageRepo>()));
   gh.singleton<RegisterWithEmailUseCase>(
       RegisterWithEmailUseCase(repo: get<AuthRepo>()));
-  gh.singleton<ReplaceStorageDataUseCase>(
-      ReplaceStorageDataUseCase(repo: get<StorageRepo>()));
   gh.singleton<SendPasswordRecoveryEmailUseCase>(
       SendPasswordRecoveryEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInWithEmailUseCase>(
@@ -94,7 +91,6 @@ GetIt $initGetIt(
     delete: get<DeleteStorageDataUseCase>(),
     upload: get<UploadStorageDataUseCase>(),
     get: get<GetDownloadUrlUseCase>(),
-    replace: get<ReplaceStorageDataUseCase>(),
   ));
   gh.singleton<UpdateCourseUseCase>(
       UpdateCourseUseCase(repo: get<CoursesRepo>()));

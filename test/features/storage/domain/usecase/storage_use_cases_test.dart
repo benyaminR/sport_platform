@@ -6,7 +6,6 @@ import 'package:sport_platform/features/storage/domain/entity/storage_data.dart'
 import 'package:sport_platform/features/storage/domain/repository/storage_repo.dart';
 import 'package:sport_platform/features/storage/domain/usecase/DeleteStorageDataUseCase.dart';
 import 'package:sport_platform/features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
-import 'package:sport_platform/features/storage/domain/usecase/ReplaceStorageDataUseCase.dart';
 import 'package:sport_platform/features/storage/domain/usecase/UploadStorageDataUseCase.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 class MockStorageRepo extends Mock implements StorageRepo{}
@@ -15,7 +14,6 @@ main() {
   final repo = MockStorageRepo();
   final deleteUC = DeleteStorageDataUseCase(repo: repo);
   final uploadUC = UploadStorageDataUseCase(repo: repo);
-  final replaceUC = ReplaceStorageDataUseCase(repo: repo);
   final getUC = GetDownloadUrlUseCase(repo: repo);
 
   group('Storage UseCases redirect' , (){
@@ -36,14 +34,6 @@ main() {
       verify(repo.uploadStorageData(data));
     });
 
-    test('ReplaceStorageDataUseCase should redirect to repo.replaceStorageData()',()async{
-      //arrange
-      final data = StorageData(data: null, path: null);
-      //act
-      await replaceUC(WithParams(param: data));
-      //assert
-      verify(repo.replaceStorageData(data));
-    });
 
     test('GetDownloadUrlUseCase should redirect to repo.getDownloadUrl()',()async{
       //arrange

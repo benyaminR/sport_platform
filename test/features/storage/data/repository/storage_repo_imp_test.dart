@@ -9,7 +9,6 @@ import 'package:sport_platform/utils/error/failure.dart';
 
 class StorageDataSourceMock extends Mock implements StorageDataSource{}
 
-
 main() {
   final dataSource = StorageDataSourceMock();
   final repo = StorageRepoImpl(dataSource: dataSource);
@@ -36,31 +35,6 @@ main() {
         verifyNoMoreInteractions(dataSource);
       });
     });
-
-    group('replaceStorageData ', (){
-      test('should handle Failure ', () async{
-        //arrange
-        when(dataSource.replaceStorageData(testData)).thenThrow(ServerException());
-        //act
-        final res = await repo.replaceStorageData(testData);
-        //asses
-        expect(res, Left(ServerFailure()));
-        verify(dataSource.replaceStorageData(testData));
-        verifyNoMoreInteractions(dataSource);
-      });
-
-      test('should handle success', () async{
-        //arrange
-        when(dataSource.replaceStorageData(testData)).thenAnswer((_) async => testData);
-        //act
-        final res = await repo.replaceStorageData(testData);
-        //asses
-        expect(res, Right(testData));
-        verify(dataSource.replaceStorageData(testData));
-        verifyNoMoreInteractions(dataSource);
-      });
-    });
-
     group('uploadStorageData ', (){
       test('should handle Failure ', () async{
         //arrange

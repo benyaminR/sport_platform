@@ -33,14 +33,6 @@ class StorageRepoImpl implements StorageRepo{
     }
   }
 
-  @override
-  Future<Either<Failure, StorageData>> replaceStorageData(StorageData data) async{
-    try{
-      return Right(await dataSource.replaceStorageData(StorageDataDataModel.fromStorageData(data)));
-    }on ServerException{
-      return Left(ServerFailure());
-    }
-  }
 
   @override
   Future<Either<Failure, StorageData>> uploadStorageData(StorageData data) async{

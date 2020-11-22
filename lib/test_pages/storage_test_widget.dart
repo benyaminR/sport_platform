@@ -32,8 +32,6 @@ class StorageTestWidget extends StatelessWidget {
                       return Text(state.downloadUrl);
                     if(state is DeleteStorageDataCompleted)
                       return Text('deleted!');
-                    if(state is ReplaceStorageDataCompleted)
-                      return Text('replaced!');
                     if(state is UploadStorageDataCompleted)
                       return Text('uploaded!');
                     return Text('...');

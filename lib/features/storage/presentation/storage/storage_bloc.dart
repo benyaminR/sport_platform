@@ -6,7 +6,6 @@ import 'package:meta/meta.dart';
 import 'package:sport_platform/features/storage/domain/entity/storage_data.dart';
 import 'package:sport_platform/features/storage/domain/usecase/DeleteStorageDataUseCase.dart';
 import 'package:sport_platform/features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
-import 'package:sport_platform/features/storage/domain/usecase/ReplaceStorageDataUseCase.dart';
 import 'package:sport_platform/features/storage/domain/usecase/UploadStorageDataUseCase.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 
@@ -19,11 +18,9 @@ class StorageBloc extends Bloc<StorageEvent, StorageState> {
   final DeleteStorageDataUseCase delete;
   final UploadStorageDataUseCase upload;
   final GetDownloadUrlUseCase get;
-  final ReplaceStorageDataUseCase replace;
 
   static const DELETE_UNSUCCESSFUL = 'Delete was unsuccessful!';
   static const UPLOAD_UNSUCCESSFUL = 'Upload was unsuccessful!';
-  static const REPLACE_UNSUCCESSFUL = 'Replace was unsuccessful!';
   static const GET_UNSUCCESSFUL = 'Get was unsuccessful!';
 
   StorageBloc(
@@ -31,7 +28,6 @@ class StorageBloc extends Bloc<StorageEvent, StorageState> {
         @required this.delete,
         @required this.upload,
         @required this.get,
-        @required this.replace
       } ) : super(IdleStorageState());
 
   @override
@@ -52,15 +48,6 @@ class StorageBloc extends Bloc<StorageEvent, StorageState> {
       yield res.fold(
               (l) => StorageError(msg: UPLOAD_UNSUCCESSFUL),
               (r) => UploadStorageDataCompleted()
-      );
-    }
-
-    if(event is ReplaceStorageDataEvent){
-      yield StorageLoading();
-      var res = await replace(WithParams(param:event.data));
-      yield res.fold(
-              (l) => StorageError(msg: REPLACE_UNSUCCESSFUL),
-              (r) => ReplaceStorageDataCompleted(data: r)
       );
     }
 

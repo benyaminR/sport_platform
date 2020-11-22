@@ -111,39 +111,5 @@ main() {
 
     });
 
-    group('replaceStorageData ', (){
-      test('should throw exception if path == nullPath', () async{
-        //assert
-        expect(()=> datasource.replaceStorageData(storageDataPathMissing),throwsException);
-      });
-
-      test('should throw exception if data == null', () async{
-        //assert
-        expect(()=> datasource.replaceStorageData(storageDataDataMissing),throwsException);
-      });
-
-      test('should throw exception if path is invalid ', () async{
-        when(firebaseStorage.ref()).thenAnswer((realInvocation) => ref);
-        when(ref.child(invalidPath)).thenThrow(ServerException());
-        //assert
-        expect(()=> datasource.replaceStorageData(storageDataInvalidPath),throwsException);
-      });
-
-      test('should replace StorageData successfully', () async{
-        //arrange
-        when(firebaseStorage.ref()).thenAnswer((_) => ref);
-        when(ref.child(storageData.path)).thenAnswer((_) => ref);
-        when(task.onComplete).thenAnswer((_) async => snapshot);
-        when(ref.putData(storageData.data)).thenAnswer((_) => task );
-        //act
-        var data = await datasource.replaceStorageData(storageData);
-        //assert
-        expect(data, storageData);
-      });
-
-    });
-
-
-
   });
 }

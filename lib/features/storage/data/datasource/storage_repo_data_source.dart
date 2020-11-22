@@ -8,7 +8,6 @@ import 'package:sport_platform/utils/error/exception.dart';
 
 abstract class StorageDataSource{
   Future<void> deleteStorageData(String storagePath);
-  Future<StorageDataDataModel> replaceStorageData(StorageData data);
   Future<String> getDownloadURL(String storagePath);
   Future<StorageDataDataModel> uploadStorageData(StorageData data);
 }
@@ -40,17 +39,6 @@ class StorageDataSourceImpl implements StorageDataSource{
     }
   }
 
-  @override
-  Future<StorageDataDataModel> replaceStorageData(StorageData data) async{
-    if(data.data == null || data.path == null) throw ServerException();
-    try{
-      await deleteStorageData(data.path);
-      await uploadStorageData(data);
-      return data;
-    }on Exception{
-      throw ServerException();
-    }
-  }
 
   @override
   Future<StorageDataDataModel> uploadStorageData(StorageData data) async{
