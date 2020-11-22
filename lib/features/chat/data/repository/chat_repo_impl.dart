@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/chat/data/datasource/chat_data_source.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_criteria.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
@@ -7,6 +8,8 @@ import 'package:sport_platform/features/chat/domain/repository/chat_repo.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
+
+@Singleton(as: ChatRepo)
 class ChatRepoImpl implements ChatRepo{
 
   final ChatDataSource dataSource;

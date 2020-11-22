@@ -16,6 +16,6 @@ class ChatConversationDataModel extends ChatConversation{
   );
 
   Map<String, dynamic> toMap()=>{
-    'messages' : messages.map((e) => e.toMap()).toList()
+    'messages' : messages.map((e) => ChatMessageDataModel.toMap(e)).toList()
   };
 }

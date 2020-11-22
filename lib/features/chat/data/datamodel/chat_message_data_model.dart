@@ -33,13 +33,25 @@ class ChatMessageDataModel extends ChatMessage {
     sentDate: data['sentDate']
   );
 
-  Map<String, dynamic> toMap() => {
-    'receiver':receiver,
-    'sender':sender,
-    'mediaData':mediaData.toMap(),
-    'text':text,
-    'sentDate':sentDate,
-    'receivedDate':receivedDate,
+  static Map<String, dynamic> toMap(ChatMessage message) => {
+    'receiver':message.receiver,
+    'sender':message.sender,
+    'mediaData': ChatMediaDataModel.toMap(message.mediaData),
+    'text':message.text,
+    'sentDate':message.sentDate,
+    'receivedDate':message.receivedDate,
   };
+
+  static ChatMessageDataModel fromChatMessage(ChatMessage messageData)=>
+      ChatMessageDataModel(
+          receiver: messageData.receiver,
+          sender: messageData.sender,
+          mediaData: ChatMediaDataModel.fromChatMedia( messageData.mediaData),
+          text: messageData.text,
+          sentDate: messageData.sentDate,
+          receivedDate: messageData.receivedDate
+      );
+
+
 
 }

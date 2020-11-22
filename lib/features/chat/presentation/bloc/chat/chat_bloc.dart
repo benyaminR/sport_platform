@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/chat/domain/usecase/get_chats_use_case.dart';
 import 'package:sport_platform/features/chat/domain/usecase/send_message_use_case.dart';
 import 'package:sport_platform/features/chat/domain/usecase/update_message_use_case.dart';
@@ -9,14 +10,14 @@ import 'package:sport_platform/utils/usecases/params.dart';
 import 'chat_event.dart';
 import 'chat_state.dart';
 
-
+@singleton
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   final GetChatsUseCase getChatsUseCase;
   final SendMessageUseCase sendMessageUseCase;
   final UpdateMessageUseCase updateMessageUseCase;
 
-  ChatBloc(ChatState initialState, this.getChatsUseCase, this.sendMessageUseCase, this.updateMessageUseCase) : super(initialState);
+  ChatBloc(this.getChatsUseCase, this.sendMessageUseCase, this.updateMessageUseCase) : super(IdleChatsState());
 
   @override
   Stream<ChatState> mapEventToState(ChatEvent event) async* {

@@ -16,6 +16,10 @@ import 'features/authentication/data/datasource/auth_remote_data_source.dart';
 import 'features/authentication/domain/repository/auth_repo.dart';
 import 'features/authentication/data/repository/auth_repo_imp.dart';
 import 'features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
+import 'features/chat/presentation/bloc/chat/chat_bloc.dart';
+import 'features/chat/data/datasource/chat_data_source.dart';
+import 'features/chat/domain/repository/chat_repo.dart';
+import 'features/chat/data/repository/chat_repo_impl.dart';
 import 'features/authentication/domain/usecase/check_authentication_use_case.dart';
 import 'features/community/presentation/bloc/community/community_bloc.dart';
 import 'features/community/data/datasource/community_data_source.dart';
@@ -30,11 +34,13 @@ import 'features/storage/domain/usecase/DeleteStorageDataUseCase.dart';
 import 'utils/third_party_dependencies/firebase_auth.dart';
 import 'utils/third_party_dependencies/firebase_firestore.dart';
 import 'utils/third_party_dependencies/firebase_storage.dart';
+import 'features/chat/domain/usecase/get_chats_use_case.dart';
 import 'features/courses/domain/usecase/get_courses_use_case.dart';
 import 'features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
 import 'features/community/domain/usecase/get_posts_use_case.dart';
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart';
 import 'features/community/domain/usecase/remove_post_use_case.dart';
+import 'features/chat/domain/usecase/send_message_use_case.dart';
 import 'features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
@@ -43,6 +49,7 @@ import 'features/storage/data/datasource/storage_repo_data_source.dart';
 import 'features/storage/domain/repository/storage_repo.dart';
 import 'features/storage/data/repository/storage_repo_imp.dart';
 import 'features/courses/domain/usecase/update_course_use_case.dart';
+import 'features/chat/domain/usecase/update_message_use_case.dart';
 import 'features/community/domain/usecase/update_post_use_case.dart';
 import 'features/storage/domain/usecase/UploadStorageDataUseCase.dart';
 
@@ -74,6 +81,9 @@ GetIt $initGetIt(
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<AuthRepo>(AuthRepoImp(dataSource: get<AuthRemoteDataSource>()));
+  gh.singleton<ChatDataSource>(
+      ChatDataSourceImpl(firestore: get<FirebaseFirestore>()));
+  gh.singleton<ChatRepo>(ChatRepoImpl(dataSource: get<ChatDataSource>()));
   gh.singleton<CheckAuthenticationUseCase>(
       CheckAuthenticationUseCase(repo: get<AuthRepo>()));
   gh.singleton<CommunityDataSource>(
@@ -88,6 +98,7 @@ GetIt $initGetIt(
       DeleteCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<DeleteStorageDataUseCase>(
       DeleteStorageDataUseCase(repo: get<StorageRepo>()));
+  gh.singleton<GetChatsUseCase>(GetChatsUseCase(repo: get<ChatRepo>()));
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<GetDownloadUrlUseCase>(
       GetDownloadUrlUseCase(repo: get<StorageRepo>()));
@@ -96,6 +107,7 @@ GetIt $initGetIt(
       RegisterWithEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<RemovePostUseCase>(
       RemovePostUseCase(repo: get<CommunityRepo>()));
+  gh.singleton<SendMessageUseCase>(SendMessageUseCase(repo: get<ChatRepo>()));
   gh.singleton<SendPasswordRecoveryEmailUseCase>(
       SendPasswordRecoveryEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInWithEmailUseCase>(
@@ -109,6 +121,8 @@ GetIt $initGetIt(
   ));
   gh.singleton<UpdateCourseUseCase>(
       UpdateCourseUseCase(repo: get<CoursesRepo>()));
+  gh.singleton<UpdateMessageUseCase>(
+      UpdateMessageUseCase(repo: get<ChatRepo>()));
   gh.singleton<UpdatePostUseCase>(
       UpdatePostUseCase(repo: get<CommunityRepo>()));
   gh.singleton<AddCourseUseCase>(AddCourseUseCase(repo: get<CoursesRepo>()));
@@ -120,6 +134,11 @@ GetIt $initGetIt(
     checkAuth: get<CheckAuthenticationUseCase>(),
     registerWithEmail: get<RegisterWithEmailUseCase>(),
     resetPassword: get<SendPasswordRecoveryEmailUseCase>(),
+  ));
+  gh.singleton<ChatBloc>(ChatBloc(
+    get<GetChatsUseCase>(),
+    get<SendMessageUseCase>(),
+    get<UpdateMessageUseCase>(),
   ));
   gh.singleton<CommunityBloc>(CommunityBloc(
     get<AddPostUseCase>(),

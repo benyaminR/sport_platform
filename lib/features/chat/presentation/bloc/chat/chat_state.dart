@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sport_platform/features/chat/domain/entity/chat_conversation.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 
 @immutable

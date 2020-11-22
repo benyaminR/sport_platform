@@ -28,7 +28,7 @@ class UserDataModel extends User{
           username: snapshot.data()['username']
       );
 
-  static Map<String,dynamic> toMap(UserDataModel dataModel)=>{
+  static Map<String,dynamic> toMap(User dataModel)=>{
     'courses':dataModel.courses.map((e) => UserCourseDataModel.toMap(e)).toList(),
     'friends':dataModel.friends,
     'profileImage':dataModel.profileImage,

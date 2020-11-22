@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/register.dart';
 import 'package:sport_platform/reset_password.dart';
+import 'package:sport_platform/test_pages/chat_test_widget.dart';
 import 'package:sport_platform/test_pages/community_test.dart';
 import 'package:sport_platform/utils/colors.dart';
 import 'package:sport_platform/utils/db_demo_data.dart';
@@ -27,12 +28,13 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         primaryColor: PRIMARYCOLOR_ORANGE,
       ),
-      initialRoute: '/',
+      initialRoute: '/chatTest',
       routes: {
         '/':(context)=> Login(),
         '/home':(context) => Home(),
         '/register':(context) => Register(),
         '/resetPassword':(context) => ResetPassword(),
+        '/chatTest':(context)=> ChatTestWidget()
       },
     );
   }
