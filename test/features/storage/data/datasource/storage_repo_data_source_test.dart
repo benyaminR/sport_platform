@@ -130,10 +130,15 @@ main() {
       });
 
       test('should replace StorageData successfully', () async{
+        //arrange
+        when(firebaseStorage.ref()).thenAnswer((_) => ref);
+        when(ref.child(storageData.path)).thenAnswer((_) => ref);
+        when(task.onComplete).thenAnswer((_) async => snapshot);
+        when(ref.putData(storageData.data)).thenAnswer((_) => task );
         //act
-        var data = await datasource.replaceStorageData(storageDataInvalidPath);
+        var data = await datasource.replaceStorageData(storageData);
         //assert
-        expect(data, storageDataInvalidPath);
+        expect(data, storageData);
       });
 
     });
