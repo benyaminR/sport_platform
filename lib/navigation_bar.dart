@@ -28,8 +28,8 @@ class _NavigationBarState extends State<NavigationBar> {
                   heightFactor: 0.6,
                   child: FloatingActionButton(
                     onPressed: () {},
-                    backgroundColor: Colors.orange,
-                    child: Icon(Icons.shopping_basket),
+                    backgroundColor: Color(0xFFE4572E),
+                    child: Icon(Icons.add),
                     elevation: 0.1,
                   ),
                 ),
@@ -41,28 +41,42 @@ class _NavigationBarState extends State<NavigationBar> {
                     children: [
                       IconButton(
                           icon: Icon(Icons.home),
+                          color: Color(0xFF5B5B5C),
                           onPressed: () {
                             setState(() {
-                              //Navigation.push
+                              Navigator.pushNamed(
+                                  context, '/discovery');
                             });
                           }),
                       IconButton(
                           icon: Icon(Icons.search),
+                          color: Color(0xFF5B5B5C),
                           onPressed: () {
-                            setState(() {});
+                            setState(() {
+                              Navigator.pushNamed(
+                                  context, '/community');
+                            });
                           }),
                       Container(
                         width: size.width * 0.20,
                       ),
                       IconButton(
                           icon: Icon(Icons.person),
+                          color: Color(0xFF5B5B5C),
                           onPressed: () {
-                            setState(() {});
+                            setState(() {
+                              Navigator.pushNamed(
+                                  context, '/personal');
+                            });
                           }),
                       IconButton(
                           icon: Icon(Icons.message),
+                          color: Color(0xFF5B5B5C),
                           onPressed: () {
-                            setState(() {});
+                            setState(() {
+                              Navigator.pushNamed(
+                                  context, '/personal');
+                            });
                           }),
                     ],
                   ),
@@ -80,7 +94,7 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.white
+      ..color = Color(0xFF141416)
       ..style = PaintingStyle.fill;
     Path path = Path()..moveTo(0, 20);
     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);

@@ -1,81 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BottomSheet extends StatefulWidget {
-  _BottomSheetState createState() => _BottomSheetState();
+void onButtonPressed(context) {
+  showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+        topLeft: const Radius.circular(30),
+        topRight: const Radius.circular(30),
+      )),
+      context: context,
+      builder: (context) {
+        return Container(
+          // height: MediaQuery.of(context).size.height,
+          // width: MediaQuery.of(context).size.width,
+
+          child: Container(
+            height: 300,
+            child: _buildBottomNavigationMenu(context),
+          ),
+        );
+      });
 }
 
-class _BottomSheetState extends State<BottomSheet> {
-  String _selectedItem = "";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-                child: Text("Show"), onPressed: () => _onButtonPressed()),
-            Text(
-              _selectedItem,
-              style: TextStyle(
-                fontSize: 30,
-              ),
-            ),
-          ],
-        ),
+Column _buildBottomNavigationMenu(context) {
+  return Column(
+    children: <Widget>[
+      ListTile(
+        leading: Icon(Icons.mail),
+        title: Text("E-Mail"),
+        onTap: () => _selectItem("E-Mail", context),
       ),
-    );
-  }
+      ListTile(
+        leading: Icon(Icons.accessibility_new),
+        title: Text("People"),
+        onTap: () => _selectItem("People", context),
+      ),
+      ListTile(
+        leading: Icon(Icons.assessment),
+        title: Text("Stats"),
+        onTap: () => _selectItem("Stats", context),
+      ),
+    ],
+  );
+}
 
-  void _onButtonPressed() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            color: Color(0xFF737373),
-            height: 300,
-            child: Container(
-              child: _buildBottomNavigationMenu(),
-              decoration: BoxDecoration(
-                color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(30),
-                  topRight: const Radius.circular(30),
-                ),
-              ),
-            ),
-          );
-        });
-  }
-
-  Column _buildBottomNavigationMenu() {
-    return Column(
-      children: <Widget>[
-        ListTile(
-          leading: Icon(Icons.ac_unit),
-          title: Text("Cooling"),
-          onTap: () => _selectItem("Cooling"),
-        ),
-        ListTile(
-          leading: Icon(Icons.accessibility_new),
-          title: Text("People"),
-          onTap: () => _selectItem("People"),
-        ),
-        ListTile(
-          leading: Icon(Icons.assessment),
-          title: Text("Stats"),
-          onTap: () => _selectItem("Stats"),
-        ),
-      ],
-    );
-  }
-
-  void _selectItem(String name) {
-    Navigator.pop(context);
-    setState(() {
-      _selectedItem = name;
-    });
-  }
+void _selectItem(String name, context) {
+  Navigator.pop(context);
+  print(name);
 }
