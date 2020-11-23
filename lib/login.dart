@@ -36,6 +36,9 @@ class Login extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
+                        style: TextStyle(
+                            color: Colors.white
+                        ),
                         controller: usernameController,
                         decoration: InputDecoration(
                           hintText: 'username',
@@ -61,6 +64,9 @@ class Login extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(
+                        style: TextStyle(
+                            color: Colors.white
+                        ),
                         controller: passwordController,
                         decoration: InputDecoration(
                           hintText: 'password',
