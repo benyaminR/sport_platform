@@ -22,7 +22,7 @@ class _DiscoveryTrendsState extends State<DiscoveryTrends> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.only(left: 16.0, top: 15.0, right: 16.0, bottom: 8.0),
             child: Container(
               height: 30.0,
               child: Row(

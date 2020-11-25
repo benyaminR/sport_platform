@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sport_platform/profile_picture_middle_2.dart';
 
 class DiscoveryTrainers extends StatefulWidget {
@@ -10,25 +11,48 @@ class _DiscoveryTrainersState extends State<DiscoveryTrainers> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
-        padding: EdgeInsets.only(left: 15.0),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ProfilePictureMiddle2(),
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 30.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
                 Text(
-                  "@jennyfit",
+                  "Im Trend",
                   style: TextStyle(
-                    fontSize: 10,
-                    color: Color(0xFF707070),
-                  ),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0),
+                ),
+                Text(
+                  'Mehr',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ProfilePictureMiddle2(),
+                  Text(
+                    "@jennyfit",
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Color(0xFF707070),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
