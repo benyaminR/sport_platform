@@ -1,12 +1,10 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/bottom_sheet.dart';
+import 'package:sport_platform/features/community/presentation/views/post_slide.dart';
 import '../../../../profile_picture_middle.dart';
 import '../../../../profile_picture_small.dart';
-import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/community/presentation/views/post_slide.dart';
-import 'package:sport_platform/bottom_sheet.dart';
 
 class PostElements extends StatefulWidget {
   @override

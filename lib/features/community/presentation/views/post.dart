@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sport_platform/features/community/presentation/views/post_elements.dart';
 import '../../../../profile_picture_middle.dart';
-import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/community/presentation/views/post_elements.dart';
 
 class Post extends StatefulWidget {
   @override
