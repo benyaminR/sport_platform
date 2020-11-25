@@ -25,6 +25,11 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
 
   final IdleCoursesState initialState;
 
+  static const ADD_COURSE_ERROR = 'Failed To Post!';
+  static const REMOVE_COURSE_ERROR = 'Failed To Remove!';
+  static const UPDATE_COURSE_ERROR = 'Failed To Update!';
+  static const GET_COURSE_ERROR = 'Failed To Get!';
+
   CoursesBloc({this.initialState, this.getCourseUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase}) : super(initialState);
 
   @override
@@ -34,7 +39,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       yield LoadingCoursesState();
       var data = await getCourseUseCase(WithParams(param:event.criteriaData));
       yield data.fold(
-              (l) => ErrorCoursesState(msg: 'Error'),
+              (l) => ErrorCoursesState(msg: GET_COURSE_ERROR),
               (r) => LoadedCoursesState(courses: r)
       );
     }
@@ -43,7 +48,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       yield LoadingCoursesState();
       var data = await updateCourseUseCase(WithParams(param:event.course));
       yield data.fold(
-              (l) => ErrorCoursesState(msg: 'Error'),
+              (l) => ErrorCoursesState(msg: UPDATE_COURSE_ERROR),
               (r) => LoadedCoursesState(courses: [r])
       );
     }
@@ -52,7 +57,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       yield LoadingCoursesState();
       var data = await addCourseUseCase(WithParams(param:event.course));
       yield data.fold(
-              (l) => ErrorCoursesState(msg: 'Error'),
+              (l) => ErrorCoursesState(msg: ADD_COURSE_ERROR),
               (r) => LoadedCoursesState(courses: [r])
       );
     }
@@ -61,7 +66,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       yield LoadingCoursesState();
       var data = await deleteCourseUseCase(WithParams(param:event.path));
       yield data.fold(
-              (l) => ErrorCoursesState(msg: 'Error'),
+              (l) => ErrorCoursesState(msg: ADD_COURSE_ERROR),
               (r) => LoadedCoursesState(courses: [r])
       );
     }

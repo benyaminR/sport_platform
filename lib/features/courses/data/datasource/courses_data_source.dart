@@ -25,43 +25,59 @@ class CourseDataSourceImpl implements CoursesDataSource{
   @override
   Future<CourseDataModel> addCourse(CourseDataModel courseDataModel) async {
     if(courseDataModel == null) throw ServerException();
-    await firestore.collection('Courses').add(CourseDataModel.toMap(courseDataModel));
-    return courseDataModel;
+    try {
+      await firestore.collection('Courses').add(CourseDataModel.toMap(courseDataModel));
+      return courseDataModel;
+    } on Exception catch (e) {
+      throw ServerException();
+    }
   }
 
   @override
   Future<CourseDataModel> deleteCourse(String path) async{
     if(path == null) throw ServerException();
-    var snapshot = await firestore.doc(path).get();
-    var courseDataModel = CourseDataModel.fromSnapshot(snapshot);
-    await firestore.doc(path).delete();
-    return courseDataModel;
+    try {
+      var snapshot = await firestore.doc(path).get();
+      var courseDataModel = CourseDataModel.fromSnapshot(snapshot);
+      await firestore.doc(path).delete();
+      return courseDataModel;
+    } on Exception catch (e) {
+      throw ServerException();
+    }
   }
 
   @override
   Future<List<CourseDataModel>> getCourses(Criteria criteriaData) async{
-    if(criteriaData != null) {
-      var querySnapshot = await firestore.
+    try {
+      if(criteriaData != null) {
+        var querySnapshot = await firestore.
+        collection('Courses').
+        where(criteriaData.field, isEqualTo: criteriaData.data).
+        get();
+        return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e))
+            .toList();
+      }
+      else
+      {   var querySnapshot = await firestore.
       collection('Courses').
-      where(criteriaData.field, isEqualTo: criteriaData.data).
       get();
-      return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e))
-          .toList();
-    }
-    else
-    {   var querySnapshot = await firestore.
-    collection('Courses').
-    get();
-    return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e)).toList();
+      return querySnapshot.docs.map((e) => CourseDataModel.fromSnapshot(e)).toList();
+      }
+    } on Exception catch (e) {
+      throw ServerException();
     }
 
   }
 
   @override
   Future<CourseDataModel> updateCourse(CourseDataModel courseDataModel) async{
-    await firestore.doc(courseDataModel.path).update(CourseDataModel.toMap(courseDataModel));
-    var dataModel = CourseDataModel.fromSnapshot(await firestore.doc(courseDataModel.path).get());
-    return dataModel;
+    try {
+      await firestore.doc(courseDataModel.path).update(CourseDataModel.toMap(courseDataModel));
+      var dataModel = CourseDataModel.fromSnapshot(await firestore.doc(courseDataModel.path).get());
+      return dataModel;
+    } on Exception catch (e) {
+      throw ServerException();
+    }
   }
 
 }

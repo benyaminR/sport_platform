@@ -6,6 +6,7 @@ import 'package:sport_platform/features/chat/data/datamodel/chat_media_data_mode
 import 'package:sport_platform/features/chat/data/datamodel/chat_message_data_model.dart';
 import 'package:sport_platform/features/chat/data/datasource/chat_data_source.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_criteria.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 
 main() {
   final firestore = MockFirestoreInstance();
@@ -31,7 +32,7 @@ main() {
         //act
         var res = await dataSource.sendMessage(testMessage);
         //assert
-        expect(res, testMessage);
+        expect(res, isA<ChatMessageDataModel>());
       });
     });
 
