@@ -13,6 +13,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
       body: BlocProvider.value(
         value: getIt<AuthenticationBloc>()..add(CheckAuthenticationEvent()),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(

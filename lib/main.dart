@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/bottom_sheet.dart';
 import 'package:sport_platform/container.dart';
+import 'package:sport_platform/personal.dart';
 import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/community/presentation/views/post_elements.dart';
 import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/community/presentation/views/post_slide.dart';
 import 'package:sport_platform/register.dart';
@@ -32,13 +33,13 @@ class MyApp extends StatelessWidget{
         scaffoldBackgroundColor: Colors.black,
         primaryColor: PRIMARYCOLOR_ORANGE,
       ),
-      initialRoute: '/chatTest',
+      initialRoute: '/',
       routes: {
         '/':(context)=> Login(),
         '/home':(context) => Home(),
         '/register':(context) => Register(),
         '/resetPassword':(context) => ResetPassword(),
-        '/chatTest':(context)=> ChatTestWidget()
+        '/chatTest':(context)=> ChatTestWidget(),
       },
     );
   }

@@ -15,7 +15,7 @@ class _DiscoveryCategoriesState extends State<DiscoveryCategories> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(0.0),
+      padding: EdgeInsets.all(15.0),
       child: Material(
         shadowColor: Color(000000),
         borderRadius: BorderRadius.circular(20.0),
