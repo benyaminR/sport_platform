@@ -64,6 +64,20 @@ class UserDataModel extends User{
       purchasedCourses: (snapshot.data()['purchasedCourses'] as List<dynamic>).map((e) => UserCourseDataModel.fromMap(e)).toList()
   );
 
+  static UserDataModel fromUser(User user) => UserDataModel(
+    tips: user.tips.map((e) => TipDataModel.fromTip(e)).toList(),
+    joinedDate: user.joinedDate,
+    description: user.description,
+    username: user.username,
+    subscription: user.subscription,
+    profileImage: user.profileImage,
+    friends: user.friends,
+    createdCourses: user.createdCourses.map((e) => UserCourseDataModel.fromUserCourse(e)).toList(),
+    isTrainer: user.isTrainer,
+    isVerified: user.isVerified,
+    purchasedCourses: user.purchasedCourses.map((e) => UserCourseDataModel.fromUserCourse(e)).toList()
+  );
+
 
 
 }

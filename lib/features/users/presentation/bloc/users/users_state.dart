@@ -1,4 +1,4 @@
-part of 'trainers_bloc.dart';
+part of 'users_bloc.dart';
 
 @immutable
 abstract class UsersState extends Equatable{}

@@ -12,6 +12,7 @@ import 'package:injectable/injectable.dart';
 
 import 'features/courses/domain/usecase/add_course_use_case.dart';
 import 'features/community/domain/usecase/add_post_use_case.dart';
+import 'features/users/domain/usecase/add_user_use_case.dart';
 import 'features/authentication/data/datasource/auth_remote_data_source.dart';
 import 'features/authentication/domain/repository/auth_repo.dart';
 import 'features/authentication/data/repository/auth_repo_imp.dart';
@@ -38,8 +39,10 @@ import 'features/chat/domain/usecase/get_chats_use_case.dart';
 import 'features/courses/domain/usecase/get_courses_use_case.dart';
 import 'features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
 import 'features/community/domain/usecase/get_posts_use_case.dart';
+import 'features/users/domain/usecase/get_users_use_case.dart';
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart';
 import 'features/community/domain/usecase/remove_post_use_case.dart';
+import 'features/users/domain/usecase/remove_users_use_case.dart';
 import 'features/chat/domain/usecase/send_message_use_case.dart';
 import 'features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
@@ -51,7 +54,12 @@ import 'features/storage/data/repository/storage_repo_imp.dart';
 import 'features/courses/domain/usecase/update_course_use_case.dart';
 import 'features/chat/domain/usecase/update_message_use_case.dart';
 import 'features/community/domain/usecase/update_post_use_case.dart';
+import 'features/users/domain/usecase/update_update_use_case.dart';
 import 'features/storage/domain/usecase/UploadStorageDataUseCase.dart';
+import 'features/users/presentation/bloc/users/users_bloc.dart';
+import 'features/users/data/datasource/users_data_source.dart';
+import 'features/users/domain/repository/users_repo.dart';
+import 'features/users/data/repository/users_repo_impl.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -78,6 +86,10 @@ GetIt $initGetIt(
       StorageRepoImpl(dataSource: get<StorageDataSource>()));
   gh.singleton<UploadStorageDataUseCase>(
       UploadStorageDataUseCase(repo: get<StorageRepo>()));
+  gh.singleton<UsersDataSource>(
+      UsersDataSourceImpl(firestore: get<FirebaseFirestore>()));
+  gh.singleton<UsersRepo>(UsersRepoImpl(dataSource: get<UsersDataSource>()));
+  gh.singleton<AddUserUseCase>(AddUserUseCase(repo: get<UsersRepo>()));
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<AuthRepo>(AuthRepoImp(dataSource: get<AuthRemoteDataSource>()));
@@ -103,10 +115,12 @@ GetIt $initGetIt(
   gh.singleton<GetDownloadUrlUseCase>(
       GetDownloadUrlUseCase(repo: get<StorageRepo>()));
   gh.singleton<GetPostsUseCase>(GetPostsUseCase(repo: get<CommunityRepo>()));
+  gh.singleton<GetUsersUseCase>(GetUsersUseCase(repo: get<UsersRepo>()));
   gh.singleton<RegisterWithEmailUseCase>(
       RegisterWithEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<RemovePostUseCase>(
       RemovePostUseCase(repo: get<CommunityRepo>()));
+  gh.singleton<RemoveUserUseCase>(RemoveUserUseCase(repo: get<UsersRepo>()));
   gh.singleton<SendMessageUseCase>(SendMessageUseCase(repo: get<ChatRepo>()));
   gh.singleton<SendPasswordRecoveryEmailUseCase>(
       SendPasswordRecoveryEmailUseCase(repo: get<AuthRepo>()));
@@ -125,6 +139,13 @@ GetIt $initGetIt(
       UpdateMessageUseCase(repo: get<ChatRepo>()));
   gh.singleton<UpdatePostUseCase>(
       UpdatePostUseCase(repo: get<CommunityRepo>()));
+  gh.singleton<UpdateUserUseCase>(UpdateUserUseCase(repo: get<UsersRepo>()));
+  gh.singleton<UsersBloc>(UsersBloc(
+    addUserUseCase: get<AddUserUseCase>(),
+    getUsersUseCase: get<GetUsersUseCase>(),
+    removeUserUseCase: get<RemoveUserUseCase>(),
+    updateUserUseCase: get<UpdateUserUseCase>(),
+  ));
   gh.singleton<AddCourseUseCase>(AddCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<AddPostUseCase>(AddPostUseCase(repo: get<CommunityRepo>()));
   gh.singleton<AuthenticationBloc>(AuthenticationBloc(

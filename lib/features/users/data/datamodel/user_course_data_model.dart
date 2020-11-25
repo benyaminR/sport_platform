@@ -20,5 +20,7 @@ class UserCourseDataModel extends UserCourse{
     'title':course.title,
   };
 
+  static UserCourseDataModel fromUserCourse(UserCourse e)=> UserCourseDataModel(coursePath: e.coursePath, title: e.title);
+
 
 }

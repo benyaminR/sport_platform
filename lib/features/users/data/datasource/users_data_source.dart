@@ -25,7 +25,7 @@ class UsersDataSourceImpl implements UsersDataSource{
     collection('Users').
     doc(user.username).
     set(UserDataModel.toMap(user));
-    return user;
+    return UserDataModel.fromUser(user);
   }
 
   @override
@@ -60,7 +60,7 @@ class UsersDataSourceImpl implements UsersDataSource{
     update(
         UserDataModel.toMap(user)
     );
-    return user;
+    return UserDataModel.fromUser(user);
   }
 
 

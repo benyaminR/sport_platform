@@ -13,7 +13,6 @@ class StorageTestWidget extends StatelessWidget {
   var testData = '/Test/data.png';
   @override
   Widget build(BuildContext context) {
-    getIt<AuthenticationBloc>().add(SignInWithGoogleEvent());
     return Scaffold(
       body: Column(
         children: [

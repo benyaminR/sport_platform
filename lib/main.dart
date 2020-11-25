@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/register.dart';
 import 'package:sport_platform/reset_password.dart';
-import 'package:sport_platform/test_pages/chat_test_widget.dart';
-import 'package:sport_platform/test_pages/community_test.dart';
-import 'package:sport_platform/test_pages/courses_test_widget.dart';
 import 'package:sport_platform/utils/colors.dart';
 import 'package:sport_platform/utils/db_demo_data.dart';
 import 'home.dart';
@@ -16,7 +13,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   configureDependencies();
-  await generate();
+  //await generate();
   runApp(MyApp());
 }
 
@@ -35,7 +32,6 @@ class MyApp extends StatelessWidget{
         '/home':(context) => Home(),
         '/register':(context) => Register(),
         '/resetPassword':(context) => ResetPassword(),
-        '/coursesTest' : (context) => CoursesTestWidget()
       },
     );
   }

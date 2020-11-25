@@ -1,4 +1,4 @@
-part of 'trainers_bloc.dart';
+part of 'users_bloc.dart';
 
 @immutable
 abstract class UsersEvent extends Equatable {}
@@ -22,12 +22,12 @@ class GetUsersEvent extends UsersEvent {
 }
 
 class RemoveUserEvent extends UsersEvent {
-  final String uid;
+  final String username;
 
-  RemoveUserEvent({@required this.uid});
+  RemoveUserEvent({@required this.username});
 
   @override
-  List<Object> get props => [uid];
+  List<Object> get props => [username];
 }
 
 class UpdateUserEvent extends UsersEvent {

@@ -21,4 +21,6 @@ class TipDataModel extends Tip{
     'category':tip.category,
     'content':tip.content,
   };
+
+  static TipDataModel fromTip(Tip e) => TipDataModel(date: e.date, category: e.category, content: e.content);
 }

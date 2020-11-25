@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/users/domain/entity/user.dart';
 import 'package:sport_platform/features/users/domain/usecase/add_user_use_case.dart';
@@ -15,15 +16,15 @@ import 'package:sport_platform/utils/usecases/params.dart';
 part 'users_event.dart';
 part 'users_state.dart';
 
-
-class TrainersBloc extends Bloc<UsersEvent, UsersState> {
+@singleton
+class UsersBloc extends Bloc<UsersEvent, UsersState> {
 
   final AddUserUseCase addUserUseCase;
   final GetUsersUseCase getUsersUseCase;
   final RemoveUserUseCase removeUserUseCase;
   final UpdateUserUseCase updateUserUseCase;
 
-  TrainersBloc(UsersState initialState, this.addUserUseCase, this.getUsersUseCase, this.removeUserUseCase, this.updateUserUseCase) : super(initialState);
+  UsersBloc({@required this.addUserUseCase, @required this.getUsersUseCase, @required this.removeUserUseCase, @required this.updateUserUseCase}) : super(IdleUsersState());
 
   static const GET_USERS_ERROR = 'Failed To Get!';
   static const ADD_USER_ERROR = 'Failed To Add!';
@@ -57,7 +58,7 @@ class TrainersBloc extends Bloc<UsersEvent, UsersState> {
     //RemoveTrainerEvent
     if(event is RemoveUserEvent){
       yield LoadingUsersState();
-      var data = await removeUserUseCase(WithParams(param:event.uid));
+      var data = await removeUserUseCase(WithParams(param:event.username));
       yield data.fold(
               (l) => ErrorUsersState(msg: REMOVE_USER_ERROR),
               (r) => LoadedUsersState(users: [r])
