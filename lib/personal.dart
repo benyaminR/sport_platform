@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_platform/personal_course_box.dart';
+import 'package:sport_platform/personal_course_box_black.dart';
 import 'package:sport_platform/profile_picture_large.dart';
 import 'package:sport_platform/profile_picture_large_2.dart';
 
@@ -35,11 +37,13 @@ class _PersonalState extends State<Personal> {
               height: 20,
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: (MediaQuery.of(context).size.height) - 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 color: Color(0xFF141416),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PersonalCourseBoxBlack(),
               ),
             ),
             SizedBox(

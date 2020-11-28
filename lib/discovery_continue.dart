@@ -5,7 +5,7 @@ import 'package:sport_platform/image_section_3.dart';
 import 'package:sport_platform/profile_picture_middle.dart';
 import 'package:sport_platform/profile_picture_small.dart';
 
-import 'bottom_sheet.dart';
+import 'bottom_sheet_comment.dart';
 import 'features/community/presentation/views/post_slide.dart';
 import 'image_section.dart';
 

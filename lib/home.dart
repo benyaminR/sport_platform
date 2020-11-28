@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_platform/bottom_sheet_add_media.dart';
 import 'package:sport_platform/discovery.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:sport_platform/personal.dart';
 
+import 'features/chat/presentation/views/chat_overview.dart';
 import 'features/community/presentation/views/post.dart';
 
 class Home extends StatefulWidget {
@@ -73,46 +75,64 @@ class _HomeState extends State<Home> {
                     });
                   },
                 ),
-                SizedBox.shrink(),
                 IconButton(
                   icon: _currentIndex == 2
                       ? GlowIcon(
-                          Icons.person,
+                          Icons.add_circle_outline,
                           size: 30.0,
                           color: Color(0xFFE4572E),
                           blurRadius: 4.0,
                           glowColor: Color(0xFFE4572E),
                         )
                       : Icon(
-                          Icons.person,
+                          Icons.add_circle_outline,
                           size: 30.0,
                           color: Color(0xFF5B5B5C),
                         ),
                   onPressed: () {
-                    setState(() {
-                      _currentIndex = 2;
-                      currentPage = Personal();
-                    });
+                    _currentIndex = 2;
+                    onButtonPressedAddMedia(context);
                   },
                 ),
                 IconButton(
                   icon: _currentIndex == 3
                       ? GlowIcon(
-                          Icons.message,
+                          Icons.person,
                           size: 30.0,
                           color: Color(0xFFE4572E),
                           blurRadius: 4.0,
                           glowColor: Color(0xFFE4572E),
                         )
                       : Icon(
-                          Icons.message,
+                          Icons.person,
                           size: 30.0,
                           color: Color(0xFF5B5B5C),
                         ),
                   onPressed: () {
                     setState(() {
                       _currentIndex = 3;
-                      currentPage = Discovery();
+                      currentPage = Personal();
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: _currentIndex == 4
+                      ? GlowIcon(
+                          Icons.message,
+                          size: 30.0,
+                          color: Color(0xFFE4572E),
+                          blurRadius: 4.0,
+                          glowColor: Color(0xFFE4572E),
+                        )
+                      : Icon(
+                          Icons.message,
+                          size: 30.0,
+                          color: Color(0xFF5B5B5C),
+                        ),
+                  onPressed: () {
+                    setState(() {
+                      _currentIndex = 4;
+                      currentPage = ChatOverview();
                     });
                   },
                 ),
@@ -121,11 +141,6 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0xFFE4572E),
-          child: Icon(Icons.add),
-          onPressed: () {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

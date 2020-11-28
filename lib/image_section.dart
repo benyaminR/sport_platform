@@ -12,7 +12,7 @@ class _ImageSectionState extends State<ImageSection> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 0.0, right: 6.0),
+          padding: const EdgeInsets.only(left: 0.0, right: 20.0),
           child: Container(
             height: 100.0,
             width: 200.0,
