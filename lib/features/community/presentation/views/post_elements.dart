@@ -7,6 +7,7 @@ import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/presentation/views/post_slide.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
+import 'package:sport_platform/utils/custom_icons_icons.dart';
 import '../../../../profile_picture_middle.dart';
 import '../../../../profile_picture_small.dart';
 
