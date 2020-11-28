@@ -13,7 +13,7 @@ part 'storage_event.dart';
 part 'storage_state.dart';
 
 
-@singleton
+@injectable
 class StorageBloc extends Bloc<StorageEvent, StorageState> {
   final DeleteStorageDataUseCase delete;
   final UploadStorageDataUseCase upload;

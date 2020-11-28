@@ -151,7 +151,7 @@ class Login extends StatelessWidget {
                             ),
                             GestureDetector(
                               child: Text(
-                                "Hast Du schon kein Konto?",
+                                "Hast Du kein Konto?",
                                 style: new TextStyle(
                                   color: Color(0xFFFFFFFF),
                                 ),

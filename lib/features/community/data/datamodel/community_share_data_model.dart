@@ -11,7 +11,7 @@ class CommunityShareDataModel extends CommunityShare{
           username:username,
           thumbnail:thumbnail,
       );
-  static Map<String,dynamic> toMap(CommunityShareDataModel data)=>{
+  static Map<String,dynamic> toMap(CommunityShare data)=>{
     'date':data.date,
     'username':data.username,
     'thumbnail':data.thumbnail,

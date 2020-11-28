@@ -1,41 +1,61 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/container.dart';
+import 'package:sport_platform/features/community/domain/entity/community_media.dart';
+import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 
-class PostSlide extends StatefulWidget {
-  @override
-  _PostSlideState createState() => _PostSlideState();
-}
+class PostSlide extends StatelessWidget {
 
-class _PostSlideState extends State<PostSlide> {
+  final List<CommunityMedia> medias;
 
-  List<String> imgList = [
-    'https://www.fitforfun.de/files/images/201712/1/istock-628092286,276242_m_n.jpg',
-    'https://styla-prod-us.imgix.net/7c88c350-4bec-441e-af4e-5e16ec16a0ef/c3ef87b2-a406-452f-a33b-627f8d8ddfe1?auto=format%2Ccompress&w=955.5&h=637.875&fit=crop&crop=faces%2Cedges',
-  ];
+  PostSlide({@required this.medias});
 
   @override
   Widget build(BuildContext context) {
-      return Builder(
-        builder: (context) {
-          // final double height = MediaQuery.of(context).size.height;
-          return CarouselSlider(
-            options: CarouselOptions(
-              // height: height,
-              viewportFraction: 1.0,
-              enlargeCenterPage: false,
-              autoPlay: false,
-              enableInfiniteScroll: false,
-            ),
-            items: imgList.map((item) => Container(
-              child: Container(
-                height: 300,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.network(item, fit: BoxFit.cover, height: 300, width: MediaQuery.of(context).size.width)
-              ),
-            )).toList(),
-          );
-        },
-      );
+    return Builder(
+      builder: (context) {
+        return CarouselSlider(
+          options: CarouselOptions(
+            // height: height,
+            viewportFraction: 1.0,
+            enlargeCenterPage: false,
+            autoPlay: false,
+            enableInfiniteScroll: false,
+          ),
+          items: medias.map((media) =>
+              BlocProvider.value(
+                value:getIt<StorageBloc>()..add(GetDownloadUrlEvent(path: media.source)),
+                child: BlocBuilder<StorageBloc,StorageState>(
+                  builder: (context, state) {
+                    if(state is GetDownloadUrlCompleted)
+                      return Container(
+                        child: Container(
+                            height: 300,
+                            width: MediaQuery.of(context).size.width,
+                            child: FadeInImage(
+                              placeholder: AssetImage('assets/images/transparent.png'),
+                              image: NetworkImage(state.downloadUrl,),
+                                fit: BoxFit.cover,
+                                height: 300,
+                                width: MediaQuery.of(context).size.width
+                            )
+                        ),
+                      );
+                    if(state is StorageLoading)
+                      return Center(child: CircularProgressIndicator(),);
+                    if(state is StorageError)
+                      return Center(child: Text(state.msg),);
+                    return Container();
+                  },
+                ),
+              )
+
+          ).toList(),
+        );
+      },
+    );
   }
+
 }

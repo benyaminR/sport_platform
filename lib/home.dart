@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/discovery.dart';
-import 'package:sport_platform/navigation_bar.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:sport_platform/personal.dart';
 
 import 'features/community/presentation/views/post.dart';
-import 'navigation_bar_new.dart';
 
 class Home extends StatefulWidget {
   Home();

@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sport_platform/features/community/domain/entity/community_comment.dart';
@@ -15,7 +14,7 @@ class CommunityCommentDatamodel extends CommunityComment{
   );
 
 
-  static Map<String,dynamic> toMap(CommunityCommentDatamodel data) => {
+  static Map<String,dynamic> toMap(CommunityComment data) => {
     'date':data.date,
     'username':data.username,
     'thumbnail':data.thumbnail,

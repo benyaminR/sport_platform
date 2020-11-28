@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePictureMiddle extends StatefulWidget {
-  ProfilePictureMiddle();
+class ProfilePictureMiddle extends StatelessWidget {
 
-  _ProfilePictureMiddleState createState() => _ProfilePictureMiddleState();
-}
+  final String url;
 
-class _ProfilePictureMiddleState extends State<ProfilePictureMiddle> {
+  ProfilePictureMiddle({@required this.url});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.0),
       child: Container(
         child: CircleAvatar(
-          backgroundImage: NetworkImage('https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg'),
+          backgroundImage: NetworkImage(url),
           radius: 20.0,
         ),
       ),

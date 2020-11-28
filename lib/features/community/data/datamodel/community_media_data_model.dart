@@ -14,7 +14,7 @@ class CommunityMediaDataModel extends CommunityMedia{
       mediaType:mediaType,
   );
 
-  static Map<String,dynamic> toMap(CommunityMediaDataModel data) => {
+  static Map<String,dynamic> toMap(CommunityMedia data) => {
     'thumbnail':data.thumbnail,
     'viewCount':data.viewCount,
     'creationDate':data.creationDate,

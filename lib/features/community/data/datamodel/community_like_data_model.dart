@@ -12,7 +12,7 @@ class CommunityLikeDataModel extends CommunityLike{
   );
 
 
-  static Map<String,dynamic> toMap(CommunityLikeDataModel data) => {
+  static Map<String,dynamic> toMap(CommunityLike data) => {
     'date':data.date,
     'username':data.username,
     'thumbnail':data.thumbnail,

@@ -76,6 +76,13 @@ GetIt $initGetIt(
   gh.factory<FirebaseAuth>(() => firebaseAuthDependency.prefs);
   gh.factory<FirebaseFirestore>(() => firebaseFirestoreDependency.prefs);
   gh.factory<FirebaseStorage>(() => firebaseStorageDependency.prefs);
+  gh.factory<GetDownloadUrlUseCase>(
+      () => GetDownloadUrlUseCase(repo: get<StorageRepo>()));
+  gh.factory<StorageBloc>(() => StorageBloc(
+        delete: get<DeleteStorageDataUseCase>(),
+        upload: get<UploadStorageDataUseCase>(),
+        get: get<GetDownloadUrlUseCase>(),
+      ));
 
   // Eager singletons must be registered in the right order
   gh.singleton<IdleCoursesState>(IdleCoursesState());
@@ -112,8 +119,6 @@ GetIt $initGetIt(
       DeleteStorageDataUseCase(repo: get<StorageRepo>()));
   gh.singleton<GetChatsUseCase>(GetChatsUseCase(repo: get<ChatRepo>()));
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
-  gh.singleton<GetDownloadUrlUseCase>(
-      GetDownloadUrlUseCase(repo: get<StorageRepo>()));
   gh.singleton<GetPostsUseCase>(GetPostsUseCase(repo: get<CommunityRepo>()));
   gh.singleton<GetUsersUseCase>(GetUsersUseCase(repo: get<UsersRepo>()));
   gh.singleton<RegisterWithEmailUseCase>(
@@ -128,11 +133,6 @@ GetIt $initGetIt(
       SignInWithEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<SignInWithGoogleUseCase>(
       SignInWithGoogleUseCase(repo: get<AuthRepo>()));
-  gh.singleton<StorageBloc>(StorageBloc(
-    delete: get<DeleteStorageDataUseCase>(),
-    upload: get<UploadStorageDataUseCase>(),
-    get: get<GetDownloadUrlUseCase>(),
-  ));
   gh.singleton<UpdateCourseUseCase>(
       UpdateCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<UpdateMessageUseCase>(
