@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
+import 'package:sport_platform/features/chat/presentation/views/chat_detailview.dart';
 import 'package:sport_platform/register.dart';
 import 'package:sport_platform/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget{
         '/home':(context) => Home(),
         '/register':(context) => Register(),
         '/resetPassword':(context) => ResetPassword(),
+        '/chatDetailview':(context) => ChatDetailview(),
       },
     );
   }

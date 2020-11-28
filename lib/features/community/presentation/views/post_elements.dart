@@ -2,12 +2,13 @@ import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sport_platform/bottom_sheet.dart';
+import 'package:sport_platform/bottom_sheet_share.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/presentation/views/post_slide.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 import 'package:sport_platform/utils/custom_icons_icons.dart';
+import '../../../../bottom_sheet_comment.dart';
 import '../../../../profile_picture_middle.dart';
 import '../../../../profile_picture_small.dart';
 
@@ -89,12 +90,15 @@ class PostElements extends StatelessWidget {
                     width: 20.0,
                   ),
                   GestureDetector(
+                    //hier wie mit den Icons machen ob leuchtend oder nicht
                     child: Image(
                       image: AssetImage('assets/images/herz.png'),
                       height: 25.0,
                       width: 25.0,
                     ),
-                    onTap: () => onButtonPressed(context),
+                    onTap: () => {
+
+                    }
                   ),
                   SizedBox(
                     width: 10.0,
@@ -105,7 +109,7 @@ class PostElements extends StatelessWidget {
                       height: 25.0,
                       width: 25.0,
                     ),
-                    onTap: () => onButtonPressed(context),
+                    onTap: () => onButtonPressedComment(context),
                   ),
                   SizedBox(
                     width: 10.0,
@@ -116,7 +120,7 @@ class PostElements extends StatelessWidget {
                       height: 25.0,
                       width: 25.0,
                     ),
-                    onTap: () => onButtonPressed(context),
+                    onTap: () => onButtonPressedShare(context),
                   ),
                 ],
               ),

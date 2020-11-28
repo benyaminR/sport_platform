@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sport_platform/discovery_continue.dart';
 import 'package:sport_platform/discovery_trainers.dart';
 import 'package:sport_platform/discovery_trainers2.dart';
+import 'package:sport_platform/personal_course_box.dart';
 
 import 'discovery_categories.dart';
 import 'discovery_courses.dart';
@@ -21,22 +22,20 @@ class Discovery extends StatelessWidget {
             height: 10.0,
           ),
           DiscoveryTrends(),
-          Row(
-            children: [
-              DiscoveryTrainers2(),
-            ],
+          SizedBox(
+            height: 10.0,
+          ),
+          DiscoveryTrainers2(),
+          SizedBox(
+            height: 10.0,
           ),
           DiscoveryCourses(),
           SizedBox(
             height: 10.0,
           ),
-          DiscoveryContinue(),
+          PersonalCourseBox(),
           SizedBox(
-            height: 20.0,
-          ),
-          DiscoveryCategories(),
-          SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           // DiscoveryContinue(),
         ],
