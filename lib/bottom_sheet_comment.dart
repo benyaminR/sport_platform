@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/profile_picture_middle.dart';
+import 'package:sport_platform/utils/components/profile_picture_middle.dart';
 
 void onButtonPressedComment(context) {
   showModalBottomSheet(
@@ -18,7 +18,7 @@ void onButtonPressedComment(context) {
           // width: MediaQuery.of(context).size.width,
 
           child: Container(
-            height: 300,
+            height: 400,
             child: _buildBottomNavigationMenu(context),
           ),
         );
@@ -39,7 +39,7 @@ Column _buildBottomNavigationMenu(context) {
               children: [
                 Row(
                   children: [
-                    ProfilePictureMiddle(),
+                    ProfilePictureMiddle(url: 'null'),
                     Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Column(
@@ -81,7 +81,6 @@ Column _buildBottomNavigationMenu(context) {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),

@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class ProfilePictureMiddle extends StatelessWidget {
 
   final String url;
+  final double size;
 
-  ProfilePictureMiddle({@required this.url});
+  ProfilePictureMiddle({@required this.url, @required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,8 @@ class ProfilePictureMiddle extends StatelessWidget {
       child: Container(
         child: CircleAvatar(
           backgroundImage: NetworkImage(url),
-          radius: 20.0,
+          //20.0
+          radius: size,
         ),
       ),
     );

@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/profile_picture_middle_2.dart';
 
-import 'image_section.dart';
+import 'utils/components/image_section.dart';
 
 class PersonalCourseBoxBlack extends StatefulWidget {
   @override

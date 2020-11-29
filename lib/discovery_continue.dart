@@ -1,13 +1,11 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/image_section_3.dart';
-import 'package:sport_platform/profile_picture_middle.dart';
-import 'package:sport_platform/profile_picture_small.dart';
+import 'package:sport_platform/utils/components/image_section_3.dart';
 
 import 'bottom_sheet_comment.dart';
 import 'features/community/presentation/views/post_slide.dart';
-import 'image_section.dart';
+import 'utils/components/image_section.dart';
 
 class DiscoveryContinue extends StatefulWidget {
   @override

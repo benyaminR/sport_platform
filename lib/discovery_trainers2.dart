@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/profile_picture_middle_2.dart';
+import 'package:sport_platform/utils/components/profile_picture_middle_2.dart';
 
-import 'image_section.dart';
+import 'utils/components/image_section.dart';
 
 class DiscoveryTrainers2 extends StatefulWidget {
   @override
@@ -19,7 +19,6 @@ class _DiscoveryTrainers2State extends State<DiscoveryTrainers2> {
       ),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: (MediaQuery.of(context).size.height) - 530,
         child: Padding(
           padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0, right: 16.0),
           child: Column(

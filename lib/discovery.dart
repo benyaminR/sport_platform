@@ -13,32 +13,34 @@ import 'discovery_trends.dart';
 class Discovery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          SizedBox(
-            height: 10.0,
-          ),
-          DiscoveryTrends(),
-          SizedBox(
-            height: 10.0,
-          ),
-          DiscoveryTrainers2(),
-          SizedBox(
-            height: 10.0,
-          ),
-          DiscoveryCourses(),
-          SizedBox(
-            height: 10.0,
-          ),
-          PersonalCourseBox(),
-          SizedBox(
-            height: 10.0,
-          ),
-          // DiscoveryContinue(),
-        ],
+    return SafeArea(
+      child: Container(
+        color: Colors.black,
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            SizedBox(
+              height: 10.0,
+            ),
+            DiscoveryTrends(),
+            SizedBox(
+              height: 10.0,
+            ),
+            DiscoveryTrainers2(),
+            SizedBox(
+              height: 10.0,
+            ),
+            DiscoveryCourses(),
+            SizedBox(
+              height: 10.0,
+            ),
+            PersonalCourseBox(),
+            SizedBox(
+              height: 10.0,
+            ),
+            // DiscoveryContinue(),
+          ],
+        ),
       ),
     );
   }

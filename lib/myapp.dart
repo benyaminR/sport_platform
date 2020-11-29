@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'login.dart';
+import 'features/authentication/presentation/views/login.dart';
 
 class MyApp extends StatelessWidget {
   @override

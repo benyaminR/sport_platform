@@ -21,21 +21,39 @@ class _ChatDetailviewState extends State<ChatDetailview> {
         width: MediaQuery.of(context).size.width,
         height: (MediaQuery.of(context).size.height),
         color: Colors.black,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10.0,
-            ),
-            ChatElementDetailviewTop(),
-            SizedBox(
-              height: 10.0,
-            ),
-            ChatElementDetailviewRight(),
-            SizedBox(
-              height: 10.0,
-            ),
-            ChatElementDetailviewLeft(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.0,
+              ),
+              ChatElementDetailviewTop(),
+              SizedBox(
+                height: 30.0,
+              ),
+              ChatElementDetailviewRight(),
+              SizedBox(
+                height: 30.0,
+              ),
+              ChatElementDetailviewLeft(),
+              SizedBox(
+                height: 30.0,
+              ),
+              ChatElementDetailviewRight(),
+              SizedBox(
+                height: 30.0,
+              ),
+              ChatElementDetailviewLeft(),
+              SizedBox(
+                height: 30.0,
+              ),
+              ChatElementDetailviewRight(),
+              SizedBox(
+                height: 30.0,
+              ),
+              ChatElementDetailviewLeft(),
+            ],
+          ),
         ),
       ),
     );

@@ -6,7 +6,7 @@ import 'package:flutter_glow/flutter_glow.dart';
 import 'package:sport_platform/personal.dart';
 
 import 'features/chat/presentation/views/chat_overview.dart';
-import 'features/community/presentation/views/post.dart';
+import 'features/community/presentation/views/community.dart';
 
 class Home extends StatefulWidget {
   Home();
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
                     setState(() {
                       _currentIndex = 1;
-                      currentPage = Post();
+                      currentPage = Community();
                     });
                   },
                 ),

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'container.dart';
 import 'features/courses/presentation/bloc/courses/courses_bloc.dart';
-import 'image_section.dart';
+import 'utils/components/image_section.dart';
 
 class DiscoveryTrends extends StatefulWidget {
   @override
@@ -21,7 +21,6 @@ class _DiscoveryTrendsState extends State<DiscoveryTrends> {
       ),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: (MediaQuery.of(context).size.height) - 480,
         child: Padding(
           padding:
               EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0, right: 16.0),
