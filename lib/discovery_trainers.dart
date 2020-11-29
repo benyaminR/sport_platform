@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/profile_picture_middle_2.dart';
+import 'package:sport_platform/utils/components/profile_picture_middle_2.dart';
 
 class DiscoveryTrainers extends StatefulWidget {
   @override

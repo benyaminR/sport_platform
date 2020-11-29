@@ -12,20 +12,22 @@ class ChatOverview extends StatefulWidget {
 class _ChatOverviewState extends State<ChatOverview> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: (MediaQuery.of(context).size.height),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10.0,
-            ),
-            ChatElementOverview(),
-            ChatElementOverview(),
-            ChatElementOverview(),
-            ChatElementOverview(),
-          ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: (MediaQuery.of(context).size.height),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.0,
+              ),
+              ChatElementOverview(),
+              ChatElementOverview(),
+              ChatElementOverview(),
+              ChatElementOverview(),
+            ],
+          ),
         ),
       ),
     );

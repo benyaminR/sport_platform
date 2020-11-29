@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/profile_picture_middle_2.dart';
 
-import 'image_section.dart';
+import 'utils/components/image_section.dart';
 
 class PersonalCourseBox extends StatefulWidget {
   @override
@@ -75,10 +74,10 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                         SizedBox(
                           width: 30,
                         ),
-                        Icon(Icons.star, size: 14.0, color: Colors.yellow),
-                        Icon(Icons.star, size: 14.0, color: Colors.yellow),
-                        Icon(Icons.star, size: 14.0, color: Colors.yellow),
-                        Icon(Icons.star, size: 14.0, color: Colors.yellow),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
                       ],
                     ),
                   ),

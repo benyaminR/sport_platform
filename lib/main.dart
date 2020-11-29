@@ -2,12 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/chat/presentation/views/chat_detailview.dart';
-import 'package:sport_platform/register.dart';
-import 'package:sport_platform/reset_password.dart';
+import 'package:sport_platform/features/chat/presentation/views/chat_overview.dart';
+import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/authentication/presentation/views/register.dart';
+import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/authentication/presentation/views/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
 import 'package:sport_platform/utils/db_demo_data.dart';
 import 'home.dart';
-import 'login.dart';
+import 'features/authentication/presentation/views/login.dart';
 
 
 void main() async{
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget{
         '/register':(context) => Register(),
         '/resetPassword':(context) => ResetPassword(),
         '/chatDetailview':(context) => ChatDetailview(),
+        '/chatOverview':(context) => ChatOverview(),
       },
     );
   }

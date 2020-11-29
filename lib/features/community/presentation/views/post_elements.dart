@@ -7,13 +7,14 @@ import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/presentation/views/post_slide.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
+import 'package:sport_platform/utils/components/profile_picture_middle.dart';
+import 'package:sport_platform/utils/components/profile_picture_small.dart';
 import 'package:sport_platform/utils/custom_icons_icons.dart';
 import '../../../../bottom_sheet_comment.dart';
-import '../../../../profile_picture_middle.dart';
-import '../../../../profile_picture_small.dart';
 
 class PostElements extends StatelessWidget {
   final CommunityPost communityPost;
+
   PostElements({@required this.communityPost});
 
   @override
@@ -37,14 +38,19 @@ class PostElements extends StatelessWidget {
                     child: Row(
                       children: [
                         BlocProvider.value(
-                          value: getIt<StorageBloc>()..add(GetDownloadUrlEvent(path: communityPost.thumbnail)),
-                          child: BlocBuilder<StorageBloc,StorageState>(
+                          value: getIt<StorageBloc>()
+                            ..add(GetDownloadUrlEvent(
+                                path: communityPost.thumbnail)),
+                          child: BlocBuilder<StorageBloc, StorageState>(
                             builder: (context, state) {
-                              if(state is StorageLoading)
-                              return ProfilePictureMiddle(url:'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg');
-                              if(state is GetDownloadUrlCompleted)
-                                return ProfilePictureMiddle(url:state.downloadUrl);
-                              if(state is StorageError) {
+                              if (state is StorageLoading)
+                                return ProfilePictureMiddle(
+                                    url:
+                                        'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg');
+                              if (state is GetDownloadUrlCompleted)
+                                return ProfilePictureMiddle(
+                                    url: state.downloadUrl);
+                              if (state is StorageError) {
                                 return Container();
                               }
                               return Container();
@@ -80,7 +86,7 @@ class PostElements extends StatelessWidget {
                 ),
                 height: 60.0,
               ),
-              PostSlide(medias:communityPost.media),
+              PostSlide(medias: communityPost.media),
               SizedBox(
                 height: 15.0,
               ),
@@ -90,24 +96,19 @@ class PostElements extends StatelessWidget {
                     width: 20.0,
                   ),
                   GestureDetector(
-                    //hier wie mit den Icons machen ob leuchtend oder nicht
-                    child: Image(
-                      image: AssetImage('assets/images/herz.png'),
-                      height: 25.0,
-                      width: 25.0,
-                    ),
-                    onTap: () => {
-
-                    }
-                  ),
+                      //hier wie mit den Icons machen ob leuchtend oder nicht
+                      child: Icon(
+                        CustomIcons.heart_empty,
+                        color: Color(0xFFFFFFFF),
+                      ),
+                      onTap: () => {}),
                   SizedBox(
                     width: 10.0,
                   ),
                   GestureDetector(
-                    child: Image(
-                      image: AssetImage('assets/images/kommentar.png'),
-                      height: 25.0,
-                      width: 25.0,
+                    child: Icon(
+                      CustomIcons.comment_empty,
+                      color: Color(0xFFFFFFFF),
                     ),
                     onTap: () => onButtonPressedComment(context),
                   ),
@@ -115,10 +116,9 @@ class PostElements extends StatelessWidget {
                     width: 10.0,
                   ),
                   GestureDetector(
-                    child: Image(
-                      image: AssetImage('assets/images/teilen.png'),
-                      height: 25.0,
-                      width: 25.0,
+                    child: Icon(
+                      CustomIcons.share,
+                      color: Color(0xFFFFFFFF),
                     ),
                     onTap: () => onButtonPressedShare(context),
                   ),
@@ -173,4 +173,3 @@ class PostElements extends StatelessWidget {
     );
   }
 }
-

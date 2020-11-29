@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/colors.dart';
 
-import 'image_section.dart';
-import 'image_section_2.dart';
+import 'utils/components/image_section.dart';
+import 'utils/components/image_section_2.dart';
 
 class DiscoveryCategories extends StatefulWidget {
   @override

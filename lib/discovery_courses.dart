@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'image_section.dart';
+import 'utils/components/image_section.dart';
 
 class DiscoveryCourses extends StatefulWidget {
   @override
@@ -18,7 +18,6 @@ class _DiscoveryCoursesState extends State<DiscoveryCourses> {
       ),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: (MediaQuery.of(context).size.height) - 480,
         child: Padding(
           padding:
               EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0, right: 16.0),
