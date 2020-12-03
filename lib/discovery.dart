@@ -22,6 +22,15 @@ class Discovery extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(Icons.search, size: 34.0, color: Color(0xFF707070),),
+              ],
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
             DiscoveryTrends(),
             SizedBox(
               height: 10.0,

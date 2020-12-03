@@ -97,42 +97,42 @@ class _HomeState extends State<Home> {
                 IconButton(
                   icon: _currentIndex == 3
                       ? GlowIcon(
-                          Icons.person,
+                          Icons.message,
                           size: 30.0,
                           color: Color(0xFFE4572E),
                           blurRadius: 4.0,
                           glowColor: Color(0xFFE4572E),
                         )
                       : Icon(
-                          Icons.person,
+                          Icons.message,
                           size: 30.0,
                           color: Color(0xFF5B5B5C),
                         ),
                   onPressed: () {
                     setState(() {
                       _currentIndex = 3;
-                      currentPage = Personal();
+                      currentPage = ChatOverview();
                     });
                   },
                 ),
                 IconButton(
                   icon: _currentIndex == 4
                       ? GlowIcon(
-                          Icons.message,
+                          Icons.person,
                           size: 30.0,
                           color: Color(0xFFE4572E),
                           blurRadius: 4.0,
                           glowColor: Color(0xFFE4572E),
                         )
                       : Icon(
-                          Icons.message,
+                          Icons.person,
                           size: 30.0,
                           color: Color(0xFF5B5B5C),
                         ),
                   onPressed: () {
                     setState(() {
                       _currentIndex = 4;
-                      currentPage = ChatOverview();
+                      currentPage = Personal();
                     });
                   },
                 ),

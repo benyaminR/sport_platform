@@ -94,7 +94,7 @@ class _ChatElementOverviewState extends State<ChatElementOverview> {
                 ),
               ],
             ),
-            onTap: () => Navigator.of(context).pushNamed('/chatDetailview'),
+            onTap: () => Navigator.of(context).pushNamed('/home/chatDetailview'),
           ),
         ),
       ),

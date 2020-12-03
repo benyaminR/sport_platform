@@ -26,12 +26,13 @@ void onButtonPressedComment(context) {
 }
 
 Column _buildBottomNavigationMenu(context) {
-
-  final String _bildbeschreibung = "Ich habe seit über 10 Jahren Berufserfahrung gesammelt im Bereich Sport und bin jetzt bereit dafür dieses Wissen auch an meine Kunden weiterzugeben. Ich hoffe du lernst etwas neues für dich selbst.";
+  final String _bildbeschreibung =
+      "Ich habe seit über 10 Jahren Berufserfahrung gesammelt im Bereich Sport und bin jetzt bereit dafür dieses Wissen auch an meine Kunden weiterzugeben. Ich hoffe du lernst etwas neues für dich selbst.";
 
   return Column(
     children: <Widget>[
       SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -78,6 +79,24 @@ Column _buildBottomNavigationMenu(context) {
                     style: TextStyle(
                       fontSize: 14,
                       color: Color(0xFF707070),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 150.0,
+                ),
+                TextField(
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: 'Kommentiere hier...',
+                    hintStyle: new TextStyle(
+                      color: Color(0xFF707070),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF707070)),
                     ),
                   ),
                 ),

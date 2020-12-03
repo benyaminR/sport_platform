@@ -23,7 +23,7 @@ class _DiscoveryTrendsState extends State<DiscoveryTrends> {
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding:
-              EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0, right: 16.0),
+              EdgeInsets.only(left: 16.0, top: 16.0, bottom: 16.0, right: 16.0),
           child: Column(
             children: <Widget>[
               Padding(
@@ -41,12 +41,20 @@ class _DiscoveryTrendsState extends State<DiscoveryTrends> {
                             // fontWeight: FontWeight.bold,
                             fontSize: 20.0),
                       ),
-                      Text(
-                        'Mehr',
-                        style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18.0),
+                          color: Colors.black,
+                        ),
+                        height: 18.0,
+                        width: 56.0,
+                        child: Center(
+                          child: Text(
+                            'Mehr',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 14.0),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -66,7 +74,7 @@ class _DiscoveryTrendsState extends State<DiscoveryTrends> {
                       }
                       if (state is LoadedCoursesState) {
                         return Container(
-                          height: 140.0,
+                          height: 120.0,
                           child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: List.generate(

@@ -34,8 +34,7 @@ class MyApp extends StatelessWidget{
         '/home':(context) => Home(),
         '/register':(context) => Register(),
         '/resetPassword':(context) => ResetPassword(),
-        '/chatDetailview':(context) => ChatDetailview(),
-        '/chatOverview':(context) => ChatOverview(),
+        '/home/chatDetailview':(context) => ChatDetailview(),
       },
     );
   }

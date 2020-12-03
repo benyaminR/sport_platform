@@ -27,8 +27,8 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                   decoration: new BoxDecoration(
                     color: Color(0xFF141416),
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.zero,
-                        topRight: Radius.zero,
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0)),
                   ),
@@ -61,7 +61,8 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                         SizedBox(
                           width: 100,
                         ),
-                        Icon(Icons.person, size: 14.0, color: Color(0xFF707070)),SizedBox(
+                        Icon(Icons.person, size: 14.0, color: Color(0xFF707070)),
+                        SizedBox(
                           width: 5,
                         ),
                         Text(

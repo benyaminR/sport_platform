@@ -57,7 +57,6 @@ class Register extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25.0),
                       child: TextField(

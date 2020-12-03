@@ -39,12 +39,21 @@ class _DiscoveryTrainers2State extends State<DiscoveryTrainers2> {
                             // fontWeight: FontWeight.bold,
                             fontSize: 20.0),
                       ),
-                      Text(
-                        'Mehr',
-                        style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18.0),
+                          color: Colors.black,
+                        ),
+                        height: 18.0,
+                        width: 56.0,
+                        child: Center(
+                          child: Text(
+                            'Mehr',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.0),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -63,6 +72,9 @@ class _DiscoveryTrainers2State extends State<DiscoveryTrainers2> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ProfilePictureMiddle2(),
+                        SizedBox(
+                          height: 4.0,
+                        ),
                         Text(
                           "@jennyfit",
                           style: TextStyle(
