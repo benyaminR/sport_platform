@@ -71,6 +71,7 @@ flutter:
     - assets/images/kommentar.png
     - assets/images/teilen.png
     - assets/images/transparent.png
+    - assets/images/star_personal.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -26,7 +26,7 @@ class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
                   height: (MediaQuery.of(context).size.height) - 380,
                   decoration: new BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.only(topLeft: Radius.zero, topRight: Radius.zero, bottomLeft: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0), bottomLeft: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(top: 220.0, left: 16.0, right: 16.0),

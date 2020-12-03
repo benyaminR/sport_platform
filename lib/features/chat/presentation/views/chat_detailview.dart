@@ -16,43 +16,45 @@ class ChatDetailview extends StatefulWidget {
 class _ChatDetailviewState extends State<ChatDetailview> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: (MediaQuery.of(context).size.height),
-        color: Colors.black,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10.0,
-              ),
-              ChatElementDetailviewTop(),
-              SizedBox(
-                height: 30.0,
-              ),
-              ChatElementDetailviewRight(),
-              SizedBox(
-                height: 30.0,
-              ),
-              ChatElementDetailviewLeft(),
-              SizedBox(
-                height: 30.0,
-              ),
-              ChatElementDetailviewRight(),
-              SizedBox(
-                height: 30.0,
-              ),
-              ChatElementDetailviewLeft(),
-              SizedBox(
-                height: 30.0,
-              ),
-              ChatElementDetailviewRight(),
-              SizedBox(
-                height: 30.0,
-              ),
-              ChatElementDetailviewLeft(),
-            ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: (MediaQuery.of(context).size.height),
+          color: Colors.black,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10.0,
+                ),
+                ChatElementDetailviewTop(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                ChatElementDetailviewRight(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                ChatElementDetailviewLeft(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                ChatElementDetailviewRight(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                ChatElementDetailviewLeft(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                ChatElementDetailviewRight(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                ChatElementDetailviewLeft(),
+              ],
+            ),
           ),
         ),
       ),
