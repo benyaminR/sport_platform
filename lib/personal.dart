@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/personal_course_box.dart';
 import 'package:sport_platform/personal_course_box_black.dart';
-import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/utils/components/profile_picture_large.dart';
-import 'package:sport_platform/utils/components/profile_picture_large_2.dart';
+
+import 'utils/components/profile_picture.dart';
 
 class Personal extends StatefulWidget {
   Personal();
@@ -25,7 +24,7 @@ class _PersonalState extends State<Personal> {
               SizedBox(
                 height: 40,
               ),
-              ProfilePictureLarge2(),
+              ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 100.0,),
               SizedBox(
                 height: 10,
               ),
@@ -65,81 +64,90 @@ class _PersonalState extends State<Personal> {
                 height: 20,
               ),
               //Container mit Shadow
-              Image(
-                width: 34.0,
-                height: 34.0,
-                image: AssetImage('assets/images/star_personal.png'),
-                ),
-              Container(
-                width: 240.0,
-                height: 60.0,
-                decoration: new BoxDecoration(
-                  color: Color(0xFF141416),
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 26.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '100M',
-                            style: TextStyle(
-                                color: Color(0xFF707070), fontSize: 16.0),
-                          ),
-                          Text(
-                            'Followers',
-                            style: TextStyle(
-                                color: Color(0xFF707070), fontSize: 8.0),
-                          ),
-                        ],
+              Stack(
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      width: 240.0,
+                      height: 60.0,
+                      decoration: new BoxDecoration(
+                        color: Color(0xFF141416),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
                       ),
-                      Text(
-                        '|',
-                        style:
-                            TextStyle(color: Color(0xFF707070), fontSize: 30.0),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 26.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '100M',
+                                  style: TextStyle(
+                                      color: Color(0xFF707070), fontSize: 16.0),
+                                ),
+                                Text(
+                                  'Followers',
+                                  style: TextStyle(
+                                      color: Color(0xFF707070), fontSize: 8.0),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              '|',
+                              style:
+                              TextStyle(color: Color(0xFF707070), fontSize: 30.0),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '100M',
+                                  style: TextStyle(
+                                      color: Color(0xFF707070), fontSize: 16.0),
+                                ),
+                                Text(
+                                  'Followed',
+                                  style: TextStyle(
+                                      color: Color(0xFF707070), fontSize: 8.0),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              '|',
+                              style:
+                              TextStyle(color: Color(0xFF707070), fontSize: 30.0),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '100M',
+                                  style: TextStyle(
+                                      color: Color(0xFF707070), fontSize: 16.0),
+                                ),
+                                Text(
+                                  'Likes',
+                                  style: TextStyle(
+                                      color: Color(0xFF707070), fontSize: 8.0),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '100M',
-                            style: TextStyle(
-                                color: Color(0xFF707070), fontSize: 16.0),
-                          ),
-                          Text(
-                            'Followed',
-                            style: TextStyle(
-                                color: Color(0xFF707070), fontSize: 8.0),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '|',
-                        style:
-                            TextStyle(color: Color(0xFF707070), fontSize: 30.0),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '100M',
-                            style: TextStyle(
-                                color: Color(0xFF707070), fontSize: 16.0),
-                          ),
-                          Text(
-                            'Likes',
-                            style: TextStyle(
-                                color: Color(0xFF707070), fontSize: 8.0),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.lerp(Alignment.bottomRight, Alignment.topLeft, 0.2),
+                    child: Image(
+                      width: 30.0,
+                      height: 30.0,
+                      image: AssetImage('assets/images/star_personal.png'),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 20.0,
@@ -162,9 +170,46 @@ class _PersonalState extends State<Personal> {
                   borderRadius: BorderRadius.circular(20.0),
                   color: Color(0xFF141416),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: PersonalCourseBoxBlack(),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Kurse",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF707070),
+                            ),
+                          ),
+                          Text(
+                            "Posts",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF707070),
+                            ),
+                          ),
+                          Text(
+                            "Liked",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF707070),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
+                      child: PersonalCourseBoxBlack(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
+                      child: PersonalCourseBoxBlack(),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

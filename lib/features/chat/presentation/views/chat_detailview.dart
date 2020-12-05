@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_platform/features/chat/presentation/views/chat_element_detailview_message.dart';
 
-import 'chat_element_detailview_left.dart';
-import 'chat_element_detailview_right.dart';
+import 'chat_element_detailview.dart';
 import 'chat_element_detailview_top.dart';
 
 
@@ -22,39 +22,45 @@ class _ChatDetailviewState extends State<ChatDetailview> {
           width: MediaQuery.of(context).size.width,
           height: (MediaQuery.of(context).size.height),
           color: Colors.black,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10.0,
+          child: Stack(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 80.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      ChatElementDetailview(side: 'left'),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      ChatElementDetailview(side: 'right'),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      ChatElementDetailview(side: 'left'),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      ChatElementDetailview(side: 'right'),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                    ],
+                  ),
                 ),
-                ChatElementDetailviewTop(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ChatElementDetailviewRight(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ChatElementDetailviewLeft(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ChatElementDetailviewRight(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ChatElementDetailviewLeft(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ChatElementDetailviewRight(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ChatElementDetailviewLeft(),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: ChatElementDetailviewTop(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 650.0),
+                child: ChatElementDetailviewMessage(),
+              ),
+            ],
           ),
         ),
       ),

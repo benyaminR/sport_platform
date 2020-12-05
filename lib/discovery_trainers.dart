@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/utils/components/profile_picture_middle_2.dart';
+import 'package:sport_platform/utils/components/profile_picture.dart';
 
 class DiscoveryTrainers extends StatefulWidget {
   @override
@@ -40,7 +40,7 @@ class _DiscoveryTrainersState extends State<DiscoveryTrainers> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ProfilePictureMiddle2(),
+                  ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 30.0,),
                   Text(
                     "@jennyfit",
                     style: TextStyle(

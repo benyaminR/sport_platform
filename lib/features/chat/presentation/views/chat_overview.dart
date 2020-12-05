@@ -23,8 +23,17 @@ class _ChatOverviewState extends State<ChatOverview> {
                 height: 10.0,
               ),
               ChatElementOverview(),
+              SizedBox(
+                height: 10.0,
+              ),
               ChatElementOverview(),
+              SizedBox(
+                height: 10.0,
+              ),
               ChatElementOverview(),
+              SizedBox(
+                height: 10.0,
+              ),
               ChatElementOverview(),
             ],
           ),

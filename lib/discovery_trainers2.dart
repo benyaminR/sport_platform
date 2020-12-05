@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/utils/components/profile_picture_middle_2.dart';
+import 'package:sport_platform/utils/components/profile_picture.dart';
 
 import 'utils/components/image_section.dart';
 
@@ -71,7 +71,7 @@ class _DiscoveryTrainers2State extends State<DiscoveryTrainers2> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ProfilePictureMiddle2(),
+                        ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 30.0,),
                         SizedBox(
                           height: 4.0,
                         ),
