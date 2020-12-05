@@ -7,8 +7,7 @@ import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/presentation/views/post_slide.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
-import 'package:sport_platform/utils/components/profile_picture_middle.dart';
-import 'package:sport_platform/utils/components/profile_picture_small.dart';
+import 'package:sport_platform/utils/components/profile_picture.dart';
 import 'package:sport_platform/utils/custom_icons_icons.dart';
 import '../../../../bottom_sheet_comment.dart';
 
@@ -44,12 +43,12 @@ class PostElements extends StatelessWidget {
                           child: BlocBuilder<StorageBloc, StorageState>(
                             builder: (context, state) {
                               if (state is StorageLoading)
-                                return ProfilePictureMiddle(
+                                return ProfilePicture(
                                     url:
-                                        'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg');
+                                        'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg', size: 20.0,);
                               if (state is GetDownloadUrlCompleted)
-                                return ProfilePictureMiddle(
-                                    url: state.downloadUrl);
+                                return ProfilePicture(
+                                    url: state.downloadUrl, size: 20.0,);
                               if (state is StorageError) {
                                 return Container();
                               }
@@ -134,10 +133,10 @@ class PostElements extends StatelessWidget {
                   ),
                   RowSuper(
                     children: [
-                      ProfilePictureSmall(),
-                      ProfilePictureSmall(),
-                      ProfilePictureSmall(),
-                      ProfilePictureSmall(),
+                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
+                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
+                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
+                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
                     ],
                     innerDistance: -12.0,
                   ),

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/utils/components/profile_picture_middle.dart';
+import 'package:sport_platform/utils/components/profile_picture.dart';
 
 
 class ChatElementDetailviewTop extends StatefulWidget {
@@ -30,9 +30,10 @@ class _ChatElementDetailviewTopState extends State<ChatElementDetailviewTop> {
                   Navigator.of(context).pop(),
                 },
               ),
-              ProfilePictureMiddle(
+              ProfilePicture(
                 url:
                     'https://schoenheitsmerkmale.de/wp-content/uploads/2018/02/schoene-frau-300x300.jpg',
+                size: 20.0,
               ),
               SizedBox(
                 width: 4.0,

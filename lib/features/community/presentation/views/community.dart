@@ -9,7 +9,7 @@ import 'package:sport_platform/features/community/presentation/bloc/community/co
 import 'package:sport_platform/features/community/presentation/bloc/community/community_event.dart';
 import 'package:sport_platform/features/community/presentation/bloc/community/community_state.dart';
 import 'package:sport_platform/features/community/presentation/views/post_elements.dart';
-import 'package:sport_platform/utils/components/profile_picture_middle.dart';
+import 'package:sport_platform/utils/components/profile_picture.dart';
 
 class Community extends StatefulWidget {
   @override
@@ -46,10 +46,10 @@ class _CommunityState extends State<Community> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: <Widget>[
-                      ProfilePictureMiddle(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg',),
-                      ProfilePictureMiddle(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg',),
-                      ProfilePictureMiddle(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg',),
-                      ProfilePictureMiddle(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg',),
+                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
+                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
+                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
+                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
                     ],
                   ),
                 ),

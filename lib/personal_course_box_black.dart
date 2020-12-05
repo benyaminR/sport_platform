@@ -25,17 +25,61 @@ class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
                   width: MediaQuery.of(context).size.width,
                   height: (MediaQuery.of(context).size.height) - 380,
                   decoration: new BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0), bottomLeft: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
+                    color: Color(0xFF000000),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                        bottomLeft: Radius.circular(20.0),
+                        bottomRight: Radius.circular(20.0)),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 220.0, left: 16.0, right: 16.0),
-                    child: Text(
-                      _bildbeschreibung,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF707070),
-                      ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 230.0, left: 16.0, right: 16.0),
+                  child: Text(
+                    _bildbeschreibung,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF707070),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: 190.0, left: 16.0, right: 16.0),
+                  child: Container(
+                    height: 30.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Fitness Class",
+                          style: TextStyle(
+                              color: Colors.white,
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 20.0),
+                        ),
+                        SizedBox(
+                          width: 80,
+                        ),
+                        Icon(Icons.person, size: 14.0, color: Color(0xFF707070)),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          '1,000,000',
+                          style: TextStyle(
+                              color: Color(0xFF707070),
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 12.0),
+                        ),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                        Icon(Icons.star, size: 14.0, color: Colors.white),
+                      ],
                     ),
                   ),
                 ),
@@ -48,7 +92,11 @@ class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
                           "https://www.wochenblatt.de/media/2020/06/07/42199020-l_202006070945_full.jpg"),
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0), bottomLeft: Radius.zero, bottomRight: Radius.zero),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                        bottomLeft: Radius.zero,
+                        bottomRight: Radius.zero),
                   ),
                 ),
               ],

@@ -30,18 +30,13 @@ Column _buildBottomNavigationMenu(context) {
       ListTile(
         leading: Icon(Icons.camera_rounded, size: 40.0, color: Colors.white),
         title: Text("Story", style: TextStyle(fontSize: 20.0, color: Colors.white),),
-        onTap: () => _selectItem("Story", context),
+        onTap: () => Navigator.pushNamed(context, '/home/storyAdd'),
       ),
       ListTile(
         leading: Icon(Icons.photo_library_outlined, size: 40.0, color: Colors.white),
         title: Text("Post", style: TextStyle(fontSize: 20.0, color: Colors.white),),
-        onTap: () => _selectItem("Post", context),
+        onTap: () => Navigator.pushNamed(context, '/home/postAdd'),
       ),
     ],
   );
-}
-
-void _selectItem(String name, context) {
-  Navigator.pop(context);
-  print(name);
 }
