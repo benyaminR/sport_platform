@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
 abstract class CoursesRepo{

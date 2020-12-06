@@ -6,7 +6,7 @@ import 'package:sport_platform/features/courses/data/datamodel/course_data_model
 import 'package:sport_platform/features/courses/data/datamodel/course_user_data_model.dart';
 import 'package:sport_platform/features/courses/data/datasource/courses_data_source.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course_trainer.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
+import 'package:sport_platform/utils/criteria.dart';
 
 main() {
   final firestore = MockFirestoreInstance();

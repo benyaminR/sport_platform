@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/courses/data/datamodel/course_data_model.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 
 abstract class CoursesDataSource{

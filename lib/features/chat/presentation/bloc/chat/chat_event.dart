@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
+import 'package:sport_platform/utils/criteria.dart';
 
 @immutable
 abstract class ChatEvent extends Equatable{}

@@ -5,11 +5,11 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
 import 'package:sport_platform/features/courses/domain/usecase/add_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/delete_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/get_courses_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/update_course_use_case.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 
 part 'courses_event.dart';

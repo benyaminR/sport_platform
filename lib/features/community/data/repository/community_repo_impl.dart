@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/community/data/datasource/community_data_source.dart';
-import 'package:sport_platform/features/community/domain/entity/community_criteria.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/domain/repository/community_repo.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
@@ -27,7 +27,7 @@ class CommunityRepoImpl extends CommunityRepo{
   }
 
   @override
-  Future<Either<Failure, List<CommunityPost>>> getPosts(CommunityCriteria criteriaData) async{
+  Future<Either<Failure, List<CommunityPost>>> getPosts(Criteria criteriaData) async{
     try{
       var posts = await datasource.getPosts(criteriaData);
       return Right(posts);

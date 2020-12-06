@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/chat/data/datamodel/chat_message_data_model.dart';
-import 'package:sport_platform/features/chat/domain/entity/chat_criteria.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
 abstract class ChatDataSource{
-  Future<List<ChatMessageDataModel>> getChats(ChatCriteria criteriaData);
+  Future<List<ChatMessageDataModel>> getChats(Criteria criteriaData);
   Future<ChatMessageDataModel> sendMessage(ChatMessage messageData);
   Future<ChatMessageDataModel> updateMessage(ChatMessage messageData);
 }
@@ -19,11 +19,11 @@ class ChatDataSourceImpl implements ChatDataSource{
   ChatDataSourceImpl({@required this.firestore});
 
   @override
-  Future<List<ChatMessageDataModel>> getChats(ChatCriteria criteriaData) async{
+  Future<List<ChatMessageDataModel>> getChats(Criteria criteriaData) async{
     try {
       if(criteriaData != null) {
         var res = await firestore.collection('Chats').where(
-            criteriaData.filter, isEqualTo: criteriaData.data).get();
+            criteriaData.data, isEqualTo: criteriaData.data).get();
 
         return res.docs.map((e) => ChatMessageDataModel.fromMap(e.data())).toList();
       }

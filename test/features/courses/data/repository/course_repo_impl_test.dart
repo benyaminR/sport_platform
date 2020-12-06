@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:sport_platform/features/courses/data/datamodel/course_data_model.dart';
 import 'package:sport_platform/features/courses/data/datasource/courses_data_source.dart';
 import 'package:sport_platform/features/courses/data/repository/courses_repo_impl.dart';
-import 'package:sport_platform/features/courses/domain/enitity/criteria.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 

@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/community/data/datamodel/community_post_data_model.dart';
-import 'package:sport_platform/features/community/domain/entity/community_criteria.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
 abstract class CommunityDataSource{
-  Future<List<CommunityPostDataModel>> getPosts(CommunityCriteria criteriaData);
+  Future<List<CommunityPostDataModel>> getPosts(Criteria criteriaData);
   Future<CommunityPostDataModel> addPost(CommunityPost postData);
   Future<CommunityPostDataModel> removePost(CommunityPost postData);
   Future<CommunityPostDataModel> updatePost(CommunityPost postData);
@@ -33,11 +33,11 @@ class CommunityDataSourceImpl implements CommunityDataSource{
   }
 
   @override
-  Future<List<CommunityPostDataModel>> getPosts(CommunityCriteria criteriaData) async{
+  Future<List<CommunityPostDataModel>> getPosts(Criteria criteriaData) async{
     try {
       if(criteriaData != null) {
         var res = await firebaseFirestore.collection('Community').where(
-            criteriaData.filter, isEqualTo: criteriaData).get();
+            criteriaData.field, isEqualTo: criteriaData).get();
         return res.docs.map((e) => CommunityPostDataModel.fromSnapshot(e)).toList();
       }
       else{

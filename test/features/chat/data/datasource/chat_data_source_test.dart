@@ -5,8 +5,7 @@ import 'package:sport_platform/features/chat/data/datamodel/chat_conversation_da
 import 'package:sport_platform/features/chat/data/datamodel/chat_media_data_model.dart';
 import 'package:sport_platform/features/chat/data/datamodel/chat_message_data_model.dart';
 import 'package:sport_platform/features/chat/data/datasource/chat_data_source.dart';
-import 'package:sport_platform/features/chat/domain/entity/chat_criteria.dart';
-import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
+import 'package:sport_platform/utils/criteria.dart';
 
 main() {
   final firestore = MockFirestoreInstance();
@@ -23,7 +22,7 @@ main() {
       text: 'sup!');
 
   final testConversations = [ChatConversationDataModel(messages: [testMessage])];
-  final criteria = ChatCriteria(filter: null, data: null);
+  final criteria = Criteria(field: null, data: null);
 
 
   group('ChatDataSource ',(){
@@ -40,7 +39,7 @@ main() {
       test('should get Specific Message', () async{
         //arrange
         var searchData = 'me';
-        var criteriaData = ChatCriteria(data: searchData,filter: 'sender');
+        var criteriaData = Criteria(data: searchData,field: 'sender');
         await dataSource.sendMessage(testMessage);
         //act
         var res = await dataSource.getChats(criteriaData);

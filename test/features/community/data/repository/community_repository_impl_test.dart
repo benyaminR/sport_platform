@@ -1,12 +1,10 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sport_platform/features/community/data/datamodel/community_criteria_data_model.dart';
 import 'package:sport_platform/features/community/data/datamodel/community_post_data_model.dart';
 import 'package:sport_platform/features/community/data/datasource/community_data_source.dart';
 import 'package:sport_platform/features/community/data/repository/community_repo_impl.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
@@ -17,7 +15,7 @@ void main() {
   final CommunityRepoImpl communityRepoIml = CommunityRepoImpl(datasource:communityDataSourceMock);
 
   final post = CommunityPostDataModel(description: null, date: null, media: null, username: null, thumbnail: null, comments: null, likes: null, shares: null);
-  final criteria = CommunityCriteriaDataModel(filter: null, data: null);
+  final criteria = Criteria(field: null, data: null);
 
   group('CommunityRepoImpl ',(){
     group('AddPost ',(){

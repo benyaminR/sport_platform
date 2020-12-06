@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sport_platform/features/chat/data/datamodel/chat_conversation_data_model.dart';
 import 'package:sport_platform/features/chat/data/datamodel/chat_media_data_model.dart';
 import 'package:sport_platform/features/chat/data/datamodel/chat_message_data_model.dart';
 import 'package:sport_platform/features/chat/data/datasource/chat_data_source.dart';
 import 'package:sport_platform/features/chat/data/repository/chat_repo_impl.dart';
-import 'package:sport_platform/features/chat/domain/entity/chat_criteria.dart';
+import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
@@ -30,7 +29,7 @@ main() {
 
   final testConversations = [testMessage];
 
-  final criteria = ChatCriteria(filter: null, data: null);
+  final criteria = Criteria(field: null, data: null);
 
 
 
