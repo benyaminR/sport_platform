@@ -4,11 +4,13 @@ import 'package:sport_platform/utils/components/profile_picture.dart';
 
 class ChatElementDetailview extends StatelessWidget {
   final String side;
+  final String time;
+  final String message;
 
-  ChatElementDetailview({@required this.side});
+  ChatElementDetailview({@required this.side, @required this.time, @required this.message});
 
-  final String _bildbeschreibung =
-      "Danke für die Erinnerung, hatte die Woche keine Zeit mich bei dir zu melden. Aber wir können gerne die Themen besprechen. Glaube, dass Tim keine Infos vom letzten Meeting bekommen hat";
+  // final String _bildbeschreibung =
+  //     "Danke für die Erinnerung, hatte die Woche keine Zeit mich bei dir zu melden. Aber wir können gerne die Themen besprechen. Glaube, dass Tim keine Infos vom letzten Meeting bekommen hat";
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class ChatElementDetailview extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(16.0),
                               child: Text(
-                                _bildbeschreibung,
+                                message,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Color(0xFFFFFFFF),
@@ -61,7 +63,7 @@ class ChatElementDetailview extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        '16:30',
+                        time,
                         style: TextStyle(
                           fontSize: 14,
                           color: Color(0xFF707070),
@@ -97,7 +99,7 @@ class ChatElementDetailview extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(16.0),
                               child: Text(
-                                _bildbeschreibung,
+                                message,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Color(0xFFFFFFFF),
@@ -111,7 +113,7 @@ class ChatElementDetailview extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        '14:45',
+                        time,
                         style: TextStyle(
                           fontSize: 14,
                           color: Color(0xFF707070),
