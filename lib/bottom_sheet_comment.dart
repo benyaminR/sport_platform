@@ -97,25 +97,13 @@ SafeArea _buildBottomNavigationMenu(context) {
               SizedBox(
                 height: 10.0,
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 16.0),
-                child: Text(
-                  _bildbeschreibung,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF707070),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
               TextField(
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,
                 ),
                 decoration: InputDecoration(
+                  border: InputBorder.none,
                   hintText: 'Kommentiere hier...',
                   hintStyle: new TextStyle(
                     color: Color(0xFF707070),

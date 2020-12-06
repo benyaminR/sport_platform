@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/chat/presentation/views/chat_detailview.dart';
 import 'package:sport_platform/features/community/presentation/views/post_add.dart';
+import 'package:sport_platform/utils/my_behavior.dart';
 import 'features/community/presentation/views/story_add.dart';
 import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/authentication/presentation/views/register.dart';
 import 'file:///C:/Users/chris/Documents/SourceCode/sport_platform/lib/features/authentication/presentation/views/reset_password.dart';
@@ -23,6 +24,12 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: MyBehavior(),
+          child: child,
+        );
+      },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black,

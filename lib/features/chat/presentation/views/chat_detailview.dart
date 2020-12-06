@@ -32,21 +32,29 @@ class _ChatDetailviewState extends State<ChatDetailview> {
                       SizedBox(
                         height: 30.0,
                       ),
-                      ChatElementDetailview(side: 'left'),
+                      ChatElementDetailview(side: 'left', message: 'Hallo mein Bester, ich habe heute richtig stark trainiert, wie ist es bei dir gewesen?', time: '15:30',),
                       SizedBox(
                         height: 30.0,
                       ),
-                      ChatElementDetailview(side: 'right'),
+                      ChatElementDetailview(side: 'right', message: "Hallo wollen wir heute Abend noch was unternehmen?", time: '16:30',),
                       SizedBox(
                         height: 30.0,
                       ),
-                      ChatElementDetailview(side: 'left'),
+                      ChatElementDetailview(side: 'left', message: 'Hallo mein Bester, ich habe heute richtig stark trainiert, wie ist es bei dir gewesen?', time: '15:30',),
                       SizedBox(
                         height: 30.0,
                       ),
-                      ChatElementDetailview(side: 'right'),
+                      ChatElementDetailview(side: 'right', message: "Hallo wollen wir heute Abend noch was unternehmen?", time: '16:30',),
                       SizedBox(
                         height: 30.0,
+                      ),
+                      ChatElementDetailview(side: 'left', message: 'Hallo mein Bester, ich habe heute richtig stark trainiert, wie ist es bei dir gewesen?', time: '15:30',),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      ChatElementDetailview(side: 'right', message: "Hallo wollen wir heute Abend noch was unternehmen?", time: '16:30',),
+                      SizedBox(
+                        height: 50.0,
                       ),
                     ],
                   ),
