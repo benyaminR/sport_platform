@@ -59,10 +59,13 @@ class _StoryAddState extends State<StoryAdd> {
                           ),
                         ),
                         GestureDetector(
-                          child: Icon(
-                            Icons.send,
-                            size: 28,
-                            color: Colors.white,
+                          child: RotationTransition(
+                            turns: new AlwaysStoppedAnimation(-30 / 360),
+                            child: Icon(
+                              Icons.send,
+                              size: 28,
+                              color: Colors.white,
+                            ),
                           ),
                           onTap: () => {
                             Navigator.of(context).pop(),

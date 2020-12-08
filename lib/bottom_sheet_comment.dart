@@ -95,23 +95,21 @@ SafeArea _buildBottomNavigationMenu(context) {
                 ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 80.0,
               ),
-              TextField(
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                ),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Kommentiere hier...',
-                  hintStyle: new TextStyle(
-                    color: Color(0xFF707070),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF707070)),
+              //Text mit Gesture Detector und neuer Seite dann
+              GestureDetector(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Kommentiere hier...',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF707070),
+                    ),
                   ),
                 ),
+                onTap: () => Navigator.of(context).pushNamed('/home/discovery/postComment'),
               ),
             ],
           ),
