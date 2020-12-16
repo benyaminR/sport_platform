@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
@@ -6,11 +7,9 @@ class ChatElementDetailview extends StatelessWidget {
   final String side;
   final String time;
   final String message;
+  final String profilePic;
 
-  ChatElementDetailview({@required this.side, @required this.time, @required this.message});
-
-  // final String _bildbeschreibung =
-  //     "Danke für die Erinnerung, hatte die Woche keine Zeit mich bei dir zu melden. Aber wir können gerne die Themen besprechen. Glaube, dass Tim keine Infos vom letzten Meeting bekommen hat";
+  ChatElementDetailview({@required this.side, @required this.time, @required this.message, @required this.profilePic});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +20,7 @@ class ChatElementDetailview extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProfilePicture(
-                  url:
-                      'https://schoenheitsmerkmale.de/wp-content/uploads/2018/02/schoene-frau-300x300.jpg',
+                  url: profilePic,
                   size: 20.0,
                 ),
                 SizedBox(
@@ -126,8 +124,7 @@ class ChatElementDetailview extends StatelessWidget {
                   width: 10.0,
                 ),
                 ProfilePicture(
-                  url:
-                      'https://schoenheitsmerkmale.de/wp-content/uploads/2018/02/schoene-frau-300x300.jpg',
+                  url:profilePic,
                   size: 20.0,
                 ),
               ],

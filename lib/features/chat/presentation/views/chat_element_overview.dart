@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_platform/features/chat/presentation/views/chat_detailview.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
 
@@ -102,7 +103,7 @@ class ChatElementOverview extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () => Navigator.of(context).pushNamed('/home/chatDetailview'),
+          onTap: () => Navigator.of(context).pushNamed('/home/chatDetailview',arguments: ChatDetailArgs('gn4jHJ1cBei6ntOSi4wHEIs9XkMM',imageUrl)),
         ),
       ),
     );

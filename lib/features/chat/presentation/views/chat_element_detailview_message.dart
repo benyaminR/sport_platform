@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/utils/components/profile_picture.dart';
+import 'package:sport_platform/container.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_media.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
+import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_bloc.dart';
+import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_event.dart';
 
-class ChatElementDetailviewMessage extends StatefulWidget {
-  ChatElementDetailviewMessage();
+class ChatElementDetailviewMessage extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
 
-  _ChatElementDetailviewMessageState createState() =>
-      _ChatElementDetailviewMessageState();
-}
-
-class _ChatElementDetailviewMessageState
-    extends State<ChatElementDetailviewMessage> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 150,
       color: Colors.black,
       child: Container(
         child: Row(
@@ -25,11 +22,12 @@ class _ChatElementDetailviewMessageState
                 borderRadius: BorderRadius.circular(30.0),
                 color: Colors.white,
               ),
-              width: 360.0,
+              width: 310.0,
               height: 30.0,
               child: Padding(
                 padding: const EdgeInsets.only(top: 14.0, left: 16.0),
                 child: TextField(
+                  controller: _controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Deine Nachricht...',
@@ -43,15 +41,34 @@ class _ChatElementDetailviewMessageState
             SizedBox(
               width: 8.0,
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                color: Color(0xFFE4572E),
-              ),
-              width: 30.0,
-              height: 30.0,
-              child: Center(
-                child: Icon(Icons.send, size: 20.0, color: Colors.white),
+            GestureDetector(
+              onTap:(){
+                if( _controller.text.length == 0) {
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text('Text Field Is Empty!')));
+                }else {
+                  getIt<ChatBloc>().add(
+                      SendMessageEvent(messageData: ChatMessage(
+                          sender: "9Zx6DpkGQWc2jGYLJcVgA6gMpNgj",
+                          text: _controller.text,
+                          mediaData: ChatMedia(
+                              source: 'none', mediaType: 'text'),
+                          receivedDate: DateTime.now().toString(),
+                          receiver: "gn4jHJ1cBei6ntOSi4wHEIs9XkMM",
+                          sentDate: DateTime.now().toString())));
+                  _controller.clear();
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: Color(0xFFE4572E),
+                ),
+                width: 30.0,
+                height: 30.0,
+                child: Center(
+                  child: Icon(Icons.send, size: 20.0, color: Colors.white),
+                ),
               ),
             ),
           ],

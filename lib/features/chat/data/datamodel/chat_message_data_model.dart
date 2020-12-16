@@ -24,13 +24,13 @@ class ChatMessageDataModel extends ChatMessage {
     receivedDate: receivedDate,
   );
 
-  factory ChatMessageDataModel.fromMap(Map<String,dynamic> data)=> ChatMessageDataModel(
+  factory ChatMessageDataModel.fromMap(Map<dynamic,dynamic> data)=> ChatMessageDataModel(
     text:data['text'] ,
     mediaData: ChatMediaDataModel.fromMap(data['mediaData']),
-    receivedDate: data['receivedDate'],
+    receivedDate: data['date'],
     receiver: data['receiver'],
     sender: data['sender'],
-    sentDate: data['sentDate']
+    sentDate: data['date']
   );
 
   static Map<String, dynamic> toMap(ChatMessage message) => {
@@ -38,7 +38,7 @@ class ChatMessageDataModel extends ChatMessage {
     'sender':message.sender,
     'mediaData': ChatMediaDataModel.toMap(message.mediaData),
     'text':message.text,
-    'sentDate':message.sentDate,
+    'date':message.sentDate,
     'receivedDate':message.receivedDate,
   };
 
@@ -51,7 +51,5 @@ class ChatMessageDataModel extends ChatMessage {
           sentDate: messageData.sentDate,
           receivedDate: messageData.receivedDate
       );
-
-
 
 }

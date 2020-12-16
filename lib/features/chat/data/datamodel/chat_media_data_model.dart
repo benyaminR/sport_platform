@@ -13,7 +13,7 @@ class ChatMediaDataModel extends ChatMedia{
       source: source,
       mediaType: mediaType);
 
-  factory ChatMediaDataModel.fromMap(Map<String,dynamic> data) => ChatMediaDataModel(
+  factory ChatMediaDataModel.fromMap(Map<dynamic,dynamic> data) => ChatMediaDataModel(
       source:data['source'],
       mediaType:data['mediaType'],
   );

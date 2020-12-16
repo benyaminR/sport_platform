@@ -1,19 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
-import 'package:sport_platform/utils/criteria.dart';
 
 @immutable
 abstract class ChatEvent extends Equatable{}
 
 
 class GetChatsEvent extends ChatEvent{
-  final Criteria criteriaData;
+  final String userID;
 
-  GetChatsEvent({@required this.criteriaData});
+  GetChatsEvent({@required this.userID});
 
   @override
-  List<Object> get props => [criteriaData];
+  List<Object> get props => [userID];
 }
 
 class SendMessageEvent extends ChatEvent{
@@ -33,6 +32,13 @@ class UpdateMessageEvent extends ChatEvent{
   @override
   List<Object> get props => [messageData];
 }
+class GetChatHistoryEvent extends ChatEvent{
+  GetChatHistoryEvent();
+  @override
+  List<Object> get props => [];
+}
+
+
 
 
 

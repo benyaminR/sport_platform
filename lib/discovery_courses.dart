@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'container.dart';
+import 'features/courses/presentation/bloc/courses/courses_bloc.dart';
 import 'utils/components/image_section.dart';
 
-class DiscoveryCourses extends StatefulWidget {
-  @override
-  _DiscoveryCoursesState createState() => _DiscoveryCoursesState();
-}
 
-class _DiscoveryCoursesState extends State<DiscoveryCourses> {
+class DiscoveryCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,16 +56,29 @@ class _DiscoveryCoursesState extends State<DiscoveryCourses> {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: 16.0, right: 0.0),
-              child: Container(
-                height: 120.0,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    ImageSection(),
-                    ImageSection(),
-                    ImageSection(),
-                    ImageSection(),
-                  ],
+              child: BlocProvider(
+                create: (context) => getIt<CoursesBloc>()
+                  ..add(GetCoursesEvent(criteriaData: null)),
+                child: BlocBuilder<CoursesBloc, CoursesState>(
+                  builder: (context, state) {
+                    if (state is LoadingCoursesState) {
+                      Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is LoadedCoursesState) {
+                      return Container(
+                        height: 120.0,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: List.generate(
+                              state.courses.length,
+                                  (index) => ImageSection(),
+                            )),
+                      );
+                    }
+                    return Container();
+                  },
                 ),
               ),
             ),

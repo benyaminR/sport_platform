@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sport_platform/features/chat/domain/entity/chat_history.dart';
 import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 
 @immutable
@@ -16,12 +17,12 @@ class LoadingChatsState extends ChatState{
 }
 
 class LoadedChatsState extends ChatState{
-  final List<ChatMessage> conversations;
+  final Stream<List<ChatMessage>> messages;
 
-  LoadedChatsState({@required this.conversations});
+  LoadedChatsState({@required this.messages});
 
   @override
-  List<Object> get props => [conversations];
+  List<Object> get props => [messages];
 }
 
 class LoadedMessageState extends ChatState{
@@ -32,7 +33,14 @@ class LoadedMessageState extends ChatState{
   @override
   List<Object> get props => [message];
 }
+class LoadedChatHistory extends ChatState{
+  final Stream<List<ChatHistory>> history;
 
+  LoadedChatHistory({@required this.history});
+
+  @override
+  List<Object> get props => [history];
+}
 
 class ErrorChatsState extends ChatState{
   final String msg;

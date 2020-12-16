@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as Auth;
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/users/data/datamodel/user_data_model.dart';
@@ -16,14 +17,15 @@ abstract class UsersDataSource{
 @Singleton(as:UsersDataSource)
 class UsersDataSourceImpl implements UsersDataSource{
   final FirebaseFirestore firestore;
+  final Auth.FirebaseAuth firebaseAuth;
 
-  UsersDataSourceImpl({@required this.firestore});
+  UsersDataSourceImpl({@required this.firestore,@required this.firebaseAuth});
 
   @override
   Future<UserDataModel> addUser(User user) async{
     await firestore.
     collection('Users').
-    doc(user.username).
+    doc(firebaseAuth.currentUser.uid).
     set(UserDataModel.toMap(user));
     return UserDataModel.fromUser(user);
   }
@@ -56,7 +58,7 @@ class UsersDataSourceImpl implements UsersDataSource{
   Future<UserDataModel> updateUser(User user) async{
     await firestore.
     collection('Users').
-    doc(user.username).
+    doc(firebaseAuth.currentUser.uid).
     update(
         UserDataModel.toMap(user)
     );

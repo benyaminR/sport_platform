@@ -6,6 +6,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
@@ -34,7 +35,9 @@ import 'features/courses/domain/usecase/delete_course_use_case.dart';
 import 'features/storage/domain/usecase/DeleteStorageDataUseCase.dart';
 import 'utils/third_party_dependencies/firebase_auth.dart';
 import 'utils/third_party_dependencies/firebase_firestore.dart';
+import 'utils/third_party_dependencies/firebase_functions.dart';
 import 'utils/third_party_dependencies/firebase_storage.dart';
+import 'features/chat/domain/usecase/get_chat_history_use_case.dart';
 import 'features/chat/domain/usecase/get_chats_use_case.dart';
 import 'features/courses/domain/usecase/get_courses_use_case.dart';
 import 'features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
@@ -72,9 +75,11 @@ GetIt $initGetIt(
   final gh = GetItHelper(get, environment, environmentFilter);
   final firebaseAuthDependency = _$FirebaseAuthDependency();
   final firebaseFirestoreDependency = _$FirebaseFirestoreDependency();
+  final firebaseFunctionsDependency = _$FirebaseFunctionsDependency();
   final firebaseStorageDependency = _$FirebaseStorageDependency();
   gh.factory<FirebaseAuth>(() => firebaseAuthDependency.prefs);
   gh.factory<FirebaseFirestore>(() => firebaseFirestoreDependency.prefs);
+  gh.factory<FirebaseFunctions>(() => firebaseFunctionsDependency.prefs);
   gh.factory<FirebaseStorage>(() => firebaseStorageDependency.prefs);
   gh.factory<GetDownloadUrlUseCase>(
       () => GetDownloadUrlUseCase(repo: get<StorageRepo>()));
@@ -82,6 +87,12 @@ GetIt $initGetIt(
         delete: get<DeleteStorageDataUseCase>(),
         upload: get<UploadStorageDataUseCase>(),
         get: get<GetDownloadUrlUseCase>(),
+      ));
+  gh.factory<ChatBloc>(() => ChatBloc(
+        get<GetChatsUseCase>(),
+        get<SendMessageUseCase>(),
+        get<UpdateMessageUseCase>(),
+        get<GetChatHistoryUseCase>(),
       ));
 
   // Eager singletons must be registered in the right order
@@ -93,15 +104,18 @@ GetIt $initGetIt(
       StorageRepoImpl(dataSource: get<StorageDataSource>()));
   gh.singleton<UploadStorageDataUseCase>(
       UploadStorageDataUseCase(repo: get<StorageRepo>()));
-  gh.singleton<UsersDataSource>(
-      UsersDataSourceImpl(firestore: get<FirebaseFirestore>()));
+  gh.singleton<UsersDataSource>(UsersDataSourceImpl(
+      firestore: get<FirebaseFirestore>(), firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<UsersRepo>(UsersRepoImpl(dataSource: get<UsersDataSource>()));
   gh.singleton<AddUserUseCase>(AddUserUseCase(repo: get<UsersRepo>()));
   gh.singleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(firebaseAuth: get<FirebaseAuth>()));
   gh.singleton<AuthRepo>(AuthRepoImp(dataSource: get<AuthRemoteDataSource>()));
-  gh.singleton<ChatDataSource>(
-      ChatDataSourceImpl(firestore: get<FirebaseFirestore>()));
+  gh.singleton<ChatDataSource>(ChatDataSourceImpl(
+    firestore: get<FirebaseFirestore>(),
+    auth: get<FirebaseAuth>(),
+    functions: get<FirebaseFunctions>(),
+  ));
   gh.singleton<ChatRepo>(ChatRepoImpl(dataSource: get<ChatDataSource>()));
   gh.singleton<CheckAuthenticationUseCase>(
       CheckAuthenticationUseCase(repo: get<AuthRepo>()));
@@ -117,6 +131,8 @@ GetIt $initGetIt(
       DeleteCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<DeleteStorageDataUseCase>(
       DeleteStorageDataUseCase(repo: get<StorageRepo>()));
+  gh.singleton<GetChatHistoryUseCase>(
+      GetChatHistoryUseCase(repo: get<ChatRepo>()));
   gh.singleton<GetChatsUseCase>(GetChatsUseCase(repo: get<ChatRepo>()));
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<GetPostsUseCase>(GetPostsUseCase(repo: get<CommunityRepo>()));
@@ -156,11 +172,6 @@ GetIt $initGetIt(
     registerWithEmail: get<RegisterWithEmailUseCase>(),
     resetPassword: get<SendPasswordRecoveryEmailUseCase>(),
   ));
-  gh.singleton<ChatBloc>(ChatBloc(
-    get<GetChatsUseCase>(),
-    get<SendMessageUseCase>(),
-    get<UpdateMessageUseCase>(),
-  ));
   gh.singleton<CommunityBloc>(CommunityBloc(
     get<AddPostUseCase>(),
     get<GetPostsUseCase>(),
@@ -180,5 +191,7 @@ GetIt $initGetIt(
 class _$FirebaseAuthDependency extends FirebaseAuthDependency {}
 
 class _$FirebaseFirestoreDependency extends FirebaseFirestoreDependency {}
+
+class _$FirebaseFunctionsDependency extends FirebaseFunctionsDependency {}
 
 class _$FirebaseStorageDependency extends FirebaseStorageDependency {}

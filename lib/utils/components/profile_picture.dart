@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/container.dart';
+import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 
 class ProfilePicture extends StatelessWidget {
 
@@ -10,6 +13,7 @@ class ProfilePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.0),
       child: Container(
@@ -24,11 +28,21 @@ class ProfilePicture extends StatelessWidget {
             ),
           ],
         ),
-        child: CircleAvatar(
-          backgroundImage: NetworkImage(url),
-          //20.0
-          radius: size,
-        ),
+        child: BlocProvider.value(
+            value: getIt<StorageBloc>()..add(GetDownloadUrlEvent(path: url)),
+            child:BlocBuilder<StorageBloc,StorageState>(
+          builder: (context, state) {
+            if(state is StorageLoading)
+              return CircularProgressIndicator();
+            if(state is GetDownloadUrlCompleted)
+              return CircleAvatar(
+                backgroundImage: NetworkImage(state.downloadUrl),
+                //20.0
+                radius: size,
+              );
+            return Container();
+          },
+        )),
       ),
     );
   }

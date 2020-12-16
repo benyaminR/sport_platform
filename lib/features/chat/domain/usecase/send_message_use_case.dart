@@ -14,7 +14,6 @@ class SendMessageUseCase extends UseCase<ChatMessage,WithParams>{
 
   SendMessageUseCase({@required this.repo});
 
-
   @override
   Future<Either<Failure, ChatMessage>> call(WithParams params) => repo.sendMessage(params.param);
 }

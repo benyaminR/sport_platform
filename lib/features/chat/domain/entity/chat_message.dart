@@ -11,7 +11,6 @@ class ChatMessage extends Equatable{
   final String sentDate;
   final String receivedDate;
 
-
   ChatMessage({@required this.receiver, @required this.sender, @required this.mediaData, @required this.text, @required this.sentDate, @required this.receivedDate,});
   @override
   List<Object> get props => [receiver, sender, mediaData, text, sentDate,];

@@ -2,12 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
-class DiscoveryTrainers extends StatefulWidget {
-  @override
-  _DiscoveryTrainersState createState() => _DiscoveryTrainersState();
-}
-
-class _DiscoveryTrainersState extends State<DiscoveryTrainers> {
+class DiscoveryTrainers2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

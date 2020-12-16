@@ -2,15 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
+class ChatElementDetailviewTop extends StatelessWidget {
+  final String profileImage;
 
-class ChatElementDetailviewTop extends StatefulWidget {
-  ChatElementDetailviewTop();
+  const ChatElementDetailviewTop({Key key,@required this.profileImage}) : super(key: key);
 
-  _ChatElementDetailviewTopState createState() =>
-      _ChatElementDetailviewTopState();
-}
-
-class _ChatElementDetailviewTopState extends State<ChatElementDetailviewTop> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,8 +27,7 @@ class _ChatElementDetailviewTopState extends State<ChatElementDetailviewTop> {
                 },
               ),
               ProfilePicture(
-                url:
-                    'https://schoenheitsmerkmale.de/wp-content/uploads/2018/02/schoene-frau-300x300.jpg',
+                url:profileImage,
                 size: 20.0,
               ),
               SizedBox(

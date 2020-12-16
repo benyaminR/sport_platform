@@ -6,12 +6,8 @@ import 'container.dart';
 import 'features/courses/presentation/bloc/courses/courses_bloc.dart';
 import 'utils/components/image_section.dart';
 
-class DiscoveryTrends extends StatefulWidget {
-  @override
-  _DiscoveryTrendsState createState() => _DiscoveryTrendsState();
-}
 
-class _DiscoveryTrendsState extends State<DiscoveryTrends> {
+class DiscoveryTrends extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(

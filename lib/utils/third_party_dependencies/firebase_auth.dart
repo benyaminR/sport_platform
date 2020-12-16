@@ -1,10 +1,10 @@
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @module
 abstract class FirebaseAuthDependency{
-  FirebaseAuth get prefs => FirebaseAuth.instance;
+  FirebaseAuth get prefs {
+    var dependency = FirebaseAuth.instance;
+    return dependency;
+  }
 }
