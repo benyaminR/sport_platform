@@ -39,7 +39,7 @@ SafeArea _buildBottomNavigationMenu(context) {
             children: [
               Row(
                 children: [
-                  ProfilePicture(url: 'null', size: 20.0,),
+                  ProfilePicture(url: 'https://www.tz.de/bilder/2013/05/02/2884215/2136792343-mila-kunis-33UUse4nec.jpg', size: 20.0,),
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
                     child: Column(
