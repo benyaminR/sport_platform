@@ -51,29 +51,97 @@ class _PostCommentState extends State<PostComment> {
                           ),
                         ),
                         SizedBox(
-                          height: 20.0,
+                          height: 40.0,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 16.0),
-                          child: Text(
-                            _bildbeschreibung,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF707070),
+                        Row(
+                          children: [
+                            ProfilePicture(url: 'https://pbs.twimg.com/profile_images/1325119155377418242/Tz2VwEvI_400x400.jpg', size: 18.0,),
+                            Padding(
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Jolie",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Color(0xFFFFFFFF),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Berlin, Deutschland",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Color(0xFF707070),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 150,
+                            ),
+                            Icon(Icons.star, size: 25.0, color: Colors.white),
+                            Icon(Icons.star, size: 25.0, color: Colors.white),
+                            Icon(Icons.star, size: 25.0, color: Colors.white),
+                          ],
                         ),
                         SizedBox(
                           height: 10.0,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 16.0),
-                          child: Text(
-                            _bildbeschreibung,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF707070),
+                        Text(
+                          _bildbeschreibung,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF707070),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40.0,
+                        ),
+                        Row(
+                          children: [
+                            ProfilePicture(url: 'https://www.tz.de/bilder/2013/05/02/2884215/2136792343-mila-kunis-33UUse4nec.jpg', size: 18.0,),
+                            Padding(
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Mila",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Color(0xFFFFFFFF),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Berlin, Deutschland",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: Color(0xFF707070),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
+                            SizedBox(
+                              width: 150,
+                            ),
+                            Icon(Icons.star, size: 25.0, color: Colors.white),
+                            Icon(Icons.star, size: 25.0, color: Colors.white),
+                            Icon(Icons.star, size: 25.0, color: Colors.white),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                          _bildbeschreibung,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF707070),
                           ),
                         ),
                         SizedBox(
