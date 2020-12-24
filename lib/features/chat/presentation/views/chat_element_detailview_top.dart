@@ -4,8 +4,8 @@ import 'package:sport_platform/utils/components/profile_picture.dart';
 
 class ChatElementDetailviewTop extends StatelessWidget {
   final String profileImage;
-
-  const ChatElementDetailviewTop({Key key,@required this.profileImage}) : super(key: key);
+  final String username;
+  const ChatElementDetailviewTop({Key key,@required this.profileImage,@required this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ChatElementDetailviewTop extends StatelessWidget {
                 width: 4.0,
               ),
               Text(
-                "@Stella",
+                username,
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFFFFFFFF),

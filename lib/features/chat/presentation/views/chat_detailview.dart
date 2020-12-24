@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,13 +26,12 @@ class _ChatDetailviewState extends State<ChatDetailview> {
 
 
   final ScrollController _scrollController = ScrollController();
-
-  var myUID = '9Zx6DpkGQWc2jGYLJcVgA6gMpNgj';
+  var myUID = getIt<FirebaseAuth>().currentUser.uid;
   var otherUID = '';
 
   var myProfileImage = '';
   var otherProfileImage = '';
-
+  var otherUsername = '';
   _ChatDetailviewState();
 
   @override
@@ -54,6 +54,8 @@ class _ChatDetailviewState extends State<ChatDetailview> {
     final ChatDetailArgs args = ModalRoute.of(context).settings.arguments;
     otherUID = args.otherUID;
     otherProfileImage = args.otherImage;
+    otherUsername = args.otherUsername;
+    print(otherUID);
 
     if(myProfileImage == '')
       return CircularProgressIndicator();
@@ -103,9 +105,9 @@ class _ChatDetailviewState extends State<ChatDetailview> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),
-                  child: ChatElementDetailviewTop(profileImage: otherProfileImage,),
+                  child: ChatElementDetailviewTop(profileImage: otherProfileImage,username: otherUsername,),
                 ),
-                ChatElementDetailviewMessage(),
+                ChatElementDetailviewMessage(receiver: otherUID,sender: myUID,),
               ],
             )
           ]
@@ -117,5 +119,7 @@ class _ChatDetailviewState extends State<ChatDetailview> {
 class ChatDetailArgs{
   final String otherUID;
   final String otherImage;
-  ChatDetailArgs(this.otherUID, this.otherImage);
+  final String otherUsername;
+  ChatDetailArgs({@required this.otherUID,@required this.otherImage,@required this.otherUsername});
+
 }

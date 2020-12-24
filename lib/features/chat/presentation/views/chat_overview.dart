@@ -28,7 +28,9 @@ class ChatOverview extends StatelessWidget {
                                 username: e.sender,
                                 lastMsg: e.text,
                                 date: e.date,
-                                unreadCount: 5)
+                                unreadCount: 5,
+                                uid: e.uid,
+                            )
                         ).toList(),
                       );
                     }

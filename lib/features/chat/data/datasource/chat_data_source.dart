@@ -25,17 +25,17 @@ class ChatDataSourceImpl implements ChatDataSource{
 
   ChatDataSourceImpl({@required this.firestore,@required this.auth, @required this.functions, });
 
-  String _uid () => "9Zx6DpkGQWc2jGYLJcVgA6gMpNgj";//auth.currentUser.uid;
 
 
   @override
   Future<Stream<List<ChatMessageDataModel>>> getChats(String userID) async{
     try {
+      String uid = auth.currentUser.uid;
       var chatID = "";
-      if (_uid().compareTo(userID) >= 0)
-        chatID = _uid() + userID;
+      if (uid.compareTo(userID) >= 0)
+        chatID = uid + userID;
       else
-        chatID = userID + _uid();
+        chatID = userID + uid;
 
       var stream = firestore
           .collection('Chats')
@@ -88,6 +88,7 @@ class ChatDataSourceImpl implements ChatDataSource{
   @override
   Future<Stream<List<ChatHistoryDataModel>>> getChatHistory() async{
     try {
+      String _uid () => auth.currentUser.uid;
       var stream = firestore
           .collection('Users')
           .doc(_uid())

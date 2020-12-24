@@ -11,14 +11,16 @@ class ChatElementOverview extends StatelessWidget {
   final String lastMsg;
   final String date;
   final int unreadCount;
-
+  final String uid;
   const ChatElementOverview({
     Key key,
     @required this.imageUrl,
     @required this.username,
     @required this.lastMsg,
     @required this.date,
-    @required this.unreadCount}) : super(key: key);
+    @required this.unreadCount,
+    @required this.uid
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +105,9 @@ class ChatElementOverview extends StatelessWidget {
               ),
             ],
           ),
-          onTap: () => Navigator.of(context).pushNamed('/home/chatDetailview',arguments: ChatDetailArgs('gn4jHJ1cBei6ntOSi4wHEIs9XkMM',imageUrl)),
+          onTap: () {
+            return Navigator.of(context).pushNamed('/home/chatDetailview',arguments: ChatDetailArgs(otherUID:uid,otherImage:imageUrl,otherUsername: username));
+          },
         ),
       ),
     );

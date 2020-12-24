@@ -7,7 +7,11 @@ import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_bloc.da
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_event.dart';
 
 class ChatElementDetailviewMessage extends StatelessWidget {
+  final String receiver;
+  final String sender;
   final TextEditingController _controller = TextEditingController();
+
+  ChatElementDetailviewMessage({Key key,@required this.receiver,@required this.sender}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +53,12 @@ class ChatElementDetailviewMessage extends StatelessWidget {
                 }else {
                   getIt<ChatBloc>().add(
                       SendMessageEvent(messageData: ChatMessage(
-                          sender: "9Zx6DpkGQWc2jGYLJcVgA6gMpNgj",
+                          sender: sender,
                           text: _controller.text,
                           mediaData: ChatMedia(
                               source: 'none', mediaType: 'text'),
                           receivedDate: DateTime.now().toString(),
-                          receiver: "gn4jHJ1cBei6ntOSi4wHEIs9XkMM",
+                          receiver: receiver,
                           sentDate: DateTime.now().toString())));
                   _controller.clear();
                 }
