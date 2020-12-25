@@ -1,12 +1,10 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/bottom_sheet_share.dart';
-import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/presentation/views/post_slide.dart';
-import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
+import 'package:sport_platform/post_comment.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 import 'package:sport_platform/utils/custom_icons_icons.dart';
 import '../../../../bottom_sheet_comment.dart';
@@ -35,27 +33,9 @@ class PostElements extends StatelessWidget {
                   padding: EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
                   child: Container(
                     child: Row(
-                      children: [
-                        BlocProvider.value(
-                          value: getIt<StorageBloc>()
-                            ..add(GetDownloadUrlEvent(
-                                path: communityPost.thumbnail)),
-                          child: BlocBuilder<StorageBloc, StorageState>(
-                            builder: (context, state) {
-                              if (state is StorageLoading)
-                                return ProfilePicture(
-                                    url:
-                                        'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg', size: 20.0,);
-                              if (state is GetDownloadUrlCompleted)
-                                return ProfilePicture(
-                                    url: state.downloadUrl, size: 20.0,);
-                              if (state is StorageError) {
-                                return Container();
-                              }
-                              return Container();
-                            },
-                          ),
-                        ),
+                      children: [ProfilePicture(
+                        url: communityPost.thumbnail, size: 20.0,),
+
                         Padding(
                           padding: EdgeInsets.only(left: 8.0),
                           child: Column(
@@ -95,7 +75,7 @@ class PostElements extends StatelessWidget {
                     width: 20.0,
                   ),
                   GestureDetector(
-                      //hier wie mit den Icons machen ob leuchtend oder nicht
+                    //hier wie mit den Icons machen ob leuchtend oder nicht
                       child: Icon(
                         CustomIcons.heart_empty,
                         color: Color(0xFFFFFFFF),
@@ -109,7 +89,23 @@ class PostElements extends StatelessWidget {
                       CustomIcons.comment_empty,
                       color: Color(0xFFFFFFFF),
                     ),
-                    onTap: () => onButtonPressedComment(context),
+                    onTap: () {
+                      if(communityPost.comments.length > 0 ) {
+                        onButtonPressedComment(
+                            context,
+                            communityPost.comments,
+                            communityPost.docID
+                        );
+                      }else{
+                        Navigator.of(context).pushNamed(
+                            '/home/discovery/postComment',
+                            arguments: CommunityCommentsPageArgs(
+                                comments: communityPost.comments,
+                                postID: communityPost.docID
+                            )
+                        );
+                      }
+                    },
                   ),
                   SizedBox(
                     width: 10.0,
@@ -133,10 +129,10 @@ class PostElements extends StatelessWidget {
                   ),
                   RowSuper(
                     children: [
-                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
-                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
-                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
-                      ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 10.0,),
+                      ProfilePicture(url:'Users/face_00.jpg', size: 10.0,),
+                      ProfilePicture(url:'Users/face_01.jpg', size: 10.0,),
+                      ProfilePicture(url:'Users/face_02.jpg', size: 10.0,),
+                      ProfilePicture(url:'Users/face_03.jpg', size: 10.0,),
                     ],
                     innerDistance: -12.0,
                   ),

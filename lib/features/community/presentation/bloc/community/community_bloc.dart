@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/community/domain/usecase/add_post_use_case.dart';
+import 'package:sport_platform/features/community/domain/usecase/comment_community_post_use_case.dart';
 import 'package:sport_platform/features/community/domain/usecase/get_posts_use_case.dart';
 import 'package:sport_platform/features/community/domain/usecase/remove_post_use_case.dart';
 import 'package:sport_platform/features/community/domain/usecase/update_post_use_case.dart';
@@ -18,14 +19,16 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
   final GetPostsUseCase getPostsUseCase;
   final RemovePostUseCase removePostUseCase;
   final UpdatePostUseCase updatePostUseCase;
+  final CommentCommunityPostUseCase commentUseCase;
 
-  CommunityBloc(this.addPostUseCase, this.getPostsUseCase, this.removePostUseCase, this.updatePostUseCase) : super(IdleCommunitiesState());
+
+  CommunityBloc(this.addPostUseCase, this.getPostsUseCase, this.removePostUseCase, this.updatePostUseCase,this.commentUseCase) : super(IdleCommunitiesState());
 
   static const ADD_POST_ERROR = 'Failed To Post!';
   static const REMOVE_POST_ERROR = 'Failed To Remove!';
   static const UPDATE_POST_ERROR = 'Failed To Update!';
   static const GET_POSTS_ERROR = 'Failed To Get!';
-
+  static const COMMENT_POST_ERROR = 'Failed To Submit Your Comment!';
   @override
   Stream<CommunityState> mapEventToState(CommunityEvent event) async* {
     //AddPostEvent
@@ -67,5 +70,15 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
               (r) => LoadedCommunitiesState(posts: [r])
       );
     }
+
+    if(event is CommentCommunityPostEvent){
+      yield LoadingCommunitiesState();
+      var data = await commentUseCase(WithParams(param: event.communityComment));
+      yield data.fold(
+              (l) => ErrorCommunitiesState(msg: COMMENT_POST_ERROR),
+              (r) => SuccessfulCommunityState()
+      );
+    }
+
   }
 }

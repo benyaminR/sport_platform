@@ -1,6 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sport_platform/features/community/domain/entity/community_comment.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/utils/criteria.dart';
 
@@ -42,5 +43,14 @@ class UpdatePostEvent extends CommunityEvent{
 
   @override
   List<Object> get props => [postData];
+}
+
+class CommentCommunityPostEvent extends CommunityEvent{
+  final CommunityComment communityComment;
+  CommentCommunityPostEvent({this.communityComment});
+
+  @override
+  List<Object> get props => [communityComment];
+
 }
 

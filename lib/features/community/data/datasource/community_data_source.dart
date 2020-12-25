@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sport_platform/features/community/data/datamodel/community_comment_datamodel.dart';
 import 'package:sport_platform/features/community/data/datamodel/community_post_data_model.dart';
+import 'package:sport_platform/features/community/domain/entity/community_comment.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
@@ -12,20 +15,24 @@ abstract class CommunityDataSource{
   Future<CommunityPostDataModel> addPost(CommunityPost postData);
   Future<CommunityPostDataModel> removePost(CommunityPost postData);
   Future<CommunityPostDataModel> updatePost(CommunityPost postData);
+  Future<CommunityCommentDatamodel> commentPost(CommunityComment comment);
 }
 
 @Singleton(as: CommunityDataSource)
 class CommunityDataSourceImpl implements CommunityDataSource{
 
   final FirebaseFirestore firebaseFirestore;
-
-  CommunityDataSourceImpl({@required this.firebaseFirestore});
+  final FirebaseFunctions functions;
+  CommunityDataSourceImpl({@required this.functions, @required this.firebaseFirestore});
 
   @override
   Future<CommunityPostDataModel> addPost(CommunityPost postData) async{
     try {
-      await firebaseFirestore.collection('Community').doc().set(
-          CommunityPostDataModel.toMap(postData));
+      await functions
+          .httpsCallable("addCommunityPost")
+          .call(
+            CommunityPostDataModel.toMap(postData)
+      );
       return Future.value(CommunityPostDataModel.fromCommunityPost(postData));
     } on Exception{
       throw ServerException();
@@ -64,6 +71,18 @@ class CommunityDataSourceImpl implements CommunityDataSource{
     try {
       await firebaseFirestore.collection('Community').doc(postData.docID).update(CommunityPostDataModel.toMap(postData));
       return Future.value(CommunityPostDataModel.fromCommunityPost(postData));
+    } on Exception{
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<CommunityCommentDatamodel> commentPost(CommunityComment comment) async{
+    try {
+      var commentMap = CommunityCommentDatamodel.toMap(comment);
+      var commentFunction = functions.httpsCallable('commentCommunityPost');
+      commentFunction.call(commentMap);
+      return Future.value(CommunityCommentDatamodel.fromMap(commentMap));
     } on Exception{
       throw ServerFailure();
     }

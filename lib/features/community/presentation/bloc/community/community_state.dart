@@ -34,3 +34,8 @@ class ErrorCommunitiesState extends CommunityState{
   @override
   List<Object> get props => [msg];
 }
+
+class SuccessfulCommunityState extends CommunityState{
+  @override
+  List<Object> get props => [];
+}

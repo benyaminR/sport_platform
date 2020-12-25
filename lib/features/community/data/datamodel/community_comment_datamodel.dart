@@ -4,11 +4,11 @@ import 'package:sport_platform/features/community/domain/entity/community_commen
 
 class CommunityCommentDatamodel extends CommunityComment{
 
-  CommunityCommentDatamodel({@required username, @required thumbnail, @required stars, @required text, @required date})
+  CommunityCommentDatamodel({@required username, @required thumbnail, @required postID, @required text, @required date})
       : super(
     username:username,
     thumbnail:thumbnail,
-    stars:stars,
+    postID:postID,
     text:text,
     date:date,
   );
@@ -18,14 +18,14 @@ class CommunityCommentDatamodel extends CommunityComment{
     'date':data.date,
     'username':data.username,
     'thumbnail':data.thumbnail,
-    'stars':data.stars,
+    'postID':data.postID,
     'text':data.text,
   };
 
   factory CommunityCommentDatamodel.fromMap(Map<String,dynamic> data) => CommunityCommentDatamodel(
     date:data['date'] ,
     thumbnail: data['thumbnail'],
-    stars: data['stars'],
+    postID: data['postID'],
     text: data['text'],
     username:data['username']
   );

@@ -23,6 +23,7 @@ import 'features/chat/data/datasource/chat_data_source.dart';
 import 'features/chat/domain/repository/chat_repo.dart';
 import 'features/chat/data/repository/chat_repo_impl.dart';
 import 'features/authentication/domain/usecase/check_authentication_use_case.dart';
+import 'features/community/domain/usecase/comment_community_post_use_case.dart';
 import 'features/community/presentation/bloc/community/community_bloc.dart';
 import 'features/community/data/datasource/community_data_source.dart';
 import 'features/community/domain/repository/community_repo.dart';
@@ -119,8 +120,9 @@ GetIt $initGetIt(
   gh.singleton<ChatRepo>(ChatRepoImpl(dataSource: get<ChatDataSource>()));
   gh.singleton<CheckAuthenticationUseCase>(
       CheckAuthenticationUseCase(repo: get<AuthRepo>()));
-  gh.singleton<CommunityDataSource>(
-      CommunityDataSourceImpl(firebaseFirestore: get<FirebaseFirestore>()));
+  gh.singleton<CommunityDataSource>(CommunityDataSourceImpl(
+      functions: get<FirebaseFunctions>(),
+      firebaseFirestore: get<FirebaseFirestore>()));
   gh.singleton<CommunityRepo>(
       CommunityRepoImpl(datasource: get<CommunityDataSource>()));
   gh.singleton<CoursesDataSource>(
@@ -172,11 +174,14 @@ GetIt $initGetIt(
     registerWithEmail: get<RegisterWithEmailUseCase>(),
     resetPassword: get<SendPasswordRecoveryEmailUseCase>(),
   ));
+  gh.singleton<CommentCommunityPostUseCase>(
+      CommentCommunityPostUseCase(repo: get<CommunityRepo>()));
   gh.singleton<CommunityBloc>(CommunityBloc(
     get<AddPostUseCase>(),
     get<GetPostsUseCase>(),
     get<RemovePostUseCase>(),
     get<UpdatePostUseCase>(),
+    get<CommentCommunityPostUseCase>(),
   ));
   gh.singleton<CoursesBloc>(CoursesBloc(
     initialState: get<IdleCoursesState>(),

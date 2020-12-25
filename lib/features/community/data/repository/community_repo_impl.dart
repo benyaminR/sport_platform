@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/community/data/datasource/community_data_source.dart';
+import 'package:sport_platform/features/community/domain/entity/community_comment.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'package:sport_platform/features/community/domain/repository/community_repo.dart';
 import 'package:sport_platform/utils/criteria.dart';
@@ -50,6 +51,16 @@ class CommunityRepoImpl extends CommunityRepo{
   Future<Either<Failure, CommunityPost>> updatePost(CommunityPost postData) async{
     try{
       var post = await datasource.updatePost(postData);
+      return Right(post);
+    }on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, CommunityComment>> commentPost(CommunityComment comment) async{
+    try{
+      var post = await datasource.commentPost(comment);
       return Right(post);
     }on ServerException{
       return Left(ServerFailure());

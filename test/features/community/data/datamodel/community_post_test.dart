@@ -14,7 +14,7 @@ void main() {
       media: [CommunityMediaDataModel(thumbnail: 'thumbnail', viewCount: 100, source: 'source', creationDate: 'date', mediaType: 'type')],
       username: 'username',
       thumbnail: 'thumbnail',
-      comments: [CommunityCommentDatamodel(username: 'username', thumbnail: 'thumbnail', stars: 4.3, text: 'sda', date: 'date')],
+      comments: [CommunityCommentDatamodel(username: 'username', thumbnail: 'thumbnail', postID: 4.3, text: 'sda', date: 'date')],
       likes: [CommunityLikeDataModel(username: 'username', thumbnail: 'thumbnail', date: 'date')],
       shares: [CommunityShareDataModel(username: 'username', thumbnail: 'thumbnail', date: 'date')]
   );

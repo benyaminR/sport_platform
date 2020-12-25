@@ -46,10 +46,10 @@ class _CommunityState extends State<Community> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: <Widget>[
-                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
-                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
-                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
-                      ProfilePicture(url:'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 20.0,),
+                      ProfilePicture(url:'Users/face_00.jpg', size: 20.0,),
+                      ProfilePicture(url:'Users/face_01.jpg', size: 20.0,),
+                      ProfilePicture(url:'Users/face_02.jpg', size: 20.0,),
+                      ProfilePicture(url:'Users/face_03.jpg', size: 20.0,),
                     ],
                   ),
                 ),
