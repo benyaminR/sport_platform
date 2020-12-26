@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +73,6 @@ class PostAdd extends StatelessWidget {
                                   Scaffold.of(context).showSnackBar(SnackBar(content: Text("Description or Media is Empty!")));
                                 }else{
                                   var sp = await SharedPreferences.getInstance();
-
                                   getIt<CommunityBloc>().add(AddPostEvent(postData: CommunityPost(
                                     date: DateTime.now().toString(),
                                     username:sp.getString("username"),
@@ -87,6 +88,7 @@ class PostAdd extends StatelessWidget {
                                       )
                                     ],
                                     shares: [],
+                                    location:['England','Austria','Italy','Germany'][Random().nextInt(3)]
                                   )));
                                 }                              },
                             ),

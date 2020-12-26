@@ -16,9 +16,11 @@ class CommunityMediaDataModel extends CommunityMedia{
     'mediaType':data.mediaType,
   };
 
-  factory CommunityMediaDataModel.fromMap(Map<String,dynamic> data)=> CommunityMediaDataModel(
+  factory CommunityMediaDataModel.fromMap(Map<String,dynamic> data){
+    return CommunityMediaDataModel(
     source: data['source'],
     mediaType:data['mediaType']
   );
+  }
 
 }

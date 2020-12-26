@@ -51,7 +51,7 @@ class PostElements extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Berlin, Deutschland",
+                                communityPost.location,
                                 style: TextStyle(
                                   fontSize: 10,
                                   color: Color(0xFF707070),
