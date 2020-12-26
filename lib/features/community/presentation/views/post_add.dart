@@ -11,8 +11,6 @@ import 'package:sport_platform/features/community/presentation/bloc/community/co
 import 'package:sport_platform/features/storage/domain/entity/storage_data.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 
-
-
 class PostAdd extends StatelessWidget {
   final _descriptionTextController = TextEditingController();
   var fileName = "";
@@ -81,11 +79,8 @@ class PostAdd extends StatelessWidget {
                                     likes: [],
                                     media: [
                                       CommunityMedia(
-                                          thumbnail: "",
                                           mediaType: "image",
                                           source: fileName,
-                                          creationDate: DateTime.now().toString(),
-                                          viewCount: 0
                                       )
                                     ],
                                     shares: [],

@@ -17,17 +17,11 @@ Future<void> generate() async{
           date: DateTime.now().toString(),
           media: [
             CommunityMedia(
-                thumbnail: '',
-                viewCount: 0,
                 source: '/Courses/FitnessClass/1600x826-iStock-621570608-min-1600x570.jpg',
-                creationDate: DateTime.now().toString(),
                 mediaType: 'img'
             ),
             CommunityMedia(
-                thumbnail: '',
-                viewCount: 0,
                 source: '/Courses/FitnessClass/fitness-fitnessstudio-kornwestheim-funsportzentrum-aktion-2020-herbst-slider-72cc2e30.jpeg',
-                creationDate: DateTime.now().toString(),
                 mediaType: 'img'
             ),
           ],

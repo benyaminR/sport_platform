@@ -9,6 +9,7 @@ import 'package:sport_platform/utils/components/profile_picture.dart';
 import 'package:sport_platform/utils/custom_icons_icons.dart';
 import '../../../../bottom_sheet_comment.dart';
 
+
 class PostElements extends StatelessWidget {
   final CommunityPost communityPost;
 
