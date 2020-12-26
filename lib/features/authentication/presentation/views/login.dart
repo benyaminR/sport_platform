@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
+import 'package:sport_platform/utils/cache_manager.dart';
 
 class Login extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -182,7 +183,7 @@ class Login extends StatelessWidget {
           },
           listener: (context, state) {
             if (state is SignedInState)
-              Navigator.pushNamed(context, '/home');
+              cacheUserDate().then((value) => Navigator.pushNamed(context, '/home'));
             if (state is ErrorState)
               Scaffold.of(context).showSnackBar(SnackBar(
                 content: Text(state.msg),

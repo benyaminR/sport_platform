@@ -10,7 +10,6 @@ import 'features/community/presentation/views/community.dart';
 
 class Home extends StatefulWidget {
   Home();
-
   _HomeState createState() => _HomeState();
 }
 
@@ -18,6 +17,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
 
   Widget currentPage = Discovery();
+
 
   @override
   Widget build(BuildContext context) {
@@ -143,4 +143,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
 }

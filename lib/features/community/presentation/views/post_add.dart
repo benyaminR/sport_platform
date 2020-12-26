@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/community/domain/entity/community_media.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
@@ -64,16 +65,18 @@ class PostAdd extends StatelessWidget {
                                 size: 28,
                                 color: Colors.white,
                               ),
-                              onTap: (){
+                              onTap: () async {
                                 var description = _descriptionTextController.text;
                                 if(fileName == "" || description == ""){
                                   Scaffold.of(context).showSnackBar(SnackBar(content: Text("Description or Media is Empty!")));
                                 }else{
+                                  var sp = await SharedPreferences.getInstance();
+
                                   getIt<CommunityBloc>().add(AddPostEvent(postData: CommunityPost(
                                     date: DateTime.now().toString(),
-                                    username: "Benyamin Radmard",
+                                    username:sp.getString("username"),
                                     description: description,
-                                    thumbnail: "Users/UnknownUserImage.png",
+                                    thumbnail: sp.getString("profileImage"),
                                     comments: [],
                                     docID: "",
                                     likes: [],
