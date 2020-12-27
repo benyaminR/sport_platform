@@ -5,10 +5,11 @@ import 'package:sport_platform/features/community/domain/entity/community_like.d
 class CommunityLikeDataModel extends CommunityLike{
 
 
-  CommunityLikeDataModel({@required date, @required username, @required thumbnail, }) : super(
+  CommunityLikeDataModel({@required date, @required username, @required thumbnail, @required uid}) : super(
       date:date,
       username:username,
       thumbnail:thumbnail,
+    uid: uid
   );
 
 
@@ -16,12 +17,14 @@ class CommunityLikeDataModel extends CommunityLike{
     'date':data.date,
     'username':data.username,
     'thumbnail':data.thumbnail,
+    'uid':data.uid
   };
 
   factory CommunityLikeDataModel.fromMap(Map<String,dynamic> data) =>  CommunityLikeDataModel(
     thumbnail: data['thumbnail'],
     date: data['date'],
     username:data['username'],
+    uid: data['uid']
   );
 
 }

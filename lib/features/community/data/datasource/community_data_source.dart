@@ -16,6 +16,7 @@ abstract class CommunityDataSource{
   Future<CommunityPostDataModel> removePost(CommunityPost postData);
   Future<CommunityPostDataModel> updatePost(CommunityPost postData);
   Future<CommunityCommentDatamodel> commentPost(CommunityComment comment);
+  Future<void> like(String postID);
 }
 
 @Singleton(as: CommunityDataSource)
@@ -83,6 +84,16 @@ class CommunityDataSourceImpl implements CommunityDataSource{
       var commentFunction = functions.httpsCallable('commentCommunityPost');
       commentFunction.call(commentMap);
       return Future.value(CommunityCommentDatamodel.fromMap(commentMap));
+    } on Exception{
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<void> like(String postID) async{
+    try {
+      await functions.httpsCallable('likePost').call({'postID':postID});
+      return Future.value();
     } on Exception{
       throw ServerFailure();
     }

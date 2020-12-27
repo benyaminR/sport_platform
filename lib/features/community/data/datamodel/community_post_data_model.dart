@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sport_platform/features/community/data/datamodel/community_share_data_model.dart';
-import 'package:sport_platform/features/community/domain/entity/community_media.dart';
 import 'package:sport_platform/features/community/domain/entity/community_post.dart';
 import 'community_comment_datamodel.dart';
 import 'community_like_data_model.dart';
 import 'community_media_data_model.dart';
 
 class CommunityPostDataModel extends CommunityPost{
+
   CommunityPostDataModel({
     @required description,
     @required date,
@@ -21,6 +21,7 @@ class CommunityPostDataModel extends CommunityPost{
     @required docID,
     @required location
   }):
+
   super(
           description:description,
           date:date,

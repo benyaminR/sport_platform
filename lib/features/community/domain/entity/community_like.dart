@@ -6,9 +6,9 @@ class CommunityLike extends Equatable{
   final String date;
   final String username;
   final String thumbnail;
+  final String uid;
 
-
-  CommunityLike({@required this.date,@required this.username, @required this.thumbnail, });
+  CommunityLike({@required this.uid,@required this.date,@required this.username, @required this.thumbnail, });
   @override
-  List<Object> get props => [date, username, thumbnail];
+  List<Object> get props => [uid,date, username, thumbnail];
 }

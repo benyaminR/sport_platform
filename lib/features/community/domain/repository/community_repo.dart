@@ -11,4 +11,5 @@ abstract class CommunityRepo{
   Future<Either<Failure, CommunityPost>> removePost(CommunityPost postData);
   Future<Either<Failure, CommunityPost>> updatePost(CommunityPost postData);
   Future<Either<Failure, CommunityComment>> commentPost(CommunityComment comment,);
+  Future<Either<Failure, void>> like(String postID);
 }

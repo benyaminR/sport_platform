@@ -67,4 +67,14 @@ class CommunityRepoImpl extends CommunityRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, void>> like(String postID) async {
+    try{
+      var post = await datasource.like(postID);
+      return Right(null);
+    }on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
 }

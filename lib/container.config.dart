@@ -44,6 +44,7 @@ import 'features/courses/domain/usecase/get_courses_use_case.dart';
 import 'features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
 import 'features/community/domain/usecase/get_posts_use_case.dart';
 import 'features/users/domain/usecase/get_users_use_case.dart';
+import 'features/community/domain/usecase/like_post_use_case.dart';
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart';
 import 'features/community/domain/usecase/remove_post_use_case.dart';
 import 'features/users/domain/usecase/remove_users_use_case.dart';
@@ -139,6 +140,7 @@ GetIt $initGetIt(
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<GetPostsUseCase>(GetPostsUseCase(repo: get<CommunityRepo>()));
   gh.singleton<GetUsersUseCase>(GetUsersUseCase(repo: get<UsersRepo>()));
+  gh.singleton<LikePostUseCase>(LikePostUseCase(repo: get<CommunityRepo>()));
   gh.singleton<RegisterWithEmailUseCase>(
       RegisterWithEmailUseCase(repo: get<AuthRepo>()));
   gh.singleton<RemovePostUseCase>(

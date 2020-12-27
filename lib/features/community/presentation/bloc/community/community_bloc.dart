@@ -21,7 +21,6 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
   final UpdatePostUseCase updatePostUseCase;
   final CommentCommunityPostUseCase commentUseCase;
 
-
   CommunityBloc(this.addPostUseCase, this.getPostsUseCase, this.removePostUseCase, this.updatePostUseCase,this.commentUseCase) : super(IdleCommunitiesState());
 
   static const ADD_POST_ERROR = 'Failed To Post!';
