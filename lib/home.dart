@@ -5,7 +5,7 @@ import 'package:sport_platform/discovery.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:sport_platform/personal.dart';
 
-import 'features/chat/presentation/views/chat_overview.dart';
+import 'features/chat/presentation/views/chat_history.dart';
 import 'features/community/presentation/views/community.dart';
 
 class Home extends StatefulWidget {

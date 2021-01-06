@@ -6,17 +6,18 @@ import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_bloc.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_event.dart';
 
-class ChatElementDetailviewMessage extends StatelessWidget {
+class ChatDetailviewListElementMessage extends StatelessWidget {
   final String receiver;
   final String sender;
   final TextEditingController _controller = TextEditingController();
 
-  ChatElementDetailviewMessage({Key key,@required this.receiver,@required this.sender}) : super(key: key);
+  ChatDetailviewListElementMessage({Key key,@required this.receiver,@required this.sender}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
+      height: 45,
       color: Colors.black,
       child: Container(
         child: Row(
@@ -26,7 +27,7 @@ class ChatElementDetailviewMessage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30.0),
                 color: Colors.white,
               ),
-              width: 310.0,
+              width: 360.0,
               height: 30.0,
               child: Padding(
                 padding: const EdgeInsets.only(top: 14.0, left: 16.0),
