@@ -24,7 +24,7 @@ class _PersonalState extends State<Personal> {
               SizedBox(
                 height: 40,
               ),
-              ProfilePicture(url: 'https://i.pinimg.com/736x/38/1d/71/381d71e601a0b84411bc242e571288c2.jpg', size: 100.0,),
+              ProfilePicture(url: 'Trainers/face_01.jpg', size: 100.0,),
               SizedBox(
                 height: 10,
               ),
