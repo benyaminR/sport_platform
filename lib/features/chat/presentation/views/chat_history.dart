@@ -6,7 +6,7 @@ import 'package:sport_platform/features/chat/domain/entity/chat_history.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_bloc.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_event.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_state.dart';
-import 'package:sport_platform/features/chat/presentation/views/chat_element_overview.dart';
+import 'package:sport_platform/features/chat/presentation/views/chat_history_list_element.dart';
 
 class ChatOverview extends StatelessWidget {
   @override
@@ -23,7 +23,7 @@ class ChatOverview extends StatelessWidget {
                     builder: (context, snapshot) {
                       return Column(
                         children: snapshot.data.map((e) =>
-                            ChatElementOverview(
+                            ChatHistoryListElement(
                                 imageUrl: e.profileImage,
                                 username: e.sender,
                                 lastMsg: e.text,

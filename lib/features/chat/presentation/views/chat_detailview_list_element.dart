@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
-class ChatElementDetailview extends StatelessWidget {
+class ChatDetailviewListElement extends StatelessWidget {
   final String side;
   final String time;
   final String message;
   final String profilePic;
 
-  ChatElementDetailview({@required this.side, @required this.time, @required this.message, @required this.profilePic});
+  ChatDetailviewListElement({@required this.side, @required this.time, @required this.message, @required this.profilePic});
 
   @override
   Widget build(BuildContext context) {

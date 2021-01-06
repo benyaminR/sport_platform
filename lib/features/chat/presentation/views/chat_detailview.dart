@@ -8,9 +8,9 @@ import 'package:sport_platform/features/chat/domain/entity/chat_message.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_bloc.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_event.dart';
 import 'package:sport_platform/features/chat/presentation/bloc/chat/chat_state.dart';
-import 'package:sport_platform/features/chat/presentation/views/chat_element_detailview_message.dart';
-import 'chat_element_detailview.dart';
-import 'chat_element_detailview_top.dart';
+import 'package:sport_platform/features/chat/presentation/views/chat_detailview_list_element_message.dart';
+import 'chat_detailview_list_element.dart';
+import 'chat_detailview_list_element_top.dart';
 
 
 class ChatDetailview extends StatefulWidget {
@@ -76,7 +76,7 @@ class _ChatDetailviewState extends State<ChatDetailview> {
                           builder: (context, snapshot) {
                             if(snapshot.hasData)
                               return ListView.builder(
-                                itemBuilder:(context, index) => ChatElementDetailview(
+                                itemBuilder:(context, index) => ChatDetailviewListElement(
                                   side: snapshot.data[index].sender == myUID ? 'right':'left',
                                   message: snapshot.data[index].text,
                                   time: snapshot.data[index].sentDate,
@@ -105,9 +105,9 @@ class _ChatDetailviewState extends State<ChatDetailview> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),
-                  child: ChatElementDetailviewTop(profileImage: otherProfileImage,username: otherUsername,),
+                  child: ChatDetailviewListElementTop(profileImage: otherProfileImage,username: otherUsername,),
                 ),
-                ChatElementDetailviewMessage(receiver: otherUID,sender: myUID,),
+                ChatDetailviewListElementMessage(receiver: otherUID,sender: myUID,),
               ],
             )
           ]

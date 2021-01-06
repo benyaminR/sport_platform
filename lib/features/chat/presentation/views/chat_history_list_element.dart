@@ -5,14 +5,14 @@ import 'package:sport_platform/utils/components/profile_picture.dart';
 
 
 
-class ChatElementOverview extends StatelessWidget {
+class ChatHistoryListElement extends StatelessWidget {
   final String imageUrl;
   final String username;
   final String lastMsg;
   final String date;
   final int unreadCount;
   final String uid;
-  const ChatElementOverview({
+  const ChatHistoryListElement({
     Key key,
     @required this.imageUrl,
     @required this.username,
@@ -25,7 +25,7 @@ class ChatElementOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 8.0, top: 10.0, bottom: 0.0),
+      padding: EdgeInsets.only(left: 8.0, top: 10.0, bottom: 0.0, right: 8.0),
       child: Container(
         child: GestureDetector(
           child: Row(
@@ -58,7 +58,7 @@ class ChatElementOverview extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 100.0,
+                width: 80.0,
               ),
               Padding(
                 padding: EdgeInsets.only(left: 8.0),
