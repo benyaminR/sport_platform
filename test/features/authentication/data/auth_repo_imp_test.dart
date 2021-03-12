@@ -7,12 +7,11 @@ import 'package:mockito/mockito.dart';
 import 'package:sport_platform/features/authentication/data/datamodel/auth_data_model.dart';
 import 'package:sport_platform/features/authentication/data/datasource/auth_remote_data_source.dart';
 import 'package:sport_platform/features/authentication/data/repository/auth_repo_imp.dart';
-import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
 class AuthRemoteDataSourceMock extends Mock implements AuthRemoteDataSource{}
-
 
 main() {
 
@@ -20,29 +19,8 @@ main() {
   final repo = AuthRepoImp(dataSource:datasource);
   final left = ServerFailure();
   final right = AuthDatamodel(userCredential: null);
+
   group('AuthRepoImp ', () {
-
-    group('SignInAnonymously ',(){
-
-      test('should handle right',() async{
-        //arrange
-        when(datasource.signInAnonymously()).thenAnswer((_) async => right);
-        //act
-        var res = await repo.signInAnonymously();
-        //assert
-        expect(res,Right(right));
-      });
-
-      test('should handle left',() async{
-        //arrange
-        when(datasource.signInAnonymously()).thenThrow(ServerException());
-        //act
-        var res = await repo.signInAnonymously();
-        //assert
-        expect(res,Left(left));
-      });
-
-    });
 
     group('SignInWithGoogle ',(){
 
@@ -85,29 +63,26 @@ main() {
       });
     });
 
-    group('SignInWithFacebook ',(){
+    group('RegisterWithEmail ',(){
       test('should handle right',() async{
         //arrange
-        when(datasource.signInWithFacebook()).thenAnswer((_) async => right);
+        when(datasource.registerWithEmail('email', 'password')).thenAnswer((_) async => right);
         //act
-        var res = await repo.signInWithFacebook();
+        var res = await repo.registerWithEmail('email', 'password');
         //assert
         expect(res,Right(right));
       });
 
       test('should handle left',() async{
         //arrange
-        when(datasource.signInWithFacebook()).thenThrow(ServerException());
+        when(datasource.registerWithEmail('email', 'password')).thenThrow(ServerException());
         //act
-        var res = await repo.signInWithFacebook();
+        var res = await repo.registerWithEmail('email', 'password');
         //assert
         expect(res,Left(left));
       });
     });
 
-    group('SignInWithApple ',(){
-
-    });
 
     group('checkAuthentication ',(){
       test('should handle right',() async{
@@ -129,6 +104,25 @@ main() {
       });
     });
 
+    group('senPasswordRecovery ',(){
+      test('should handle right',() async{
+        //arrange
+        when(datasource.sendPasswordRecoveryEmail('email')).thenAnswer((_) async => right);
+        //act
+        var res = await repo.sendPasswordRecoveryEmail('email');
+        //assert
+        expect(res,Right(right));
+      });
+
+      test('should handle left',() async{
+        //arrange
+        when(datasource.sendPasswordRecoveryEmail('email')).thenThrow(ServerException());
+        //act
+        var res = await repo.sendPasswordRecoveryEmail('email');
+        //assert
+        expect(res,Left(left));
+      });
+    });
   });
 
 }

@@ -1,47 +1,39 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/features/authentication/domain/repository/auth_repo.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/check_authentication_use_case.dart';
-import 'package:sport_platform/features/authentication/domain/usecase/sign_in_anonymouly_use_case.dart';
-import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_apple_use_case.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/register_with_email_use_case.dart';
+import 'package:sport_platform/features/authentication/domain/usecase/send_password_recovery_email_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_email_use_case.dart';
-import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_facebook_use_case.dart';
 import 'package:sport_platform/features/authentication/domain/usecase/sign_in_with_google_use_case.dart';
-import 'package:sport_platform/features/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:sport_platform/utils/usecases/no_params.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 
 class AuthRepoMock extends Mock implements AuthRepo{}
+class AuthDataMock extends Mock implements Auth{}
 
 
 main() {
   final repo = AuthRepoMock();
-  final authdata = AuthData(creds: null);
+  final authdata = AuthDataMock();
   group('Auth UseCase',(){
-    test('SignInAnonymouslyUseCase redirects to authrepo.SignInAnonymously', () async{
+
+    test('RegisterWithEmailUseCase redirects to authrepo.registerWithEmail()', () async{
       //arrange
-      final usecase = SignInAnonymouslyUseCase(repo:repo);
-      when(repo.signInAnonymously()).thenAnswer((_) async => Right(authdata));
+      final usecase = RegisterWithEmailUseCase(repo:repo);
+      var email = 'email';
+      var password = 'password';
+
+      when(repo.registerWithEmail(email,password)).thenAnswer((_) async => Right(authdata));
       //act
-      var res = await usecase(NoParams());
+      var res = await usecase(WithParams(param: [email,password]));
       //assert
       expect(res, Right(authdata));
-      verify(repo.signInAnonymously());
+      verify(repo.registerWithEmail(email, password));
     });
 
-    test('SignInWithAppleUseCase redirects to authrepo.SignInWithApple', () async{
-      //arrange
-      final usecase = SignInWithAppleUseCase(repo:repo);
-      when(repo.signInWithApple()).thenAnswer((_) async => Right(authdata));
-      //act
-      var res = await usecase(NoParams());
-      //assert
-      expect(res, Right(authdata));
-      verify(repo.signInWithApple());
-
-    });
 
     test('SignInWithGoogleUseCase redirects to authrepo.SignInWithGoogle', () async{
       //arrange
@@ -57,37 +49,39 @@ main() {
     test('SignInWithEmailUseCase redirects to authrepo.SignInWithEmail', () async{
       //arrange
       final usecase = SignInWithEmailUseCase(repo:repo);
-      when(repo.signInWithEmail('email','password')).thenAnswer((_) async => Right(authdata));
+      final email = 'e'; final password = 'p';
+      when(repo.signInWithEmail(email,password)).thenAnswer((_) async => Right(authdata));
       //act
-      var res = await usecase(WithParams(param: ['email','password']));
+      var res = await usecase(WithParams(param: [email,password]));
       //assert
       expect(res, Right(authdata));
-      verify(repo.signInWithEmail(any,any));
+      verify(repo.signInWithEmail(email,password));
 
     });
 
-    test('SignInWithFacebookUseCase redirects to authrepo.SignInWithEmail', () async{
-      //arrange
-      final usecase = SignInWithFacebookUseCase(repo:repo);
-      when(repo.signInWithFacebook()).thenAnswer((_) async => Right(authdata));
-      //act
-      var res = await usecase(NoParams());
-      //assert
-      expect(res, Right(authdata));
-      verify(repo.signInWithFacebook());
-    });
+
 
     test('CheckAuthenticationUseCase redirects to authrepo.CheckAuthentication()', () async{
       //arrange
       final usecase = CheckAuthenticationUseCase(repo:repo);
-      when(repo.signInWithFacebook()).thenAnswer((_) async => Right(authdata));
+      when(repo.checkAuthentication()).thenAnswer((_) async => Right(authdata));
       //act
       var res = await usecase(NoParams());
       //assert
       expect(res, Right(authdata));
-      verify(repo.signInWithFacebook());
+      verify(repo.checkAuthentication());
     });
 
+    test('sendPasswordRecoveryEmailUsecase redirects to authrepo.sendPasswordRecoveryEmail(String)', () async{
+      //arrange
+      final usecase = SendPasswordRecoveryEmailUseCase(repo:repo);
+      when(repo.sendPasswordRecoveryEmail('email')).thenAnswer((_) async => Right(authdata));
+      //act
+      var res = await usecase(WithParams(param: ['email']));
+      //assert
+      expect(res, Right(authdata));
+      verify(repo.sendPasswordRecoveryEmail('email'));
+    });
   });
 
 }

@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:sport_platform/features/authentication/domain/entity/auth_data.dart';
+import 'package:sport_platform/features/authentication/domain/entity/auth.dart';
 import 'package:sport_platform/utils/error/failure.dart';
 
 abstract class AuthRepo{
-  Future<Either<Failure,AuthData>> signInAnonymously();
-  Future<Either<Failure,AuthData>> signInWithGoogle();
-  Future<Either<Failure,AuthData>> signInWithApple();
-  Future<Either<Failure,AuthData>> signInWithEmail(String email,String password);
-  Future<Either<Failure,AuthData>> signInWithFacebook();
-  Future<Either<Failure,AuthData>> checkAuthentication();
+  Future<Either<Failure,Auth>> signInWithGoogle();
+  Future<Either<Failure,Auth>> signInWithEmail(String email,String password);
+  Future<Either<Failure,Auth>> checkAuthentication();
+  Future<Either<Failure,Auth>> registerWithEmail(String email,String password);
+  Future<Either<Failure,Auth>> sendPasswordRecoveryEmail(String email);
 }
