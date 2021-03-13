@@ -54,70 +54,70 @@ class _HomeState extends State<Home> {
                     });
                   },
                 ),
-                IconButton(
-                  icon: _currentIndex == 1
-                      ? GlowIcon(
-                          Icons.language,
-                          size: 30.0,
-                          color: Color(0xFFE4572E),
-                          blurRadius: 4.0,
-                          glowColor: Color(0xFFE4572E),
-                        )
-                      : Icon(
-                          Icons.language,
-                          size: 30.0,
-                          color: Color(0xFF5B5B5C),
-                        ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 1;
-                      currentPage = Community();
-                    });
-                  },
-                ),
+                // IconButton(
+                //   icon: _currentIndex == 1
+                //       ? GlowIcon(
+                //           Icons.language,
+                //           size: 30.0,
+                //           color: Color(0xFFE4572E),
+                //           blurRadius: 4.0,
+                //           glowColor: Color(0xFFE4572E),
+                //         )
+                //       : Icon(
+                //           Icons.language,
+                //           size: 30.0,
+                //           color: Color(0xFF5B5B5C),
+                //         ),
+                //   onPressed: () {
+                //     setState(() {
+                //       _currentIndex = 1;
+                //       currentPage = Community();
+                //     });
+                //   },
+                // ),
+                // IconButton(
+                //   icon: _currentIndex == 2
+                //       ? GlowIcon(
+                //           Icons.add_circle_outline,
+                //           size: 30.0,
+                //           color: Color(0xFFE4572E),
+                //           blurRadius: 4.0,
+                //           glowColor: Color(0xFFE4572E),
+                //         )
+                //       : Icon(
+                //           Icons.add_circle_outline,
+                //           size: 30.0,
+                //           color: Color(0xFF5B5B5C),
+                //         ),
+                //   onPressed: () {
+                //     _currentIndex = 2;
+                //     onButtonPressedAddMedia(context);
+                //   },
+                // ),
+                // IconButton(
+                //   icon: _currentIndex == 3
+                //       ? GlowIcon(
+                //           Icons.message,
+                //           size: 30.0,
+                //           color: Color(0xFFE4572E),
+                //           blurRadius: 4.0,
+                //           glowColor: Color(0xFFE4572E),
+                //         )
+                //       : Icon(
+                //           Icons.message,
+                //           size: 30.0,
+                //           color: Color(0xFF5B5B5C),
+                //         ),
+                //   onPressed: () {
+                //     setState(() {
+                //       _currentIndex = 3;
+                //       currentPage = ChatOverview();
+                //     });
+                //   },
+                // ),
                 IconButton(
                   icon: _currentIndex == 2
                       ? GlowIcon(
-                          Icons.add_circle_outline,
-                          size: 30.0,
-                          color: Color(0xFFE4572E),
-                          blurRadius: 4.0,
-                          glowColor: Color(0xFFE4572E),
-                        )
-                      : Icon(
-                          Icons.add_circle_outline,
-                          size: 30.0,
-                          color: Color(0xFF5B5B5C),
-                        ),
-                  onPressed: () {
-                    _currentIndex = 2;
-                    onButtonPressedAddMedia(context);
-                  },
-                ),
-                IconButton(
-                  icon: _currentIndex == 3
-                      ? GlowIcon(
-                          Icons.message,
-                          size: 30.0,
-                          color: Color(0xFFE4572E),
-                          blurRadius: 4.0,
-                          glowColor: Color(0xFFE4572E),
-                        )
-                      : Icon(
-                          Icons.message,
-                          size: 30.0,
-                          color: Color(0xFF5B5B5C),
-                        ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 3;
-                      currentPage = ChatOverview();
-                    });
-                  },
-                ),
-                IconButton(
-                  icon: _currentIndex == 4
-                      ? GlowIcon(
                           Icons.person,
                           size: 30.0,
                           color: Color(0xFFE4572E),
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
                         ),
                   onPressed: () {
                     setState(() {
-                      _currentIndex = 4;
+                      _currentIndex = 2;
                       currentPage = Personal();
                     });
                   },
