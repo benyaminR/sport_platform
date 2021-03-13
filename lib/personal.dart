@@ -16,28 +16,44 @@ class _PersonalState extends State<Personal> {
 
   @override
   Widget build(BuildContext context) {
+    // Full screen width and height
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    // Height (without SafeArea)
+    final padding = MediaQuery.of(context).padding;
+    final double height1 = height - padding.top - padding.bottom;
+    // Height (without status bar)
+    final double height2 = height - padding.top;
+    // Height (without status and toolbar)
+    final double height3 = height - padding.top - kToolbarHeight;
+
     return SafeArea(
       child: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
               SizedBox(
-                height: 40,
+                height: height3 * 0.04,
               ),
-              ProfilePicture(url: 'Trainers/face_01.jpg', size: 100.0,),
+              ProfilePicture(
+                url: 'Trainers/face_01.jpg',
+                size: height3 * 0.15,
+              ),
               SizedBox(
-                height: 10,
+                height: height3 * 0.02,
               ),
               Text(
                 '@jacqueline',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  // fontSize: 20,
+                  fontSize: height3 * 0.03,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(
-                height: 20,
+                // height: 20,
+                height: height3 * 0.03,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -51,28 +67,28 @@ class _PersonalState extends State<Personal> {
                     ),
                   ],
                 ),
-                height: 40.0,
-                width: 140.0,
+                height: height3 * 0.06,
+                width: height3 * 0.21,
                 child: Center(
                   child: Text(
                     'Adden',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    style: TextStyle(color: Colors.white, fontSize: height3 * 0.03),
                   ),
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: height3 * 0.03,
               ),
               //Container mit Shadow
               Stack(
                 children: <Widget>[
                   Center(
                     child: Container(
-                      width: 240.0,
-                      height: 60.0,
+                      width: height3 * 0.36,
+                      height: height3 * 0.09,
                       decoration: new BoxDecoration(
                         color: Color(0xFF141416),
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 26.0),
@@ -85,19 +101,19 @@ class _PersonalState extends State<Personal> {
                                 Text(
                                   '100M',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: 16.0),
+                                      color: Color(0xFF707070), fontSize: height3 * 0.024),
                                 ),
                                 Text(
                                   'Followers',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: 8.0),
+                                      color: Color(0xFF707070), fontSize: height3 * 0.012),
                                 ),
                               ],
                             ),
                             Text(
                               '|',
-                              style:
-                              TextStyle(color: Color(0xFF707070), fontSize: 30.0),
+                              style: TextStyle(
+                                  color: Color(0xFF707070), fontSize: height3 * 0.045),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -105,19 +121,19 @@ class _PersonalState extends State<Personal> {
                                 Text(
                                   '100M',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: 16.0),
+                                      color: Color(0xFF707070), fontSize: height3 * 0.024),
                                 ),
                                 Text(
                                   'Followed',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: 8.0),
+                                      color: Color(0xFF707070), fontSize: height3 * 0.012),
                                 ),
                               ],
                             ),
                             Text(
                               '|',
-                              style:
-                              TextStyle(color: Color(0xFF707070), fontSize: 30.0),
+                              style: TextStyle(
+                                  color: Color(0xFF707070), fontSize: height3 * 0.045),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -125,12 +141,12 @@ class _PersonalState extends State<Personal> {
                                 Text(
                                   '100M',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: 16.0),
+                                      color: Color(0xFF707070), fontSize: height3 * 0.024),
                                 ),
                                 Text(
                                   'Likes',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: 8.0),
+                                      color: Color(0xFF707070), fontSize: height3 * 0.012),
                                 ),
                               ],
                             ),
@@ -140,61 +156,63 @@ class _PersonalState extends State<Personal> {
                     ),
                   ),
                   Align(
-                    alignment: Alignment.lerp(Alignment.bottomRight, Alignment.topLeft, 0.2),
+                    alignment: Alignment.lerp(
+                        Alignment.bottomRight, Alignment.topLeft, 0.2),
                     child: Image(
-                      width: 30.0,
-                      height: 30.0,
+                      width: height3 * 0.045,
+                      height: height3 * 0.045,
                       image: AssetImage('assets/images/star_personal.png'),
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 20.0,
+                height: height3 * 0.03,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
                   _bildbeschreibung,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: height3 * 0.022,
                     color: Color(0xFF707070),
                   ),
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: height3 * 0.03,
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20),
                   color: Color(0xFF141416),
                 ),
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 50.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Kurse",
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: height3 * 0.022,
                               color: Color(0xFF707070),
                             ),
                           ),
                           Text(
                             "Posts",
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: height3 * 0.022,
                               color: Color(0xFF707070),
                             ),
                           ),
                           Text(
                             "Liked",
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: height3 * 0.022,
                               color: Color(0xFF707070),
                             ),
                           ),
@@ -202,18 +220,20 @@ class _PersonalState extends State<Personal> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
+                      padding: const EdgeInsets.only(
+                          left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
                       child: PersonalCourseBoxBlack(),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
+                      padding: const EdgeInsets.only(
+                          left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
                       child: PersonalCourseBoxBlack(),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: height3 * 0.06,
               ),
             ],
           ),

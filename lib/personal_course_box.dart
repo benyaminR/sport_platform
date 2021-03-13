@@ -14,6 +14,17 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
 
   @override
   Widget build(BuildContext context) {
+    // Full screen width and height
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    // Height (without SafeArea)
+    final padding = MediaQuery.of(context).padding;
+    final double height1 = height - padding.top - padding.bottom;
+    // Height (without status bar)
+    final double height2 = height - padding.top;
+    // Height (without status and toolbar)
+    final double height3 = height - padding.top - kToolbarHeight;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -64,7 +75,7 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                                 fontSize: 20.0),
                           ),
                           SizedBox(
-                            width: 80,
+                            width: 30,
                           ),
                           Icon(Icons.person, size: 14.0, color: Color(0xFF707070)),
                           SizedBox(
