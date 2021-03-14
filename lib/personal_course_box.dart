@@ -39,7 +39,7 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: (MediaQuery.of(context).size.height) - height3 * 0.57,
+                    height: (MediaQuery.of(context).size.height) - height3 * 0.66,
                     decoration: new BoxDecoration(
                       color: Color(0xFF141416),
                       borderRadius: BorderRadius.only(

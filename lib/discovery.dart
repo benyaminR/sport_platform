@@ -42,11 +42,11 @@ class Discovery extends StatelessWidget {
             SizedBox(
               height: height3 * 0.015,
             ),
-            DiscoveryTrends(),
+            DiscoveryTrainers2(),
             SizedBox(
               height: height3 * 0.015,
             ),
-            DiscoveryTrainers2(),
+            DiscoveryTrends(),
             SizedBox(
               height: height3 * 0.015,
             ),
