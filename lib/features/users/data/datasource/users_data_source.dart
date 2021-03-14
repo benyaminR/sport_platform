@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/users/data/datamodel/user_data_model.dart';
 import 'package:sport_platform/features/users/domain/entity/user.dart';
 import 'package:sport_platform/utils/criteria.dart';
+import 'package:sport_platform/utils/error/exception.dart';
 
 
 abstract class UsersDataSource{
@@ -32,15 +33,19 @@ class UsersDataSourceImpl implements UsersDataSource{
 
   @override
   Future<List<UserDataModel>> getUsers(Criteria criteria) async{
-    if(criteria != null) {
-      var res = await firestore.collection('Users').where(
-          criteria.field, isEqualTo: criteria.data).get();
-
-      return res.docs.map((e) => UserDataModel.fromSnapshot(e)).toList();
-    }
-    else{
-      var res = await firestore.collection('Users').get();
-      return res.docs.map((e) => UserDataModel.fromSnapshot(e)).toList();
+    try {
+      if (criteria != null) {
+        var res = await firestore.collection('Users').where(
+            criteria.field, isEqualTo: criteria.data).get();
+        return res.docs.map((e) => UserDataModel.fromSnapshot(e)).toList();
+      }
+      else {
+        var uid = firebaseAuth.currentUser.uid;
+        var res = await firestore.collection('Users').doc(uid).get();
+        return [UserDataModel.fromSnapshot(res)];
+      }
+    } on Exception{
+      throw ServerException();
     }
   }
 

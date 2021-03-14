@@ -1,21 +1,45 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/container.dart';
+import 'package:sport_platform/features/users/domain/entity/user.dart';
 import 'package:sport_platform/personal_course_box_black.dart';
-
+import 'features/users/presentation/bloc/users/users_bloc.dart';
 import 'utils/components/profile_picture.dart';
 
-class Personal extends StatefulWidget {
-  Personal();
 
-  _PersonalState createState() => _PersonalState();
-}
+class Personal extends StatelessWidget {
 
-class _PersonalState extends State<Personal> {
-  final String _bildbeschreibung =
-      "Danke für die Erinnerung, hatte die Woche keine Zeit mich bei dir zu melden. Aber wir können gerne die Themen besprechen. Glaube, dass Tim keine Infos vom letzten Meeting bekommen hat";
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider.value(
+      value: getIt.get<UsersBloc>()..add(GetUsersEvent(criteria: null)),
+      child: BlocBuilder<UsersBloc,UsersState>(
+        builder: (context, state) {
+          if(state is LoadingUsersState)
+            return loadingUsersWidget();
+          if(state is LoadedUsersState)
+            return mainBody(context,state.users[0]);
+          if(state is ErrorUsersState)
+            return errorGettingUserWidget(state.msg);
+          return null;
+        },
+      ),
+    );
+  }
+
+  Widget loadingUsersWidget(){
+    return Center(child: CircularProgressIndicator(),);
+  }
+
+  Widget errorGettingUserWidget(String msg){
+    return Center(child: Text(msg),);
+  }
+
+
+  Widget mainBody(BuildContext context, User user){
+
     // Full screen width and height
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
@@ -36,14 +60,14 @@ class _PersonalState extends State<Personal> {
                 height: height3 * 0.04,
               ),
               ProfilePicture(
-                url: 'Trainers/face_01.jpg',
+                url: user.profileImage,
                 size: height3 * 0.15,
               ),
               SizedBox(
                 height: height3 * 0.02,
               ),
               Text(
-                '@jacqueline',
+                '@${user.username}',
                 style: TextStyle(
                   color: Colors.white,
                   // fontSize: 20,
@@ -172,7 +196,7 @@ class _PersonalState extends State<Personal> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  _bildbeschreibung,
+                  user.description,
                   style: TextStyle(
                     fontSize: height3 * 0.022,
                     color: Color(0xFF707070),
