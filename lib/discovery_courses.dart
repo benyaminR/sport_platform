@@ -10,6 +10,17 @@ import 'utils/components/image_section.dart';
 class DiscoveryCourses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Full screen width and height
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    // Height (without SafeArea)
+    final padding = MediaQuery.of(context).padding;
+    final double height1 = height - padding.top - padding.bottom;
+    // Height (without status bar)
+    final double height2 = height - padding.top;
+    // Height (without status and toolbar)
+    final double height3 = height - padding.top - kToolbarHeight;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -21,9 +32,9 @@ class DiscoveryCourses extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(
-                  left: 16.0, top: 16.0, right: 16.0, bottom: 8.0),
+                  left: height3 * 0.024, top: height3 * 0.024, right: height3 * 0.024, bottom: height3 * 0.012),
               child: Container(
-                height: 30.0,
+                height: height3 * 0.045,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -32,21 +43,21 @@ class DiscoveryCourses extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white,
                           // fontWeight: FontWeight.bold,
-                          fontSize: 20.0),
+                          fontSize: height3 * 0.03),
                     ),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
                         color: Colors.black,
                       ),
-                      height: 18.0,
-                      width: 56.0,
+                      height: height3 * 0.027,
+                      width: height3 * 0.084,
                       child: Center(
                         child: Text(
                           'Mehr',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 14.0),
+                              fontSize: height3 * 0.021),
                         ),
                       ),
                     ),
@@ -55,7 +66,7 @@ class DiscoveryCourses extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: 16.0, right: 0.0),
+              padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: height3 * 0.024, right: 0.0),
               child: BlocProvider(
                 create: (context) => getIt<CoursesBloc>()
                   ..add(GetCoursesEvent(criteriaData: null)),
@@ -68,7 +79,7 @@ class DiscoveryCourses extends StatelessWidget {
                     }
                     if (state is LoadedCoursesState) {
                       return Container(
-                        height: 120.0,
+                        height: height3 * 0.18,
                         child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: List.generate(

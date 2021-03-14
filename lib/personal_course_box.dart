@@ -33,13 +33,13 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+            padding: EdgeInsets.only(left: height3 * 0.024, right: height3 * 0.024, top: height3 * 0.024),
             child: Container(
               child: Stack(
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: (MediaQuery.of(context).size.height) - 380,
+                    height: (MediaQuery.of(context).size.height) - height3 * 0.57,
                     decoration: new BoxDecoration(
                       color: Color(0xFF141416),
                       borderRadius: BorderRadius.only(
@@ -50,20 +50,20 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 220.0, left: 16.0, right: 16.0),
+                    padding: EdgeInsets.only(top: height3 * 0.33, left: height3 * 0.012, right: height3 * 0.012),
                     child: Text(
                       _bildbeschreibung,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: height3 * 0.018,
                         color: Color(0xFF707070),
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                        top: 190.0, left: 16.0, right: 16.0),
+                        top: height3 * 0.285, left: height3 * 0.012, right: height3 * 0.012),
                     child: Container(
-                      height: 30.0,
+                      height: height3 * 0.045,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -72,40 +72,40 @@ class _PersonalCourseBoxState extends State<PersonalCourseBox> {
                             style: TextStyle(
                                 color: Colors.white,
                                 // fontWeight: FontWeight.bold,
-                                fontSize: 20.0),
+                                fontSize: height3 * 0.03),
                           ),
                           SizedBox(
-                            width: 30,
+                            width: height3 * 0.065,
                           ),
-                          Icon(Icons.person, size: 14.0, color: Color(0xFF707070)),
+                          Icon(Icons.person, size: height3 * 0.021, color: Color(0xFF707070)),
                           SizedBox(
-                            width: 5,
+                            width: height3 * 0.0075,
                           ),
                           Text(
                             '1,000,000',
                             style: TextStyle(
                                 color: Color(0xFF707070),
                                 // fontWeight: FontWeight.bold,
-                                fontSize: 12.0),
+                                fontSize: height3 * 0.018),
                           ),
                           SizedBox(
-                            width: 20,
+                            width: height3 * 0.065,
                           ),
-                          Icon(Icons.star, size: 14.0, color: Colors.white),
-                          Icon(Icons.star, size: 14.0, color: Colors.white),
-                          Icon(Icons.star, size: 14.0, color: Colors.white),
-                          Icon(Icons.star, size: 14.0, color: Colors.white),
+                          Icon(Icons.star, size: height3 * 0.021, color: Colors.white),
+                          Icon(Icons.star, size: height3 * 0.021, color: Colors.white),
+                          Icon(Icons.star, size: height3 * 0.021, color: Colors.white),
+                          Icon(Icons.star, size: height3 * 0.021, color: Colors.white),
                         ],
                       ),
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: (MediaQuery.of(context).size.height) - 500,
+                    height: (MediaQuery.of(context).size.height) - height3 * 0.80,
                     decoration: new BoxDecoration(
                       image: DecorationImage(
                         image: new NetworkImage(
-                            "https://www.wochenblatt.de/media/2020/06/07/42199020-l_202006070945_full.jpg"),
+                            "https://www.zdf.de/assets/fussball-cl-spielball-100~1280x720?cb=1607534334614"),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.only(
