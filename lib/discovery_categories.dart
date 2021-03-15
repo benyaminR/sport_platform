@@ -5,13 +5,7 @@ import 'package:sport_platform/utils/colors.dart';
 import 'utils/components/image_section.dart';
 import 'utils/components/image_section_2.dart';
 
-class DiscoveryCategories extends StatefulWidget {
-  @override
-  _DiscoveryCategoriesState createState() => _DiscoveryCategoriesState();
-}
-
-class _DiscoveryCategoriesState extends State<DiscoveryCategories> {
-
+class DiscoveryCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(

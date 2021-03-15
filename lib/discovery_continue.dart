@@ -1,26 +1,16 @@
-import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/image_section_3.dart';
 
-import 'bottom_sheet_comment.dart';
-import 'features/community/presentation/views/post_slide.dart';
-import 'utils/components/image_section.dart';
-
-class DiscoveryContinue extends StatefulWidget {
-  @override
-  _DiscoveryContinueState createState() => _DiscoveryContinueState();
-}
-
-class _DiscoveryContinueState extends State<DiscoveryContinue> {
+class DiscoveryContinue extends StatelessWidget {
   final String _course_description =
       "Werde Tennis-Profi in 4 Monaten. Der beste Tenniskurs ever. Ich bin der Tennisprofi!";
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.only(left: 16.0, top: 15.0, right: 16.0, bottom: 20.0),
+      padding: const EdgeInsets.only(
+          left: 16.0, top: 15.0, right: 16.0, bottom: 20.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
@@ -30,7 +20,8 @@ class _DiscoveryContinueState extends State<DiscoveryContinue> {
           width: MediaQuery.of(context).size.width,
           height: (MediaQuery.of(context).size.height) - 400,
           child: Padding(
-            padding: EdgeInsets.only(left: 16.0, top: 16.0, bottom: 8.0, right: 16.0),
+            padding: EdgeInsets.only(
+                left: 16.0, top: 16.0, bottom: 8.0, right: 16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

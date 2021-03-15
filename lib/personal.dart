@@ -4,13 +4,7 @@ import 'package:sport_platform/personal_course_box_black.dart';
 
 import 'utils/components/profile_picture.dart';
 
-class Personal extends StatefulWidget {
-  Personal();
-
-  _PersonalState createState() => _PersonalState();
-}
-
-class _PersonalState extends State<Personal> {
+class Personal extends StatelessWidget {
   final String _bildbeschreibung =
       "Danke für die Erinnerung, hatte die Woche keine Zeit mich bei dir zu melden. Aber wir können gerne die Themen besprechen. Glaube, dass Tim keine Infos vom letzten Meeting bekommen hat";
 
@@ -72,7 +66,8 @@ class _PersonalState extends State<Personal> {
                 child: Center(
                   child: Text(
                     'Adden',
-                    style: TextStyle(color: Colors.white, fontSize: height3 * 0.03),
+                    style: TextStyle(
+                        color: Colors.white, fontSize: height3 * 0.03),
                   ),
                 ),
               ),
@@ -101,19 +96,22 @@ class _PersonalState extends State<Personal> {
                                 Text(
                                   '100M',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: height3 * 0.024),
+                                      color: Color(0xFF707070),
+                                      fontSize: height3 * 0.024),
                                 ),
                                 Text(
                                   'Followers',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: height3 * 0.012),
+                                      color: Color(0xFF707070),
+                                      fontSize: height3 * 0.012),
                                 ),
                               ],
                             ),
                             Text(
                               '|',
                               style: TextStyle(
-                                  color: Color(0xFF707070), fontSize: height3 * 0.045),
+                                  color: Color(0xFF707070),
+                                  fontSize: height3 * 0.045),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -121,19 +119,22 @@ class _PersonalState extends State<Personal> {
                                 Text(
                                   '100M',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: height3 * 0.024),
+                                      color: Color(0xFF707070),
+                                      fontSize: height3 * 0.024),
                                 ),
                                 Text(
                                   'Followed',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: height3 * 0.012),
+                                      color: Color(0xFF707070),
+                                      fontSize: height3 * 0.012),
                                 ),
                               ],
                             ),
                             Text(
                               '|',
                               style: TextStyle(
-                                  color: Color(0xFF707070), fontSize: height3 * 0.045),
+                                  color: Color(0xFF707070),
+                                  fontSize: height3 * 0.045),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -141,12 +142,14 @@ class _PersonalState extends State<Personal> {
                                 Text(
                                   '100M',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: height3 * 0.024),
+                                      color: Color(0xFF707070),
+                                      fontSize: height3 * 0.024),
                                 ),
                                 Text(
                                   'Likes',
                                   style: TextStyle(
-                                      color: Color(0xFF707070), fontSize: height3 * 0.012),
+                                      color: Color(0xFF707070),
+                                      fontSize: height3 * 0.012),
                                 ),
                               ],
                             ),
