@@ -3,12 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'utils/components/image_section.dart';
 
-class PersonalCourseBoxBlack extends StatefulWidget {
-  @override
-  _PersonalCourseBoxBlackState createState() => _PersonalCourseBoxBlackState();
-}
+class PersonalCourseBoxBlack extends StatelessWidget {
 
-class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
   final String _bildbeschreibung =
       "Hallo Fitness-Freunde, ich habe heute eine ganz spezielle Übung für euch, welche ich euch natürlich nicht vorenthalten möchte.";
 
@@ -34,7 +30,7 @@ class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - height3 * 0.68,
+                  height: (MediaQuery.of(context).size.height) - height3 * 0.66,
                   decoration: new BoxDecoration(
                     color: Color(0xFF000000),
                     borderRadius: BorderRadius.only(
