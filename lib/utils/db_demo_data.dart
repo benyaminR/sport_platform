@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sport_platform/archive/community/domain/entity/community_media.dart';
+import 'package:sport_platform/archive/community/domain/entity/community_post.dart';
+import 'package:sport_platform/archive/community/domain/usecase/add_post_use_case.dart';
 import 'package:sport_platform/container.dart';
-import 'package:sport_platform/features/community/domain/entity/community_media.dart';
-import 'package:sport_platform/features/community/domain/entity/community_post.dart';
-import 'package:sport_platform/features/community/domain/usecase/add_post_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/add_course_use_case.dart';
 import 'package:sport_platform/utils/usecases/params.dart';
 

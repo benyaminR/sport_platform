@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/container.dart';
-import 'package:sport_platform/features/chat/presentation/views/chat_detailview.dart';
-import 'package:sport_platform/features/community/presentation/views/post_add.dart';
-import 'package:sport_platform/post_comment.dart';
+import 'package:sport_platform/archive/post_comment.dart';
 import 'package:sport_platform/utils/my_behavior.dart';
+import 'archive/chat/presentation/views/chat_detailview.dart';
+import 'archive/community/presentation/views/post_add.dart';
+import 'archive/community/presentation/views/story_add.dart';
 import 'features/authentication/presentation/views/register.dart';
 import 'features/authentication/presentation/views/reset_password.dart';
-import 'features/community/presentation/views/story_add.dart';
 import 'package:sport_platform/utils/colors.dart';
 import 'home.dart';
 import 'features/authentication/presentation/views/login.dart';
