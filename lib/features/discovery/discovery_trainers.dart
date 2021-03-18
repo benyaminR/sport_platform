@@ -2,7 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
-class DiscoveryTrainers2 extends StatelessWidget {
+import 'features/discovery/domain/entity/trending_trainer.dart';
+
+class DiscoveryTrainers extends StatelessWidget {
+  final List<TrendingTrainer> trainers;
+
+  const DiscoveryTrainers({Key key,@required this.trainers}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     // Full screen width and height
@@ -52,21 +59,19 @@ class DiscoveryTrainers2 extends StatelessWidget {
               ),
             ),
             Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ProfilePicture(url: 'Trainers/face_01.jpg', size: height3 * 0.045),
-                    Text(
-                      "@jennyfit",
-                      style: TextStyle(
-                        fontSize: height3 * 0.015,
-                        color: Color(0xFF707070),
-                      ),
+              children: trainers.map((e) => Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ProfilePicture(url: e.thumbnail, size: height3 * 0.045),
+                  Text(
+                    e.name,
+                    style: TextStyle(
+                      fontSize: height3 * 0.015,
+                      color: Color(0xFF707070),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ), ).toList(),
             ),
           ],
         ),

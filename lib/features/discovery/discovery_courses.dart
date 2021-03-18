@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/features/users/domain/entity/user_course.dart';
 
 import '../../container.dart';
 import '../courses/presentation/bloc/courses/courses_bloc.dart';
@@ -8,6 +9,8 @@ import '../../utils/components/image_section.dart';
 
 
 class DiscoveryCourses extends StatelessWidget {
+  final List<UserCourse> myCourses;
+  const DiscoveryCourses({Key key,@required this.myCourses}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // Full screen width and height
@@ -45,6 +48,7 @@ class DiscoveryCourses extends StatelessWidget {
                           // fontWeight: FontWeight.bold,
                           fontSize: height3 * 0.03),
                     ),
+
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
@@ -67,31 +71,23 @@ class DiscoveryCourses extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: height3 * 0.024, right: 0.0),
-              child: BlocProvider(
-                create: (context) => getIt<CoursesBloc>()
-                  ..add(GetCoursesEvent(criteriaData: null)),
-                child: BlocBuilder<CoursesBloc, CoursesState>(
-                  builder: (context, state) {
-                    if (state is LoadingCoursesState) {
-                      Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    if (state is LoadedCoursesState) {
-                      return Container(
-                        height: height3 * 0.18,
-                        child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: List.generate(
-                              state.courses.length,
-                                  (index) => ImageSection(),
-                            )),
-                      );
-                    }
-                    return Container();
-                  },
-                ),
-              ),
+              child: Container(
+                height: height3 * 0.18,
+                child: myCourses.length == 0 ? Center(
+                  child: Text("Leider hast du keine Kurse...",style: TextStyle(
+                    color: Colors.white
+                  ),),
+                ): ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      myCourses.length,
+                          (index) => ImageSection(
+                        thumbnail: "",
+                        id: "",
+                        name: "",
+                      ),
+                    )),
+              )
             ),
           ],
         ),

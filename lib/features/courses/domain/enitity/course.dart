@@ -26,7 +26,7 @@ class Course extends Equatable{
     @required this.content,
     @required this.students,
     @required this.category,
-    @required this.path
+    @required this.path,
   });
 
   @override

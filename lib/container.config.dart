@@ -42,11 +42,16 @@ import 'features/courses/domain/repository/courses_repo.dart';
 import 'features/courses/data/repository/courses_repo_impl.dart';
 import 'features/courses/domain/usecase/delete_course_use_case.dart';
 import 'features/storage/domain/usecase/DeleteStorageDataUseCase.dart';
+import 'features/discovery/presentation/discovery/discovery_bloc.dart';
+import 'features/discovery/data/datasource/discovery_data_source.dart';
+import 'features/discovery/domain/repository/discovery_repo.dart';
+import 'features/discovery/data/repository/DiscoveryRepoImpl.dart';
 import 'utils/third_party_dependencies/firebase_auth.dart';
 import 'utils/third_party_dependencies/firebase_firestore.dart';
 import 'utils/third_party_dependencies/firebase_functions.dart';
 import 'utils/third_party_dependencies/firebase_storage.dart';
 import 'features/courses/domain/usecase/get_courses_use_case.dart';
+import 'features/discovery/domain/usecases/get_discovery_data_use_case.dart';
 import 'features/storage/domain/usecase/GetDownloadUrlUseCase.dart';
 import 'features/users/domain/usecase/get_users_use_case.dart';
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart';
@@ -134,10 +139,16 @@ GetIt $initGetIt(
       DeleteCourseUseCase(repo: get<CoursesRepo>()));
   gh.singleton<DeleteStorageDataUseCase>(
       DeleteStorageDataUseCase(repo: get<StorageRepo>()));
+  gh.singleton<DiscoveryDataSource>(
+      DiscoveryDataSourceImpl(firestore: get<FirebaseFirestore>()));
+  gh.singleton<DiscoveryRepo>(
+      DiscoveryRepoImpl(ds: get<DiscoveryDataSource>()));
   gh.singleton<GetChatHistoryUseCase>(
       GetChatHistoryUseCase(repo: get<ChatRepo>()));
   gh.singleton<GetChatsUseCase>(GetChatsUseCase(repo: get<ChatRepo>()));
   gh.singleton<GetCourseUseCase>(GetCourseUseCase(repo: get<CoursesRepo>()));
+  gh.singleton<GetDiscoveryDataUseCase>(
+      GetDiscoveryDataUseCase(repo: get<DiscoveryRepo>()));
   gh.singleton<GetPostsUseCase>(GetPostsUseCase(repo: get<CommunityRepo>()));
   gh.singleton<GetUsersUseCase>(GetUsersUseCase(repo: get<UsersRepo>()));
   gh.singleton<LikePostUseCase>(LikePostUseCase(repo: get<CommunityRepo>()));
@@ -192,6 +203,8 @@ GetIt $initGetIt(
     addCourseUseCase: get<AddCourseUseCase>(),
     deleteCourseUseCase: get<DeleteCourseUseCase>(),
   ));
+  gh.singleton<DiscoveryBloc>(
+      DiscoveryBloc(getDiscoveryDataUseCase: get<GetDiscoveryDataUseCase>()));
   return get;
 }
 
