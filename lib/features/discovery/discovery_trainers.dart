@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
-import 'features/discovery/domain/entity/trending_trainer.dart';
+import 'domain/entity/trending_trainer.dart';
+
 
 class DiscoveryTrainers extends StatelessWidget {
   final List<TrendingTrainer> trainers;
