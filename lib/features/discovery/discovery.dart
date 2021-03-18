@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/discovery_trainers.dart';
+import 'package:sport_platform/features/discovery/discovery_trainers.dart';
 import 'package:sport_platform/personal_course_box.dart';
 import 'discovery_courses.dart';
 import 'discovery_trends.dart';

@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/utils/components/image_section_3.dart';
 
-import 'bottom_sheet_comment.dart';
-import 'utils/components/image_section.dart';
+import '../../bottom_sheet_comment.dart';
+import '../../utils/components/image_section.dart';
 
 class DiscoveryContinue extends StatefulWidget {
   @override
