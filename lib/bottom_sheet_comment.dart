@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/post_comment.dart';
+import 'package:sport_platform/archive/post_comment.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
 void onButtonPressedComment(context,comments,postID) {
