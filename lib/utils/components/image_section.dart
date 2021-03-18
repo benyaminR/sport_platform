@@ -1,12 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 
-class ImageSection extends StatefulWidget {
-  @override
-  _ImageSectionState createState() => _ImageSectionState();
-}
+import '../../container.dart';
 
-class _ImageSectionState extends State<ImageSection> {
+class ImageSection extends StatelessWidget {
+
+  final String name;
+  final String thumbnail;
+  final String id;
+
+  const ImageSection({
+    Key key,
+    @required this.name,
+    @required this.thumbnail,
+    @required this.id}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Full screen width and height
@@ -26,24 +36,33 @@ class _ImageSectionState extends State<ImageSection> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(left: height3 * 0.024),
-            child: Container(
-              height: height3 * 0.18,
-              decoration: new BoxDecoration(
-                image: DecorationImage(
-                  image: new NetworkImage(
-                      "https://www.zdf.de/assets/fussball-cl-spielball-100~1280x720?cb=1607534334614"),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
+            child: BlocProvider.value(
+                value: getIt<StorageBloc>()..add(GetDownloadUrlEvent(path: thumbnail)),
+                child:BlocBuilder<StorageBloc,StorageState>(
+                  builder: (context, state) {
+                    if(state is StorageLoading)
+                      return CircularProgressIndicator();
+                    if(state is GetDownloadUrlCompleted)
+                      return Container(
+                        height: height3 * 0.18,
+                        decoration: new BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(state.downloadUrl),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      );
+                    return Container();
+                  },
+                )),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: height3 * 0.012),
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Fußball ",
+                name,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: height3 * 0.024,
