@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'container.dart';
-import 'features/courses/presentation/bloc/courses/courses_bloc.dart';
-import 'utils/components/image_section.dart';
+import '../../container.dart';
+import '../courses/presentation/bloc/courses/courses_bloc.dart';
+import '../../utils/components/image_section.dart';
 
 
 class DiscoveryCourses extends StatelessWidget {

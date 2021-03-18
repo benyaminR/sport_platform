@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_platform/bottom_sheet_add_media.dart';
-import 'package:sport_platform/discovery.dart';
+import 'package:sport_platform/features/discovery/discovery.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:sport_platform/personal.dart';
 
