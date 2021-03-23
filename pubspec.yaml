@@ -53,10 +53,11 @@ dependencies:
   bloc_test: ^7.1.0
   image_picker: ^0.6.7+14
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  chewie: ^0.12.2
+  video_player: ^1.0.1
   # add the generator to your dev_dependencies
   injectable_generator:
   # of course build_runner is needed to run the generator
@@ -73,6 +74,7 @@ flutter:
     - assets/images/teilen.png
     - assets/images/transparent.png
     - assets/images/star_personal.png
+    - assets/videos/IntroVideo.mp4
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
