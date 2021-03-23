@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_platform/container.dart';
+import 'package:sport_platform/archive/community/presentation/views/story_add.dart';
 import 'package:sport_platform/archive/post_comment.dart';
+import 'package:sport_platform/container.dart';
+import 'package:sport_platform/personal.dart';
 import 'package:sport_platform/utils/my_behavior.dart';
 import 'archive/chat/presentation/views/chat_detailview.dart';
 import 'archive/community/presentation/views/post_add.dart';
-import 'archive/community/presentation/views/story_add.dart';
+import 'course_detail_view.dart';
 import 'features/authentication/presentation/views/register.dart';
 import 'features/authentication/presentation/views/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
@@ -43,7 +45,9 @@ class MyApp extends StatelessWidget {
         '/home/chatDetailview': (context) => ChatDetailview(),
         '/home/postAdd': (context) => PostAdd(),
         '/home/storyAdd': (context) => StoryAdd(),
+        '/home/personal': (context) => Personal(),
         '/home/discovery/postComment': (context) => PostComment(),
+        '/home/personal/courseDetailView': (context) => CourseDetailView(),
       },
     );
   }
