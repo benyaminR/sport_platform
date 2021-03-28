@@ -7,7 +7,7 @@ import 'package:sport_platform/features/users/presentation/bloc/users/users_bloc
 import 'package:sport_platform/personal_course_box.dart';
 import 'discovery_courses.dart';
 import 'discovery_trainers.dart';
-import 'discovery_trends.dart';
+import 'my_courses.dart';
 
 //Startseite
 class Discovery extends StatelessWidget {
@@ -78,7 +78,7 @@ class Discovery extends StatelessWidget {
                     return Center(
                       child: CircularProgressIndicator(),);
                   if(state is LoadedDiscoveryState)
-                    return DiscoveryTrends(courses : state.data.trendingCourses);
+                    return MyCourses(courses : state.data.trendingCourses);
                   if(state is ErrorDiscoveryState)
                     return Center(
                       child: Text("Failed"),
