@@ -4,11 +4,11 @@ import 'package:sport_platform/features/discovery/domain/entity/trending_course.
 import 'package:sport_platform/utils/components/image_section.dart';
 
 
-class DiscoveryTrends extends StatelessWidget{
+class MyCourses extends StatelessWidget{
 
   final List<TrendingCourse> courses;
 
-  const DiscoveryTrends({Key key, @required this.courses}) : super(key: key);
+  const MyCourses({Key key, @required this.courses}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
