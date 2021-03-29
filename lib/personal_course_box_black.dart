@@ -34,7 +34,7 @@ class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - height3 * 0.70,
+                  height: (MediaQuery.of(context).size.height) - height3 * 0.65,
                   decoration: new BoxDecoration(
                     color: Color(0xFF000000),
                     borderRadius: BorderRadius.only(
@@ -98,11 +98,11 @@ class _PersonalCourseBoxBlackState extends State<PersonalCourseBoxBlack> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: (MediaQuery.of(context).size.height) - height3 * 0.75,
+                  height: (MediaQuery.of(context).size.height) - height3 * 0.82,
                   decoration: new BoxDecoration(
                     image: DecorationImage(
                       image: new NetworkImage(
-                          "https://www.wochenblatt.de/media/2020/06/07/42199020-l_202006070945_full.jpg"),
+                          "https://www.zdf.de/assets/fussball-cl-spielball-100~1280x720?cb=1607534334614"),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
