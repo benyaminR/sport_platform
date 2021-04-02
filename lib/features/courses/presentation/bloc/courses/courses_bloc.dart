@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course.dart';
+import 'package:sport_platform/features/courses/domain/usecase/get_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/add_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/delete_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/get_courses_use_case.dart';
@@ -18,6 +19,7 @@ part 'courses_state.dart';
 @singleton
 class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
 
+  final GetCoursesUseCase getCoursesUseCase;
   final GetCourseUseCase getCourseUseCase;
   final UpdateCourseUseCase updateCourseUseCase;
   final AddCourseUseCase addCourseUseCase;
@@ -30,14 +32,14 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   static const UPDATE_COURSE_ERROR = 'Failed To Update!';
   static const GET_COURSE_ERROR = 'Failed To Get!';
 
-  CoursesBloc({this.initialState, this.getCourseUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase}) : super(initialState);
+  CoursesBloc({this.initialState, this.getCoursesUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase,this.getCourseUseCase}) : super(initialState);
 
   @override
   Stream<CoursesState> mapEventToState(CoursesEvent event) async* {
     //GetCoursesEvent
     if(event is GetCoursesEvent){
       yield LoadingCoursesState();
-      var data = await getCourseUseCase(WithParams(param:event.criteriaData));
+      var data = await getCoursesUseCase(WithParams(param:event.criteriaData));
       yield data.fold(
               (l) => ErrorCoursesState(msg: GET_COURSE_ERROR),
               (r) => LoadedCoursesState(courses: r)
@@ -68,6 +70,15 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       yield data.fold(
               (l) => ErrorCoursesState(msg: ADD_COURSE_ERROR),
               (r) => LoadedCoursesState(courses: [r])
+      );
+    }
+
+    if(event is GetCourseEvent){
+      yield LoadingCoursesState();
+      var data = await getCourseUseCase(WithParams(param:event.id));
+      yield data.fold(
+              (l) => ErrorCoursesState(msg: GET_COURSE_ERROR),
+              (r) => LoadedCourseState(course: r)
       );
     }
 

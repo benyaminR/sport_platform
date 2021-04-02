@@ -23,6 +23,14 @@ class LoadedCoursesState extends CoursesState{
   List<Object> get props => [courses];
 }
 
+class LoadedCourseState extends CoursesState{
+  final Course course;
+
+  LoadedCourseState({@required this.course});
+  @override
+  List<Object> get props => [course];
+}
+
 
 class ErrorCoursesState extends CoursesState{
   final String msg;

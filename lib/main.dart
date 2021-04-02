@@ -7,7 +7,7 @@ import 'package:sport_platform/personal.dart';
 import 'package:sport_platform/utils/my_behavior.dart';
 import 'archive/chat/presentation/views/chat_detailview.dart';
 import 'archive/community/presentation/views/post_add.dart';
-import 'course_detail_view.dart';
+import 'course-detail/course_detail_view.dart';
 import 'features/authentication/presentation/views/register.dart';
 import 'features/authentication/presentation/views/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/home/storyAdd': (context) => StoryAdd(),
         '/home/personal': (context) => Personal(),
         '/home/discovery/postComment': (context) => PostComment(),
-        '/home/personal/courseDetailView': (context) => CourseDetailView(),
+        '/home/personal/courseDetailView': (context) => CourseDetailView(courseID: "",),
       },
     );
   }

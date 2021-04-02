@@ -56,4 +56,14 @@ class CoursesRepoImpl implements CoursesRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, Course>> getCourse(String id) async{
+    try{
+      var result = await dataSource.getCourse(id);
+      return Right(result);
+    } on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
 }

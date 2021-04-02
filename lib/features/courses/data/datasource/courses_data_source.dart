@@ -13,6 +13,8 @@ abstract class CoursesDataSource{
   Future<CourseDataModel> updateCourse(CourseDataModel courseDataModel);
 
   Future<List<CourseDataModel>> getCourses(Criteria criteriaData);
+
+  Future<CourseDataModel>getCourse(String id);
 }
 
 @Singleton(as:CoursesDataSource)
@@ -66,8 +68,10 @@ class CourseDataSourceImpl implements CoursesDataSource{
     } on Exception catch (e) {
       throw ServerException();
     }
-
   }
+
+
+
 
   @override
   Future<CourseDataModel> updateCourse(CourseDataModel courseDataModel) async{
@@ -75,6 +79,19 @@ class CourseDataSourceImpl implements CoursesDataSource{
       await firestore.doc(courseDataModel.path).update(CourseDataModel.toMap(courseDataModel));
       var dataModel = CourseDataModel.fromSnapshot(await firestore.doc(courseDataModel.path).get());
       return dataModel;
+    } on Exception catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<CourseDataModel> getCourse(String id) async{
+    try {
+        var querySnapshot = await firestore.
+        collection('Courses').
+            doc(id)
+            .get();
+        return CourseDataModel.fromSnapshot(querySnapshot);
     } on Exception catch (e) {
       throw ServerException();
     }

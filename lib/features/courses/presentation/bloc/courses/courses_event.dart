@@ -10,6 +10,14 @@ class GetCoursesEvent extends CoursesEvent{
   List<Object> get props => [criteriaData];
 }
 
+
+class GetCourseEvent extends CoursesEvent{
+  final String id;
+  GetCourseEvent({@required this.id});
+  @override
+  List<Object> get props => [id];
+}
+
 class AddCoursesEvent extends CoursesEvent{
   final Course course;
   AddCoursesEvent({@required this.course});
