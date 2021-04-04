@@ -5,9 +5,9 @@ import 'package:sport_platform/container.dart';
 import 'package:sport_platform/features/discovery/presentation/discovery/discovery_bloc.dart';
 import 'package:sport_platform/features/users/presentation/bloc/users/users_bloc.dart';
 import 'package:sport_platform/personal_course_box.dart';
-import 'discovery_courses.dart';
+import 'purchased_courses.dart';
 import 'discovery_trainers.dart';
-import 'my_courses.dart';
+import 'trending_courses.dart';
 
 //Startseite
 class Discovery extends StatelessWidget {
@@ -18,11 +18,11 @@ class Discovery extends StatelessWidget {
         BlocProvider.value(value: getIt<DiscoveryBloc>()..add(GetDiscovery())),
         BlocProvider.value(value: getIt<UsersBloc>()..add(GetUsersEvent(criteria: null))),
       ],
-      child: DiscoveryBody(context),
+      child: _discoveryBody(context),
     );
   }
 
-  Widget DiscoveryBody(context){
+  Widget _discoveryBody(context){
     // Full screen width and height
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
@@ -78,7 +78,7 @@ class Discovery extends StatelessWidget {
                     return Center(
                       child: CircularProgressIndicator(),);
                   if(state is LoadedDiscoveryState)
-                    return MyCourses(courses : state.data.trendingCourses);
+                    return TrendingCourses(courses : state.data.trendingCourses);
                   if(state is ErrorDiscoveryState)
                     return Center(
                       child: Text("Failed"),
@@ -89,13 +89,14 @@ class Discovery extends StatelessWidget {
             SizedBox(
               height: height3 * 0.015,
             ),
+
             BlocBuilder<UsersBloc,UsersState>(
                 builder: (context, state){
                   if(state is LoadingUsersState)
                     return Center(
                       child: CircularProgressIndicator(),);
                   if(state is LoadedUsersState)
-                    return DiscoveryCourses(myCourses:state.users[0].purchasedCourses);
+                    return PurchasedCourses(myCourses:state.users[0].purchasedCourses);
                   if(state is ErrorUsersState)
                     return Center(
                       child: Text("Failed"),

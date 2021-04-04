@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/home/storyAdd': (context) => StoryAdd(),
         '/home/personal': (context) => Personal(),
         '/home/discovery/postComment': (context) => PostComment(),
-        '/home/personal/courseDetailView': (context) => CourseDetailView(courseID: "",),
+        '/home/personal/courseDetailView': (context) => CourseDetailView(),
       },
     );
   }

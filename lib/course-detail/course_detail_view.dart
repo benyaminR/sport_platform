@@ -18,9 +18,7 @@ import 'course_detail_view_tabs_widget.dart';
 
 class CourseDetailView extends StatelessWidget {
 
-  final String courseID;
-
-  const CourseDetailView({Key key,@required this.courseID}) : super(key: key);
+  const CourseDetailView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +27,12 @@ class CourseDetailView extends StatelessWidget {
     // Height (without SafeArea)
     final padding = MediaQuery.of(context).padding;
     final double height3 = height - padding.top - kToolbarHeight;
+
+    var courseID = ModalRoute.of(context)?.settings?.arguments as String;
+
+
     return BlocProvider.value(
-      value: getIt<CoursesBloc>()..add(GetCourseEvent(id: "NmgoJTwem6TUrbfQ70fE"),),
+      value: getIt<CoursesBloc>()..add(GetCourseEvent(id: courseID),),
       child: BlocBuilder<CoursesBloc,CoursesState>(
         builder: (context, state) {
           print(state);
@@ -47,10 +49,6 @@ class CourseDetailView extends StatelessWidget {
   }
 
   Widget _courseLoaded(double height3,Course course) {
-
-    print("called!");
-    print(course.toString());
-
     return SafeArea(
     child: Material(
       child: Container(
@@ -112,7 +110,8 @@ class CourseDetailView extends StatelessWidget {
             CourseDetailViewTabsWidget(),
             SizedBox(
               height: height3 * 0.015,
-            ),
+            )
+            ,
             BlocProvider.value(value: getIt<CourseDetailViewTabsBloc>()..add(ContentTab()),
             child: BlocBuilder<CourseDetailViewTabsBloc,CourseDetailViewTabsState>(
               builder: (context, state) {

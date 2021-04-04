@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sport_platform/features/users/domain/entity/user_course.dart';
-
-import '../../container.dart';
-import '../courses/presentation/bloc/courses/courses_bloc.dart';
-import '../../utils/components/image_section.dart';
+import 'package:sport_platform/features/discovery/domain/entity/trending_course.dart';
+import 'package:sport_platform/utils/components/image_section.dart';
 
 
-class DiscoveryCourses extends StatelessWidget {
-  final List<UserCourse> myCourses;
-  const DiscoveryCourses({Key key,@required this.myCourses}) : super(key: key);
+class TrendingCourses extends StatelessWidget{
+
+  final List<TrendingCourse> courses;
+
+  const TrendingCourses({Key key, @required this.courses}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Full screen width and height
@@ -37,18 +36,18 @@ class DiscoveryCourses extends StatelessWidget {
               padding: EdgeInsets.only(
                   left: height3 * 0.024, top: height3 * 0.024, right: height3 * 0.024, bottom: height3 * 0.012),
               child: Container(
+                // height: 30.0,
                 height: height3 * 0.045,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Deine Kurse",
+                      "Im Trend",
                       style: TextStyle(
                           color: Colors.white,
                           // fontWeight: FontWeight.bold,
                           fontSize: height3 * 0.03),
                     ),
-
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
@@ -59,9 +58,8 @@ class DiscoveryCourses extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'Mehr',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: height3 * 0.021),
+                          style:
+                          TextStyle(color: Colors.white, fontSize: height3 * 0.021),
                         ),
                       ),
                     ),
@@ -70,24 +68,20 @@ class DiscoveryCourses extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: height3 * 0.024, right: 0.0),
-              child: Container(
-                height: height3 * 0.18,
-                child: myCourses.length == 0 ? Center(
-                  child: Text("Leider hast du keine Kurse...",style: TextStyle(
-                    color: Colors.white
-                  ),),
-                ): ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      myCourses.length,
-                          (index) => ImageSection(
-                        thumbnail: "",
-                        id: "",
-                        name: "",
-                      ),
-                    )),
-              )
+                padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: height3 * 0.024, right: 0.0),
+                child: Container(
+                  height: height3 * 0.18,
+                  child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: List.generate(
+                        courses.length,
+                            (index) => CourseListViewCard(
+                          thumbnail: courses[index].thumbnail,
+                          id:courses[index].id,
+                          name: courses[index].name,
+                        ),
+                      )),
+                )
             ),
           ],
         ),
