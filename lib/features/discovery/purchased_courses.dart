@@ -76,9 +76,9 @@ class PurchasedCourses extends StatelessWidget {
                     children: List.generate(
                       myCourses.length,
                           (index) => CourseListViewCard(
-                        thumbnail: "",
-                        id: "",
-                        name: "",
+                        thumbnail: myCourses[index].thumbnail,
+                        id: myCourses[index].coursePath,
+                        name: myCourses[index].title,
                       ),
                     )),
               )
