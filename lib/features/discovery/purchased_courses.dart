@@ -1,15 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sport_platform/features/users/domain/entity/user_course.dart';
-
-import '../../container.dart';
-import '../courses/presentation/bloc/courses/courses_bloc.dart';
+import 'package:sport_platform/features/courses/domain/enitity/course.dart';
 import '../../utils/components/image_section.dart';
 
 
 class PurchasedCourses extends StatelessWidget {
-  final List<UserCourse> myCourses;
+  final List<Course> myCourses;
   const PurchasedCourses({Key key,@required this.myCourses}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -77,7 +73,7 @@ class PurchasedCourses extends StatelessWidget {
                       myCourses.length,
                           (index) => CourseListViewCard(
                         thumbnail: myCourses[index].thumbnail,
-                        id: myCourses[index].coursePath,
+                        id: myCourses[index].path,
                         name: myCourses[index].title,
                       ),
                     )),

@@ -49,6 +49,22 @@ class CourseDataModel extends Course{
   );
   }
 
+  factory CourseDataModel.fromMap(Map<String,dynamic> snapshot) {
+    var data = snapshot;
+    return CourseDataModel(
+        date: data['date'] ?? "",
+        title: data['title'] ?? "",
+        comments: data['comments'] == null? List<CourseCommentDataModel>(): (data['comments']  as List<dynamic>).map((e)=>CourseCommentDataModel.fromMap(e)).toList(),
+        trainer: snapshot['trainer'] == null ? CourseTrainerDataModel():CourseTrainerDataModel.fromMap(snapshot),
+        description: data['description']??"",
+        content: data['content']==null ? List<CourseContentSectionDataModel>():(data['content'] as List<dynamic>).map((e) => CourseContentSectionDataModel.fromMap(e)).toList(),
+        students: data['students']==null ? List<CourseUserDataModel>():(data['students'] as List<dynamic>).map((e) => CourseUserDataModel.fromSnapshot(e)).toList(),
+        category: data['category']??"",
+        path: snapshot['path']??"",
+        thumbnail: data['thumbnail']??""
+    );
+  }
+
   factory CourseDataModel.fromCourse(Course course) => CourseDataModel(
       date: course.date,
       title: course.title,

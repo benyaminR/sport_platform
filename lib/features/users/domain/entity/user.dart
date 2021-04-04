@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sport_platform/features/courses/domain/enitity/course.dart';
 import 'package:sport_platform/features/users/domain/entity/tip.dart';
-import 'package:sport_platform/features/users/domain/entity/user_course.dart';
 
 class User extends Equatable{
   final String username;
   final String description;
   final String profileImage;
   final String subscription;
-  final List<UserCourse> createdCourses;
-  final List<UserCourse> purchasedCourses;
+  final List<Course> createdCourses;
+  final List<Course> purchasedCourses;
   final List<Tip> tips;
   final List<String> friends;
   final String joinedDate;

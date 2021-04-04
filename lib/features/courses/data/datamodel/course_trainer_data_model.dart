@@ -20,6 +20,12 @@ class CourseTrainerDataModel extends CourseTrainer{
           path: snapshot.data()['trainer']['path']
       );
 
+
+  factory CourseTrainerDataModel.fromMap(Map<String,dynamic> snapshot) =>
+      CourseTrainerDataModel(name: snapshot['trainer']['name'],
+          thumbnail: snapshot['trainer']['thumbnail'],
+          path: snapshot['trainer']['path']
+      );
   static Map<String,dynamic> toMap(CourseDataModel courseDataModel) =>
       {
         'name': courseDataModel.trainer.name,
