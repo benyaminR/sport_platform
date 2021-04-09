@@ -45,10 +45,14 @@ class _VideoAppState extends State<VideoApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(0.0),
-      child: Chewie(
-        controller: _chewieController,
+    return Container(
+      height: 240,
+      width: 960,
+      child: Padding(
+        padding: EdgeInsets.all(0.0),
+        child: Chewie(
+          controller: _chewieController,
+        ),
       ),
     );
   }
