@@ -9,4 +9,5 @@ abstract class CoursesRepo{
   Future<Either<Failure,Course>> updateCourse(Course course);
   Future<Either<Failure, List<Course>>> getCourses(Criteria criteria);
   Future<Either<Failure, Course>> getCourse(String id);
+  Future<Either<Failure,Course>> addCourseToLibrary(Course course);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/container.dart';
+import 'package:sport_platform/course-detail/course_detail_view.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 import 'features/courses/domain/enitity/course.dart';
 
@@ -23,7 +24,7 @@ class PersonalCourseBoxBlack extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
       child: GestureDetector(
-        onTap: ()=> Navigator.of(context).pushNamed('/home/personal/courseDetailView',arguments : course.path),
+        onTap: ()=> Navigator.of(context).pushNamed('/home/personal/courseDetailView', arguments : CourseDetailViewData(courseID: course.path,hasPurchased: true)),
         child: Column(
           children: <Widget>[
             Padding(

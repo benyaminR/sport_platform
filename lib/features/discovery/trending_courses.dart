@@ -77,7 +77,7 @@ class TrendingCourses extends StatelessWidget{
                         courses.length,
                             (index) => CourseListViewCard(
                           thumbnail: courses[index].thumbnail,
-                          id:courses[index].id,
+                          courseID:courses[index].id,
                           name: courses[index].name,
                         ),
                       )),

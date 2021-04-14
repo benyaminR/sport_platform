@@ -60,24 +60,24 @@ class PurchasedCourses extends StatelessWidget {
             ),
 
             Padding(
-              padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: height3 * 0.024, right: 0.0),
-              child: Container(
-                height: height3 * 0.18,
-                child: myCourses.length == 0 ? Center(
-                  child: Text("Leider hast du keine Kurse...",style: TextStyle(
-                    color: Colors.white
-                  ),),
-                ): ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      myCourses.length,
-                          (index) => CourseListViewCard(
-                        thumbnail: myCourses[index].thumbnail,
-                        id: myCourses[index].path,
-                        name: myCourses[index].title,
-                      ),
-                    )),
-              )
+                padding: EdgeInsets.only(left: 0.0, top: 0.0, bottom: height3 * 0.024, right: 0.0),
+                child: Container(
+                  height: height3 * 0.18,
+                  child: myCourses.length == 0 ? Center(
+                    child: Text("Leider hast du keine Kurse...",style: TextStyle(
+                        color: Colors.white
+                    ),),
+                  ): ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: List.generate(
+                        myCourses.length,
+                            (index) => CourseListViewCard(
+                            thumbnail: myCourses[index].thumbnail,
+                            courseID: myCourses[index].path,
+                            name: myCourses[index].title,
+                            hasPurchased:true),
+                      )),
+                )
             ),
           ],
         ),

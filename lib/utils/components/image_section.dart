@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_platform/course-detail/course_detail_view.dart';
 import 'package:sport_platform/features/storage/presentation/storage/storage_bloc.dart';
 
 import '../../container.dart';
@@ -9,13 +10,15 @@ class CourseListViewCard extends StatelessWidget {
 
   final String name;
   final String thumbnail;
-  final String id;
+  final String courseID;
+  final bool hasPurchased;
 
   const CourseListViewCard({
     Key key,
     @required this.name,
     @required this.thumbnail,
-    @required this.id}) : super(key: key);
+    @required this.courseID
+    ,this.hasPurchased = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class CourseListViewCard extends StatelessWidget {
     final double height3 = height - padding.top - kToolbarHeight;
 
     return InkWell(
-      onTap:()=> Navigator.of(context).pushNamed("/home/personal/courseDetailView",arguments: id),
+      onTap:()=> Navigator.of(context).pushNamed("/home/personal/courseDetailView",arguments: CourseDetailViewData(hasPurchased: hasPurchased,courseID:courseID )),
       child: Container(
         child: SizedBox(
           width: height3 * 0.36,

@@ -66,4 +66,15 @@ class CoursesRepoImpl implements CoursesRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, Course>> addCourseToLibrary(Course course) async{
+
+    try{
+      var result = await dataSource.addCourseToLibrary(course);
+      return Right(result);
+    } on ServerException{
+      return Left(ServerFailure());
+    }
+  }
+
 }

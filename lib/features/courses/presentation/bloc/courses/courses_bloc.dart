@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:sport_platform/features/courses/domain/enitity/course.dart';
+import 'package:sport_platform/features/courses/domain/usecase/add_course_to_library_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/get_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/add_course_use_case.dart';
 import 'package:sport_platform/features/courses/domain/usecase/delete_course_use_case.dart';
@@ -24,6 +25,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   final UpdateCourseUseCase updateCourseUseCase;
   final AddCourseUseCase addCourseUseCase;
   final DeleteCourseUseCase deleteCourseUseCase;
+  final AddCourseToLibraryUseCase addCourseToLibraryUseCase;
 
   final IdleCoursesState initialState;
 
@@ -32,7 +34,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   static const UPDATE_COURSE_ERROR = 'Failed To Update!';
   static const GET_COURSE_ERROR = 'Failed To Get!';
 
-  CoursesBloc({this.initialState, this.getCoursesUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase,this.getCourseUseCase}) : super(initialState);
+  CoursesBloc({this.addCourseToLibraryUseCase, this.initialState, this.getCoursesUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase,this.getCourseUseCase}) : super(initialState);
 
   @override
   Stream<CoursesState> mapEventToState(CoursesEvent event) async* {
@@ -79,6 +81,16 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       yield data.fold(
               (l) => ErrorCoursesState(msg: GET_COURSE_ERROR),
               (r) => LoadedCourseState(course: r)
+      );
+    }
+
+
+    if(event is AddCourseToLibraryEvent){
+      yield AddingCourseToLibrary();
+      var data = await addCourseToLibraryUseCase(WithParams(param:event.course));
+      yield data.fold(
+              (l) => ErrorCoursesState(msg: GET_COURSE_ERROR),
+              (r) => AddedCourseToLibraryState(course: r)
       );
     }
 

@@ -41,3 +41,17 @@ class ErrorCoursesState extends CoursesState{
   List<Object> get props => [msg];
 }
 
+class AddedCourseToLibraryState extends CoursesState{
+  final Course course;
+
+  AddedCourseToLibraryState({@required this.course});
+  @override
+  List<Object> get props => [course];
+}
+
+class AddingCourseToLibrary extends CoursesState{
+
+  AddingCourseToLibrary();
+  @override
+  List<Object> get props => [];
+}

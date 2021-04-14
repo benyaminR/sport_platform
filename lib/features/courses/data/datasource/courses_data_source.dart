@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sport_platform/features/courses/data/datamodel/course_data_model.dart';
+import 'package:sport_platform/features/courses/domain/enitity/course.dart';
 import 'package:sport_platform/utils/criteria.dart';
 import 'package:sport_platform/utils/error/exception.dart';
 
@@ -15,13 +18,16 @@ abstract class CoursesDataSource{
   Future<List<CourseDataModel>> getCourses(Criteria criteriaData);
 
   Future<CourseDataModel>getCourse(String id);
+
+  Future<CourseDataModel>addCourseToLibrary(Course course);
 }
 
 @Singleton(as:CoursesDataSource)
 class CourseDataSourceImpl implements CoursesDataSource{
 
   final FirebaseFirestore firestore;
-  CourseDataSourceImpl({@required this.firestore});
+  final FirebaseAuth auth;
+  CourseDataSourceImpl({@required this.auth, @required this.firestore});
 
 
   @override
@@ -92,6 +98,32 @@ class CourseDataSourceImpl implements CoursesDataSource{
             doc(id)
             .get();
         return CourseDataModel.fromSnapshot(querySnapshot);
+    } on Exception catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<CourseDataModel> addCourseToLibrary(Course course) async{
+    try {
+
+      var snapshot = await firestore.collection("Users").doc(auth.currentUser.uid).get();
+
+      List<dynamic> courses = snapshot['purchasedCourses']?? List<dynamic>();
+      
+      courses.add({
+        'description':course.description,
+        'thumbnail':course.thumbnail,
+        'title':course.title,
+        'path':course.path
+      });
+
+      await firestore.collection("Users").doc(auth.currentUser.uid).update({
+        'purchasedCourses':courses
+      });
+
+
+      return CourseDataModel.fromCourse(course);
     } on Exception catch (e) {
       throw ServerException();
     }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:expandable/expandable.dart';
 import 'package:sport_platform/course-detail/course_detail_view_sections_widget_element.dart';
 
 class CourseDetailViewSectionsWidget extends StatelessWidget {
