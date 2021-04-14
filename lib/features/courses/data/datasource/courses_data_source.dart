@@ -109,7 +109,7 @@ class CourseDataSourceImpl implements CoursesDataSource{
 
       var snapshot = await firestore.collection("Users").doc(auth.currentUser.uid).get();
 
-      List<dynamic> courses = snapshot['purchasedCourses']?? List<dynamic>();
+      List<dynamic> courses = snapshot.data()['purchasedCourses']?? List<dynamic>();
       
       courses.add({
         'description':course.description,
@@ -117,6 +117,7 @@ class CourseDataSourceImpl implements CoursesDataSource{
         'title':course.title,
         'path':course.path
       });
+
 
       await firestore.collection("Users").doc(auth.currentUser.uid).update({
         'purchasedCourses':courses

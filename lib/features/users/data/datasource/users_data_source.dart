@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as Auth;
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sport_platform/features/courses/domain/enitity/course.dart';
 import 'package:sport_platform/features/users/data/datamodel/user_data_model.dart';
 import 'package:sport_platform/features/users/domain/entity/user.dart';
 import 'package:sport_platform/utils/criteria.dart';
@@ -13,6 +14,8 @@ abstract class UsersDataSource{
   Future<UserDataModel> addUser(User user);
   Future<UserDataModel> removeUser(String username);
   Future<UserDataModel> updateUser(User user);
+  Future<bool> hasPurchasedCourse(String courseID);
+
 }
 
 @Singleton(as:UsersDataSource)
@@ -68,6 +71,19 @@ class UsersDataSourceImpl implements UsersDataSource{
         UserDataModel.toMap(user)
     );
     return UserDataModel.fromUser(user);
+  }
+
+  @override
+  Future<bool> hasPurchasedCourse(String courseID) async{
+    var user = await firestore.collection('Users').doc(firebaseAuth.currentUser.uid).get();
+    var converted = UserDataModel.fromSnapshot(user);
+    var courses = converted.purchasedCourses;
+
+    for(Course course in courses)
+      if(course.path == courseID)
+        return true;
+
+    return false;
   }
 
 

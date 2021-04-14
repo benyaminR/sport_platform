@@ -24,7 +24,7 @@ class PersonalCourseBoxBlack extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
       child: GestureDetector(
-        onTap: ()=> Navigator.of(context).pushNamed('/home/personal/courseDetailView', arguments : CourseDetailViewData(courseID: course.path,hasPurchased: true)),
+        onTap: ()=> Navigator.of(context).pushNamed('/home/personal/courseDetailView', arguments : CourseDetailViewData(courseID: course.path)),
         child: Column(
           children: <Widget>[
             Padding(

@@ -44,12 +44,3 @@ class DeleteCoursesEvent extends CoursesEvent{
 }
 
 
-class AddCourseToLibraryEvent extends CoursesEvent{
-  final Course course;
-
-  AddCourseToLibraryEvent({@required this.course});
-
-  @override
-  List<Object> get props => [course];
-}
-

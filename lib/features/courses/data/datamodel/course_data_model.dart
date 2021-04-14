@@ -44,7 +44,7 @@ class CourseDataModel extends Course{
       content: (data['content'] as List<dynamic>).map((e) => CourseContentSectionDataModel.fromMap(e)).toList(),
       students: (data['students'] as List<dynamic>).map((e) => CourseUserDataModel.fromSnapshot(e)).toList(),
       category: data['category'],
-      path: snapshot.reference.path,
+      path: snapshot.reference.id,
       thumbnail: data['thumbnail']
   );
   }

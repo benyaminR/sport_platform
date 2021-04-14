@@ -51,4 +51,13 @@ class UsersRepoImpl extends UsersRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, bool>> hasPurchasedCourse(String courseID) async{
+    try{
+      return Right(await dataSource.hasPurchasedCourse(courseID));
+    }on ServerException{
+    return Left(ServerFailure());
+    }
+  }
+
 }

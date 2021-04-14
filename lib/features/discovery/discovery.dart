@@ -9,7 +9,6 @@ import 'purchased_courses.dart';
 import 'discovery_trainers.dart';
 import 'trending_courses.dart';
 
-//Startseite
 class Discovery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -66,6 +65,7 @@ class Discovery extends StatelessWidget {
                     return Center(
                       child: Text("Failed"),
                     );
+                  BlocProvider.value(value: getIt<DiscoveryBloc>()..add(GetDiscovery()));
                   return Container();
                 }
             ),
@@ -101,6 +101,7 @@ class Discovery extends StatelessWidget {
                     return Center(
                       child: Text("Failed"),
                     );
+                  getIt<UsersBloc>()..add(GetUsersEvent(criteria: null));
                   return Container();
                 }
             ),

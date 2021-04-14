@@ -22,15 +22,15 @@ import 'archive/chat/presentation/bloc/chat/chat_bloc.dart' as _i12;
 import 'archive/community/data/datasource/community_data_source.dart' as _i33;
 import 'archive/community/data/repository/community_repo_impl.dart' as _i35;
 import 'archive/community/domain/repository/community_repo.dart' as _i34;
-import 'archive/community/domain/usecase/add_post_use_case.dart' as _i61;
+import 'archive/community/domain/usecase/add_post_use_case.dart' as _i63;
 import 'archive/community/domain/usecase/comment_community_post_use_case.dart'
-    as _i62;
+    as _i64;
 import 'archive/community/domain/usecase/get_posts_use_case.dart' as _i46;
-import 'archive/community/domain/usecase/like_post_use_case.dart' as _i48;
-import 'archive/community/domain/usecase/remove_post_use_case.dart' as _i50;
-import 'archive/community/domain/usecase/update_post_use_case.dart' as _i56;
+import 'archive/community/domain/usecase/like_post_use_case.dart' as _i49;
+import 'archive/community/domain/usecase/remove_post_use_case.dart' as _i51;
+import 'archive/community/domain/usecase/update_post_use_case.dart' as _i57;
 import 'archive/community/presentation/bloc/community/community_bloc.dart'
-    as _i63;
+    as _i65;
 import 'course-detail/course_detail_view_tabs/course_detail_view_tabs_bloc.dart'
     as _i17;
 import 'features/authentication/data/datasource/auth_remote_data_source.dart'
@@ -40,32 +40,34 @@ import 'features/authentication/domain/repository/auth_repo.dart' as _i27;
 import 'features/authentication/domain/usecase/check_authentication_use_case.dart'
     as _i32;
 import 'features/authentication/domain/usecase/register_with_email_use_case.dart'
-    as _i49;
+    as _i50;
 import 'features/authentication/domain/usecase/send_password_recovery_email_use_case.dart'
-    as _i52;
-import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart'
     as _i53;
-import 'features/authentication/domain/usecase/sign_in_with_google_use_case.dart'
+import 'features/authentication/domain/usecase/sign_in_with_email_use_case.dart'
     as _i54;
+import 'features/authentication/domain/usecase/sign_in_with_google_use_case.dart'
+    as _i55;
 import 'features/authentication/presentation/bloc/authentication/authentication_bloc.dart'
     as _i19;
 import 'features/courses/data/datasource/courses_data_source.dart' as _i36;
 import 'features/courses/data/repository/courses_repo_impl.dart' as _i38;
 import 'features/courses/domain/repository/courses_repo.dart' as _i37;
 import 'features/courses/domain/usecase/add_course_to_library_use_case.dart'
-    as _i59;
-import 'features/courses/domain/usecase/add_course_use_case.dart' as _i60;
+    as _i61;
+import 'features/courses/domain/usecase/add_course_use_case.dart' as _i62;
 import 'features/courses/domain/usecase/delete_course_use_case.dart' as _i39;
 import 'features/courses/domain/usecase/get_course_use_case.dart' as _i43;
 import 'features/courses/domain/usecase/get_courses_use_case.dart' as _i44;
-import 'features/courses/domain/usecase/update_course_use_case.dart' as _i55;
+import 'features/courses/domain/usecase/update_course_use_case.dart' as _i56;
+import 'features/courses/presentation/bloc/add_course/add_course_bloc.dart'
+    as _i67;
 import 'features/courses/presentation/bloc/courses/courses_bloc.dart' as _i18;
 import 'features/discovery/data/datasource/discovery_data_source.dart' as _i40;
 import 'features/discovery/data/repository/DiscoveryRepoImpl.dart' as _i42;
 import 'features/discovery/domain/repository/discovery_repo.dart' as _i41;
 import 'features/discovery/domain/usecases/get_discovery_data_use_case.dart'
     as _i45;
-import 'features/discovery/presentation/discovery/discovery_bloc.dart' as _i64;
+import 'features/discovery/presentation/discovery/discovery_bloc.dart' as _i66;
 import 'features/storage/data/datasource/storage_repo_data_source.dart' as _i20;
 import 'features/storage/data/repository/storage_repo_imp.dart' as _i21;
 import 'features/storage/domain/repository/storage_repo.dart' as _i8;
@@ -78,14 +80,17 @@ import 'features/users/data/repository/users_repo_impl.dart' as _i24;
 import 'features/users/domain/repository/users_repo.dart' as _i23;
 import 'features/users/domain/usecase/add_user_use_case.dart' as _i25;
 import 'features/users/domain/usecase/get_users_use_case.dart' as _i47;
-import 'features/users/domain/usecase/remove_users_use_case.dart' as _i51;
-import 'features/users/domain/usecase/update_update_use_case.dart' as _i57;
-import 'features/users/presentation/bloc/users/users_bloc.dart' as _i58;
-import 'utils/third_party_dependencies/firebase_auth.dart' as _i65;
-import 'utils/third_party_dependencies/firebase_firestore.dart' as _i66;
-import 'utils/third_party_dependencies/firebase_functions.dart' as _i67;
+import 'features/users/domain/usecase/has_purchased_course.dart' as _i48;
+import 'features/users/domain/usecase/remove_users_use_case.dart' as _i52;
+import 'features/users/domain/usecase/update_update_use_case.dart' as _i58;
+import 'features/users/presentation/bloc/users/users_bloc.dart' as _i59;
+import 'features/users/presentation/bloc/users_library/users_library_bloc.dart'
+    as _i60;
+import 'utils/third_party_dependencies/firebase_auth.dart' as _i68;
+import 'utils/third_party_dependencies/firebase_firestore.dart' as _i69;
+import 'utils/third_party_dependencies/firebase_functions.dart' as _i70;
 import 'utils/third_party_dependencies/firebase_storage.dart'
-    as _i68; // ignore_for_file: unnecessary_lambdas
+    as _i71; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -171,73 +176,78 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i46.GetPostsUseCase(repo: get<_i34.CommunityRepo>()));
   gh.singleton<_i47.GetUsersUseCase>(
       _i47.GetUsersUseCase(repo: get<_i23.UsersRepo>()));
-  gh.singleton<_i48.LikePostUseCase>(
-      _i48.LikePostUseCase(repo: get<_i34.CommunityRepo>()));
-  gh.singleton<_i49.RegisterWithEmailUseCase>(
-      _i49.RegisterWithEmailUseCase(repo: get<_i27.AuthRepo>()));
-  gh.singleton<_i50.RemovePostUseCase>(
-      _i50.RemovePostUseCase(repo: get<_i34.CommunityRepo>()));
-  gh.singleton<_i51.RemoveUserUseCase>(
-      _i51.RemoveUserUseCase(repo: get<_i23.UsersRepo>()));
+  gh.singleton<_i48.HasPurchasedCourse>(
+      _i48.HasPurchasedCourse(repo: get<_i23.UsersRepo>()));
+  gh.singleton<_i49.LikePostUseCase>(
+      _i49.LikePostUseCase(repo: get<_i34.CommunityRepo>()));
+  gh.singleton<_i50.RegisterWithEmailUseCase>(
+      _i50.RegisterWithEmailUseCase(repo: get<_i27.AuthRepo>()));
+  gh.singleton<_i51.RemovePostUseCase>(
+      _i51.RemovePostUseCase(repo: get<_i34.CommunityRepo>()));
+  gh.singleton<_i52.RemoveUserUseCase>(
+      _i52.RemoveUserUseCase(repo: get<_i23.UsersRepo>()));
   gh.singleton<_i14.SendMessageUseCase>(
       _i14.SendMessageUseCase(repo: get<_i30.ChatRepo>()));
-  gh.singleton<_i52.SendPasswordRecoveryEmailUseCase>(
-      _i52.SendPasswordRecoveryEmailUseCase(repo: get<_i27.AuthRepo>()));
-  gh.singleton<_i53.SignInWithEmailUseCase>(
-      _i53.SignInWithEmailUseCase(repo: get<_i27.AuthRepo>()));
-  gh.singleton<_i54.SignInWithGoogleUseCase>(
-      _i54.SignInWithGoogleUseCase(repo: get<_i27.AuthRepo>()));
-  gh.singleton<_i55.UpdateCourseUseCase>(
-      _i55.UpdateCourseUseCase(repo: get<_i37.CoursesRepo>()));
+  gh.singleton<_i53.SendPasswordRecoveryEmailUseCase>(
+      _i53.SendPasswordRecoveryEmailUseCase(repo: get<_i27.AuthRepo>()));
+  gh.singleton<_i54.SignInWithEmailUseCase>(
+      _i54.SignInWithEmailUseCase(repo: get<_i27.AuthRepo>()));
+  gh.singleton<_i55.SignInWithGoogleUseCase>(
+      _i55.SignInWithGoogleUseCase(repo: get<_i27.AuthRepo>()));
+  gh.singleton<_i56.UpdateCourseUseCase>(
+      _i56.UpdateCourseUseCase(repo: get<_i37.CoursesRepo>()));
   gh.singleton<_i15.UpdateMessageUseCase>(
       _i15.UpdateMessageUseCase(repo: get<_i30.ChatRepo>()));
-  gh.singleton<_i56.UpdatePostUseCase>(
-      _i56.UpdatePostUseCase(repo: get<_i34.CommunityRepo>()));
-  gh.singleton<_i57.UpdateUserUseCase>(
-      _i57.UpdateUserUseCase(repo: get<_i23.UsersRepo>()));
-  gh.singleton<_i58.UsersBloc>(_i58.UsersBloc(
+  gh.singleton<_i57.UpdatePostUseCase>(
+      _i57.UpdatePostUseCase(repo: get<_i34.CommunityRepo>()));
+  gh.singleton<_i58.UpdateUserUseCase>(
+      _i58.UpdateUserUseCase(repo: get<_i23.UsersRepo>()));
+  gh.singleton<_i59.UsersBloc>(_i59.UsersBloc(
       addUserUseCase: get<_i25.AddUserUseCase>(),
       getUsersUseCase: get<_i47.GetUsersUseCase>(),
-      removeUserUseCase: get<_i51.RemoveUserUseCase>(),
-      updateUserUseCase: get<_i57.UpdateUserUseCase>()));
-  gh.singleton<_i59.AddCourseToLibraryUseCase>(
-      _i59.AddCourseToLibraryUseCase(repo: get<_i37.CoursesRepo>()));
-  gh.singleton<_i60.AddCourseUseCase>(
-      _i60.AddCourseUseCase(repo: get<_i37.CoursesRepo>()));
-  gh.singleton<_i61.AddPostUseCase>(
-      _i61.AddPostUseCase(repo: get<_i34.CommunityRepo>()));
+      removeUserUseCase: get<_i52.RemoveUserUseCase>(),
+      updateUserUseCase: get<_i58.UpdateUserUseCase>()));
+  gh.singleton<_i60.UsersLibraryBloc>(_i60.UsersLibraryBloc(
+      hasPurchasedCourse: get<_i48.HasPurchasedCourse>()));
+  gh.singleton<_i61.AddCourseToLibraryUseCase>(
+      _i61.AddCourseToLibraryUseCase(repo: get<_i37.CoursesRepo>()));
+  gh.singleton<_i62.AddCourseUseCase>(
+      _i62.AddCourseUseCase(repo: get<_i37.CoursesRepo>()));
+  gh.singleton<_i63.AddPostUseCase>(
+      _i63.AddPostUseCase(repo: get<_i34.CommunityRepo>()));
   gh.singleton<_i19.AuthenticationBloc>(_i19.AuthenticationBloc(
       get<_i19.InitialAuthenticationState>(),
-      withEmail: get<_i53.SignInWithEmailUseCase>(),
-      withGoogle: get<_i54.SignInWithGoogleUseCase>(),
+      withEmail: get<_i54.SignInWithEmailUseCase>(),
+      withGoogle: get<_i55.SignInWithGoogleUseCase>(),
       checkAuth: get<_i32.CheckAuthenticationUseCase>(),
-      registerWithEmail: get<_i49.RegisterWithEmailUseCase>(),
-      resetPassword: get<_i52.SendPasswordRecoveryEmailUseCase>()));
-  gh.singleton<_i62.CommentCommunityPostUseCase>(
-      _i62.CommentCommunityPostUseCase(repo: get<_i34.CommunityRepo>()));
-  gh.singleton<_i63.CommunityBloc>(_i63.CommunityBloc(
-      get<_i61.AddPostUseCase>(),
+      registerWithEmail: get<_i50.RegisterWithEmailUseCase>(),
+      resetPassword: get<_i53.SendPasswordRecoveryEmailUseCase>()));
+  gh.singleton<_i64.CommentCommunityPostUseCase>(
+      _i64.CommentCommunityPostUseCase(repo: get<_i34.CommunityRepo>()));
+  gh.singleton<_i65.CommunityBloc>(_i65.CommunityBloc(
+      get<_i63.AddPostUseCase>(),
       get<_i46.GetPostsUseCase>(),
-      get<_i50.RemovePostUseCase>(),
-      get<_i56.UpdatePostUseCase>(),
-      get<_i62.CommentCommunityPostUseCase>()));
+      get<_i51.RemovePostUseCase>(),
+      get<_i57.UpdatePostUseCase>(),
+      get<_i64.CommentCommunityPostUseCase>()));
   gh.singleton<_i18.CoursesBloc>(_i18.CoursesBloc(
-      addCourseToLibraryUseCase: get<_i59.AddCourseToLibraryUseCase>(),
       initialState: get<_i18.IdleCoursesState>(),
       getCoursesUseCase: get<_i44.GetCoursesUseCase>(),
-      updateCourseUseCase: get<_i55.UpdateCourseUseCase>(),
-      addCourseUseCase: get<_i60.AddCourseUseCase>(),
+      updateCourseUseCase: get<_i56.UpdateCourseUseCase>(),
+      addCourseUseCase: get<_i62.AddCourseUseCase>(),
       deleteCourseUseCase: get<_i39.DeleteCourseUseCase>(),
       getCourseUseCase: get<_i43.GetCourseUseCase>()));
-  gh.singleton<_i64.DiscoveryBloc>(_i64.DiscoveryBloc(
+  gh.singleton<_i66.DiscoveryBloc>(_i66.DiscoveryBloc(
       getDiscoveryDataUseCase: get<_i45.GetDiscoveryDataUseCase>()));
+  gh.singleton<_i67.AddCourseBloc>(_i67.AddCourseBloc(
+      addCourseToLibraryUseCase: get<_i61.AddCourseToLibraryUseCase>()));
   return get;
 }
 
-class _$FirebaseAuthDependency extends _i65.FirebaseAuthDependency {}
+class _$FirebaseAuthDependency extends _i68.FirebaseAuthDependency {}
 
-class _$FirebaseFirestoreDependency extends _i66.FirebaseFirestoreDependency {}
+class _$FirebaseFirestoreDependency extends _i69.FirebaseFirestoreDependency {}
 
-class _$FirebaseFunctionsDependency extends _i67.FirebaseFunctionsDependency {}
+class _$FirebaseFunctionsDependency extends _i70.FirebaseFunctionsDependency {}
 
-class _$FirebaseStorageDependency extends _i68.FirebaseStorageDependency {}
+class _$FirebaseStorageDependency extends _i71.FirebaseStorageDependency {}

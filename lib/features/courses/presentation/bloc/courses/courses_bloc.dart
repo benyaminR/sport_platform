@@ -25,7 +25,6 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   final UpdateCourseUseCase updateCourseUseCase;
   final AddCourseUseCase addCourseUseCase;
   final DeleteCourseUseCase deleteCourseUseCase;
-  final AddCourseToLibraryUseCase addCourseToLibraryUseCase;
 
   final IdleCoursesState initialState;
 
@@ -34,7 +33,7 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   static const UPDATE_COURSE_ERROR = 'Failed To Update!';
   static const GET_COURSE_ERROR = 'Failed To Get!';
 
-  CoursesBloc({this.addCourseToLibraryUseCase, this.initialState, this.getCoursesUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase,this.getCourseUseCase}) : super(initialState);
+  CoursesBloc({ this.initialState, this.getCoursesUseCase, this.updateCourseUseCase, this.addCourseUseCase, this.deleteCourseUseCase,this.getCourseUseCase}) : super(initialState);
 
   @override
   Stream<CoursesState> mapEventToState(CoursesEvent event) async* {
@@ -83,17 +82,6 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
               (r) => LoadedCourseState(course: r)
       );
     }
-
-
-    if(event is AddCourseToLibraryEvent){
-      yield AddingCourseToLibrary();
-      var data = await addCourseToLibraryUseCase(WithParams(param:event.course));
-      yield data.fold(
-              (l) => ErrorCoursesState(msg: GET_COURSE_ERROR),
-              (r) => AddedCourseToLibraryState(course: r)
-      );
-    }
-
 
   }
 }

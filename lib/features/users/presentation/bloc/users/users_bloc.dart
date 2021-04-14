@@ -7,6 +7,7 @@ import 'package:meta/meta.dart';
 import 'package:sport_platform/features/users/domain/entity/user.dart';
 import 'package:sport_platform/features/users/domain/usecase/add_user_use_case.dart';
 import 'package:sport_platform/features/users/domain/usecase/get_users_use_case.dart';
+import 'package:sport_platform/features/users/domain/usecase/has_purchased_course.dart';
 import 'package:sport_platform/features/users/domain/usecase/remove_users_use_case.dart';
 import 'package:sport_platform/features/users/domain/usecase/update_update_use_case.dart';
 import 'package:sport_platform/utils/criteria.dart';
@@ -74,7 +75,6 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
               (r) => LoadedUsersState(users: [r])
       );
     }
-
 
   }
 }

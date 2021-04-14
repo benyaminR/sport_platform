@@ -6,9 +6,9 @@ import 'package:sport_platform/features/authentication/presentation/bloc/authent
 import 'package:sport_platform/utils/cache_manager.dart';
 
 class Login extends StatelessWidget {
+  
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/archive/community/presentation/views/story_add.dart';
 import 'package:sport_platform/archive/post_comment.dart';
 import 'package:sport_platform/container.dart';
@@ -11,6 +12,7 @@ import 'course-detail/course_detail_view.dart';
 import 'features/authentication/presentation/views/register.dart';
 import 'features/authentication/presentation/views/reset_password.dart';
 import 'package:sport_platform/utils/colors.dart';
+import 'features/users/presentation/bloc/users/users_bloc.dart';
 import 'home.dart';
 import 'features/authentication/presentation/views/login.dart';
 
@@ -25,30 +27,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: (context, child) {
-        return ScrollConfiguration(
-          behavior: MyBehavior(),
-          child: child,
-        );
-      },
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.black,
-        primaryColor: PRIMARYCOLOR_ORANGE,
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Login(),
-        '/home': (context) => Home(),
-        '/register': (context) => Register(),
-        '/resetPassword': (context) => ResetPassword(),
-        '/home/chatDetailview': (context) => ChatDetailview(),
-        '/home/postAdd': (context) => PostAdd(),
-        '/home/storyAdd': (context) => StoryAdd(),
-        '/home/personal': (context) => Personal(),
-        '/home/discovery/postComment': (context) => PostComment(),
-        '/home/personal/courseDetailView': (context) => CourseDetailView(),
-      },
-    );
-  }
+        builder: (context, child) {
+      return ScrollConfiguration(
+        behavior: MyBehavior(),
+        child: child,
+      );
+    },
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+    scaffoldBackgroundColor: Colors.black,
+    primaryColor: PRIMARYCOLOR_ORANGE,
+    ),
+    initialRoute: '/',
+    routes: {
+    '/': (context) => Login(),
+    '/home': (context) => Home(),
+    '/register': (context) => Register(),
+    '/resetPassword': (context) => ResetPassword(),
+    '/home/chatDetailview': (context) => ChatDetailview(),
+    '/home/postAdd': (context) => PostAdd(),
+    '/home/storyAdd': (context) => StoryAdd(),
+    '/home/personal': (context) => Personal(),
+    '/home/discovery/postComment': (context) => PostComment(),
+    '/home/personal/courseDetailView': (context)=> CourseDetailView()
+  },
+  );
+}
 }

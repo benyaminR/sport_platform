@@ -27,7 +27,7 @@ class CourseListViewCard extends StatelessWidget {
     final double height3 = height - padding.top - kToolbarHeight;
 
     return InkWell(
-      onTap:()=> Navigator.of(context).pushNamed("/home/personal/courseDetailView",arguments: CourseDetailViewData(hasPurchased: hasPurchased,courseID:courseID )),
+      onTap:()=> Navigator.of(context).pushNamed("/home/personal/courseDetailView",arguments: CourseDetailViewData(courseID:courseID )),
       child: Container(
         child: SizedBox(
           width: height3 * 0.36,
