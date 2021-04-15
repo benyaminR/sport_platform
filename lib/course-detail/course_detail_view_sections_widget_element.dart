@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
+import 'package:sport_platform/features/courses/domain/enitity/content_section.dart';
+import 'package:sport_platform/features/courses/domain/enitity/video.dart';
 
 class CourseDetailViewSectionsWidgetElement extends StatelessWidget {
+
+  final ContentSection contentSection;
+  final int index;
+
+  const CourseDetailViewSectionsWidgetElement({Key key,@required this.contentSection,@required this.index}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Full screen width and height
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     // Height (without SafeArea)
     final padding = MediaQuery.of(context).padding;
-    final double height1 = height - padding.top - padding.bottom;
-    // Height (without status bar)
-    final double height2 = height - padding.top;
-    // Height (without status and toolbar)
     final double height3 = height - padding.top - kToolbarHeight;
 
-    const loremIpsum = "Ungeöffnet";
 
     return Container(
       child: ExpandableNotifier(
@@ -38,7 +40,7 @@ class CourseDetailViewSectionsWidgetElement extends StatelessWidget {
                     header: Padding(
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          "Abschnitt 1",
+                          "Abschnitt ${index+1}",
                           style: TextStyle(
                             fontSize: height3 * 0.026,
                             color: Colors.white,
@@ -47,35 +49,7 @@ class CourseDetailViewSectionsWidgetElement extends StatelessWidget {
                     collapsed: null,
                     expanded: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        GestureDetector(
-                          child: Text(
-                            "Kapitel 1",
-                            style: TextStyle(
-                              fontSize: height3 * 0.022,
-                              color: Color(0xFF707070),
-                            ),
-                          ),
-                          onTap: () {
-                            //TODO hier muss dann das Video asugetauscht werden
-                          },
-                        ),
-                        SizedBox(
-                          height: height3 * 0.015,
-                        ),
-                        GestureDetector(
-                          child: Text(
-                            "Kapitel 2",
-                            style: TextStyle(
-                              fontSize: height3 * 0.022,
-                              color: Color(0xFF707070),
-                            ),
-                          ),
-                          onTap: () {
-                            //TODO hier muss dann das Video asugetauscht werden
-                          },
-                        ),
-                      ],
+                      children: contentSection.videos.map((video) => VideoWidget(video,height3)).toList(),
                     ),
                     builder: (_, collapsed, expanded) {
                       return Padding(
@@ -95,6 +69,29 @@ class CourseDetailViewSectionsWidgetElement extends StatelessWidget {
           ),
         ),
       ),
+    );
+
+  }
+
+  Widget VideoWidget(Video video, double height3){
+    return Column(
+      children: [
+        GestureDetector(
+          child: Text(
+            video.title,
+            style: TextStyle(
+              fontSize: height3 * 0.022,
+              color: Color(0xFF707070),
+            ),
+          ),
+          onTap: () {
+            //TODO hier muss dann das Video asugetauscht werden
+          },
+        ),
+        SizedBox(
+          height: height3 * 0.015,
+        ),
+      ],
     );
   }
 }

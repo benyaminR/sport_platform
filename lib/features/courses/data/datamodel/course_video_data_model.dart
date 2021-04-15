@@ -5,27 +5,27 @@ class CourseVideoDataModel extends Video{
 
   CourseVideoDataModel({
     @required thumbnail,
-    @required creationDate,
     @required source,
-    @required viewCount
+    @required title,
+    @required description
   }):
         super(thumbnail: thumbnail,
-          creationDate: creationDate,
+          title: title,
           source: source,
-          viewCount: viewCount
+          description: description
       );
 
   factory CourseVideoDataModel.fromSnapshot(Map<String,dynamic> snapshot) => CourseVideoDataModel(
       thumbnail: snapshot['thumbnail'],
-      creationDate: snapshot['creationDate'],
       source: snapshot['source'],
-      viewCount: snapshot['viewCount']
+      description:snapshot['description'] ,
+      title: snapshot['title'],
   );
 
   static Map<String,dynamic> toMap(Video data)=> {
     'thumbnail':data.thumbnail,
     'source':data.source,
-    'creationDate':data.creationDate,
-    'viewCount':data.viewCount,
+    'title':data.title,
+    'description':data.description
   };
 }

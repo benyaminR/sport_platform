@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 
 class Video extends Equatable{
   final String thumbnail;
-  final int viewCount;
   final String source;
-  final String creationDate;
+  final String title;
+  final String description;
 
-  Video({@required this.thumbnail,@required this.viewCount,@required this.source,@required this.creationDate});
+  Video({@required this.title,@required this.description, @required this.thumbnail,@required this.source});
   @override
-  List<Object> get props => [thumbnail, viewCount, source, creationDate];
+  List<Object> get props => [thumbnail, source];
 }
