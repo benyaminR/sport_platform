@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_platform/features/courses/domain/enitity/course_trainer.dart';
+import 'package:sport_platform/personal.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
 class CourseDetailViewTop extends StatelessWidget {
-  final String profileImage;
-  final String username;
-  const CourseDetailViewTop({Key key,@required this.profileImage,@required this.username}) : super(key: key);
+  final CourseTrainer trainer;
+
+  const CourseDetailViewTop({Key key,@required this.trainer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +30,18 @@ class CourseDetailViewTop extends StatelessWidget {
                   Navigator.of(context).pop(),
                 },
               ),
-              ProfilePicture(
-                url:profileImage,
-                size: 20.0,
+              GestureDetector(
+                onTap:()=> Navigator.of(context).pushNamed('/home/personal',arguments: PersonalArgs(userID: trainer.path)) ,
+                child: ProfilePicture(
+                  url:trainer.thumbnail,
+                  size: 20.0,
+                ),
               ),
               SizedBox(
                 width: 4.0,
               ),
               Text(
-                username,
+                trainer.name,
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFFFFFFFF),
