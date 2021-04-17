@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_platform/personal.dart';
 import 'package:sport_platform/utils/components/profile_picture.dart';
 
 import 'domain/entity/trending_trainer.dart';
@@ -63,7 +64,10 @@ class DiscoveryTrainers extends StatelessWidget {
               children: trainers.map((e) => Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ProfilePicture(url: e.thumbnail, size: height3 * 0.045),
+                  GestureDetector(
+                      onTap:()=> Navigator.of(context).pushNamed('/home/personal',arguments: PersonalArgs(userID: e.id)) ,
+                      child: ProfilePicture(url: e.thumbnail, size: height3 * 0.045)
+                  ),
                   Text(
                     e.name,
                     style: TextStyle(

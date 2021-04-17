@@ -3,24 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_platform/personal_main_body.dart';
 import 'container.dart';
-import 'features/users/presentation/bloc/users/users_bloc.dart';
+import 'features/users/presentation/bloc/user/user_bloc.dart';
 
 class Personal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(value:getIt.get<UsersBloc>()..add(GetUsersEvent(criteria: null)),
-      child: BlocBuilder<UsersBloc, UsersState>(
-        builder: (context, state) {
-          print("current State "+ state.toString());
-          if (state is LoadingUsersState)
-            return loadingUsersWidget();
-          if (state is LoadedUsersState)
-            return PersonalMainBody(user:state.users[0]);
-          if (state is ErrorUsersState)
-            return errorGettingUserWidget(state.msg);
-          getIt.get<UsersBloc>()..add(GetUsersEvent(criteria: null));
-          return Container();
-        },
+    var args = ModalRoute.of(context).settings.arguments as PersonalArgs;
+    String userID = '';
+    if (args != null) userID = args.userID;
+    return Scaffold(
+      body: BlocProvider.value(value:getIt.get<UserBloc>()..add(GetUserEvent(userID: userID)),
+        child: BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            print("current State "+ state.toString());
+            if (state is LoadingUserState)
+              return loadingUsersWidget();
+            if (state is LoadedUserState)
+              return PersonalMainBody(user:state.user);
+            if (state is ErrorUserState)
+              return errorGettingUserWidget(state.toString());
+            getIt.get<UserBloc>()..add(GetUserEvent(userID: userID));
+            return Container();
+          },
+        ),
       ),
     );
   }
@@ -36,4 +41,12 @@ class Personal extends StatelessWidget {
       child: Text(msg),
     );
   }
+}
+
+
+class PersonalArgs{
+
+  final String userID;
+
+  PersonalArgs({@required this.userID});
 }

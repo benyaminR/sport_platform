@@ -9,5 +9,6 @@ abstract class UsersRepo{
   Future<Either<Failure, User>> removeUser(String username);
   Future<Either<Failure, User>> updateUser(User user);
   Future<Either<Failure, bool>> hasPurchasedCourse(String courseID);
+  Future<Either<Failure, User>> getUser(String userID);
 
 }

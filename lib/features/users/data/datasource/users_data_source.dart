@@ -11,6 +11,7 @@ import 'package:sport_platform/utils/error/exception.dart';
 
 abstract class UsersDataSource{
   Future<List<UserDataModel>> getUsers(Criteria criteria);
+  Future<UserDataModel> getUser(String userID);
   Future<UserDataModel> addUser(User user);
   Future<UserDataModel> removeUser(String username);
   Future<UserDataModel> updateUser(User user);
@@ -84,6 +85,19 @@ class UsersDataSourceImpl implements UsersDataSource{
         return true;
 
     return false;
+  }
+
+  @override
+  Future<UserDataModel> getUser(String userID) async{
+    try {
+      var uid = userID;
+      if (userID.isEmpty)
+        uid = firebaseAuth.currentUser.uid;
+      var res = await firestore.collection('Users').doc(uid).get();
+      return UserDataModel.fromSnapshot(res);
+    } on Exception{
+      throw ServerException();
+    }
   }
 
 

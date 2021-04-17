@@ -67,10 +67,7 @@ class CourseDetailView extends StatelessWidget {
                   height: height3 * 0.015,
                 ),
 
-                CourseDetailViewTop(
-                  profileImage: course.trainer.thumbnail,
-                  username: course.trainer.name,
-                ),
+                CourseDetailViewTop(trainer: course.trainer),
 
                 SizedBox(
                   height: height3 * 0.015,

@@ -60,4 +60,13 @@ class UsersRepoImpl extends UsersRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, User>> getUser(String userID) async{
+    try{
+      return Right(await dataSource.getUser(userID));
+    }on ServerException{
+    return Left(ServerFailure());
+    }
+  }
+
 }
